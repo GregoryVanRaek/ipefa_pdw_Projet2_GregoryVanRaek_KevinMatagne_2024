@@ -1,0 +1,14 @@
+<div>
+  <div class="flex gap-2 flex-col">
+    <h1>{{ title }}</h1>
+    <p>{{ subTitle }}</p>
+  </div>
+  <div class="flex flex-col p-4 gap-4">
+    <app-input [type]="'text'" [placeholder]="'Enter your username'"></app-input>
+    <app-input [type]="'password'" [placeholder]="'Enter your password'"></app-input>
+  </div>
+  <div class="flex justify-end p-4 gap-4">
+    <app-simple-button [class]="'btn btn-success'" [type]="'button'" [placeholder]="'Log In'" routerLink="/dashboard"></app-simple-button>
+    <a routerLink="/home" class="btn btn-danger">Cancel</a>
+  </div>
+</div>

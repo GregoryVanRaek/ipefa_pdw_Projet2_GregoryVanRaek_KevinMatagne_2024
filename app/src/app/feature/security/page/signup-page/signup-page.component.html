@@ -1,0 +1,106 @@
+<div class="flex items-center flex-col mt-16">
+  <div class="container">
+    <form [formGroup]="formGroup">
+      <div class="form-group">
+        <div class="flex flex-col mb-4">
+          <h1>{{ 'security-feature.sign-up-title' | translate }}</h1>
+          <p>{{ 'security-feature.sign-up-subtitle' | translate }}</p>
+        </div>
+
+        <div class="mb-4">
+          <label for="username">{{ 'security-feature.sign-up-page.label.username' | translate }}</label>
+          <input
+            [ngClass]="{ 'error-input': getErrorMessages('username').length, 'success-input': !getErrorMessages('username').length }"
+            id="username"
+            type="text"
+            placeholder="{{ 'security-feature.sign-up-page.placeholder.username' | translate }}"
+            formControlName="username"
+          />
+          @if(getErrorMessages('username').length > 0 && formGroup.get('username')?.touched) {
+            @for(message of getErrorMessages('username') ; track $index) {
+              <p class="error-msg">{{ message }}</p>
+            }
+          }
+        </div>
+
+        <div class="mb-4">
+          <label for="email">{{ 'security-feature.sign-up-page.label.email' | translate }}</label>
+          <input
+            [ngClass]="{ 'error-input': getErrorMessages('mail').length, 'success-input': !getErrorMessages('mail').length }"
+            id="email"
+            type="email"
+            placeholder="{{ 'security-feature.sign-up-page.placeholder.email' | translate }}"
+            formControlName="mail"
+          />
+          @if(getErrorMessages('mail').length > 0 && formGroup.get('mail')?.touched) {
+            @for(message of getErrorMessages('mail') ; track $index) {
+              <p class="error-msg">{{ message }}</p>
+            }
+          }
+        </div>
+
+        <div class="mb-4">
+          <label for="password">{{ 'security-feature.sign-up-page.label.password' | translate }}</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="{{ 'security-feature.sign-up-page.placeholder.password' | translate }}"
+            formControlName="password"
+          />
+          @if(getErrorMessages('password').length > 0 && formGroup.get('password')?.touched) {
+            @for(message of getErrorMessages('password'); track $index) {
+              <p class="error-msg">{{ message }}</p>
+            }
+          }
+        </div>
+
+        <div class="mb-4">
+          <label for="confirmPassword">{{ 'security-feature.sign-up-page.label.confirm-password' | translate }}</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            placeholder="{{ 'security-feature.sign-up-page.placeholder.confirm-password' | translate }}"
+            formControlName="confirmPassword"
+          />
+          @if(passwordMismatch() && formGroup.get('confirmPassword')?.touched) {
+            <p class="error-msg">
+              {{ 'security-feature.sign-up-page.error.password-mismatch' | translate }}
+            </p>
+          }
+          @if(getErrorMessages('confirmPassword').length > 0 && formGroup.get('confirmPassword')?.touched) {
+            @for(message of getErrorMessages('confirmPassword') ; track $index) {
+              <p class="error-msg">{{ message }}</p>
+            }
+          }
+        </div>
+
+        <div class="flex justify-end gap-4 mb-4">
+          <button
+            [ngClass]="{ 'btn-disabled': formGroup.invalid, 'btn-success': !formGroup.invalid }"
+            [disabled]="formGroup.invalid"
+            class="btn cursor-pointer"
+            type="button"
+            (click)="register()"
+          >
+            {{ 'security-feature.sign-up-input' | translate }}
+          </button>
+          <a routerLink="/home" class="btn btn-danger">
+            {{ 'security-feature.input-cancel' | translate }}
+          </a>
+        </div>
+        </div>
+    </form>
+
+    @if(registerSuccess$()){
+      <div class="success-msg text-center">
+        <p>{{ 'security-feature.sign-up.success' | translate }}</p>
+      </div>
+    }
+
+  </div>
+
+  <div class="mt-4 text-center flex gap-4 flex-col">
+    <p>{{ 'security-feature.sign-up.to.login' | translate }}</p>
+    <a class="btn" routerLink="/account/signin">{{ 'security-feature.sign-in-input' | translate }}</a>
+  </div>
+</div>

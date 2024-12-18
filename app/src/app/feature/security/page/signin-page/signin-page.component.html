@@ -1,0 +1,75 @@
+<div class="flex justify-center mt-16">
+  <div class="container">
+
+    <form [formGroup]="formGroup">
+      <div class="form-group">
+        <div class="flex flex-col mb-4">
+          <h1>{{ 'security-feature.sign-in-page.title' | translate }}</h1>
+          <p>{{ 'security-feature.sign-in-page.subtitle' | translate }}</p>
+        </div>
+
+        <div class="mb-4">
+          <label for="username">{{ 'security-feature.sign-in-page.username.label' | translate }}</label>
+          <input
+            [ngClass]="{ 'error-input': getErrorMessages('username'), 'success-input': !getErrorMessages('username') }"
+            id="username"
+            type="text"
+            placeholder="{{ 'security-feature.sign-in-page.username.placeholder' | translate }}"
+            formControlName="username"
+          />
+          @if(getErrorMessages('username').length > 0 && formGroup.get('username')?.touched) {
+            @for(errorMessage of getErrorMessages('username') ; track $index) {
+              <p class="error-msg">{{ errorMessage }}</p>
+            }
+          }
+        </div>
+
+        <div class="mb-4">
+          <label for="password">{{ 'security-feature.sign-in-page.password.label' | translate }}</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="{{ 'security-feature.sign-in-page.password.placeholder' | translate }}"
+            formControlName="password"
+          />
+          @if(getErrorMessages('password').length > 0 && formGroup.get('password')?.touched) {
+            @for(errorMessage of getErrorMessages('password') ; track $index) {
+              <p class="error-msg">{{ errorMessage }}</p>
+            }
+          }
+        </div>
+
+        @if(invalidCredentials$()) {
+          <div class="error-msg my-4">
+            {{ 'security-feature.sign-in-page.error.invalid-credentials' | translate }}
+          </div>
+        }
+
+        @if(loginSucessfull$()){
+          <div class="success-msg my-4">
+            <p>{{ 'security-feature.sign-in-page.login-successful' | translate }}</p>
+          </div>
+        }
+
+        <div class="button-group flex justify-end gap-4">
+          <button
+            (click)="signIn()"
+            [ngClass]="{ 'btn-disabled': formGroup.invalid, 'btn-success': !formGroup.invalid }"
+            [disabled]="formGroup.invalid"
+            class="btn cursor-pointer"
+            type="button"
+          >
+            {{ 'security-feature.sign-in-input' | translate }}
+          </button>
+          <a routerLink="/home" class="btn btn-danger">
+            {{ 'security-feature.input-cancel' | translate }}
+          </a>
+        </div>
+        <div class="mt-4 text-center">
+          <p>{{ 'security-feature.login.to.sign-up' | translate }}</p>
+          <a class="btn mt-2" routerLink="/account/signup">{{ 'security-feature.sign-up-input' | translate }}</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
