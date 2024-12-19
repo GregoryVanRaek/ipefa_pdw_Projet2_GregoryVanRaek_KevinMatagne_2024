@@ -1,5 +1,5 @@
-import {BaseEntity} from "@common/model/entity";
-import {Column, Entity, PrimaryColumn} from "typeorm";
+import {Address, BaseEntity} from "@common/model/entity";
+import {Column, Entity, JoinColumn, ManyToMany, OneToMany, OneToOne, PrimaryColumn} from "typeorm";
 import {ulid} from 'ulid';
 import {UserRoleEnum} from "@common/model";
 
@@ -15,4 +15,7 @@ export class Employee extends BaseEntity{
         birthdate:Date;
     @Column({type:"enum", enum:UserRoleEnum, default:UserRoleEnum.Employee})
         role:UserRoleEnum;
+    @OneToOne(() => Address, {cascade: true, eager: true})
+    @JoinColumn({referencedColumnName: 'address_id', name: 'address_id_fk'})
+    address: Address
 }
