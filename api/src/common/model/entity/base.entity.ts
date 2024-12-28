@@ -1,10 +1,10 @@
 import {Exclude} from 'class-transformer';
-import {CreateDateColumn} from 'typeorm';
+import {CreateDateColumn, UpdateDateColumn} from 'typeorm';
 export abstract class BaseEntity {
   @Exclude({ toPlainOnly: true })
   @CreateDateColumn()
   created: Date;
   @Exclude({ toPlainOnly: true })
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updated: Date;
 }

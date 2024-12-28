@@ -1,6 +1,6 @@
 import { BaseEntity } from './base.entity';
 export declare class Address extends BaseEntity {
-    address_id: string;
+    addressId: string;
     road: string;
     nb: string;
     cp: string;

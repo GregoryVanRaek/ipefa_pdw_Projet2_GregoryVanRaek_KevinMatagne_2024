@@ -19,7 +19,7 @@ exports.Address = Address;
 __decorate([
     (0, typeorm_1.PrimaryColumn)('varchar', { length: 26, default: () => `'${(0, ulid_1.ulid)()}'` }),
     __metadata("design:type", String)
-], Address.prototype, "address_id", void 0);
+], Address.prototype, "addressId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 50, nullable: true, unique: false }),
     __metadata("design:type", String)

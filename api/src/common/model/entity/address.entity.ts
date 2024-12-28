@@ -4,7 +4,7 @@ import {ulid} from 'ulid';
 @Entity()
 export class Address extends BaseEntity {
   @PrimaryColumn('varchar', {length: 26, default: () => `'${ulid()}'`})
-  address_id: string;
+  addressId: string;
   @Column({length:50,nullable: true, unique: false})
   road: string;
   @Column({length:8,nullable: true, unique: false})

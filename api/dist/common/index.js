@@ -19,4 +19,5 @@ __exportStar(require("./exception"), exports);
 __exportStar(require("./documentation"), exports);
 __exportStar(require("./config"), exports);
 __exportStar(require("./metadata"), exports);
+__exportStar(require("./model"), exports);
 //# sourceMappingURL=index.js.map

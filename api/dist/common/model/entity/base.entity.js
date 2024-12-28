@@ -22,7 +22,7 @@ __decorate([
 ], BaseEntity.prototype, "created", void 0);
 __decorate([
     (0, class_transformer_1.Exclude)({ toPlainOnly: true }),
-    (0, typeorm_1.CreateDateColumn)(),
+    (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], BaseEntity.prototype, "updated", void 0);
 //# sourceMappingURL=base.entity.js.map
