@@ -1,0 +1,25 @@
+<main class="flex flex-col items-center mt-16 gap-20">
+  <div class="container text-center">
+    <h1>{{ 'home-feature.home-page.title' | translate }}</h1>
+    <p>{{ 'home-feature.home-page.explore' | translate }}</p>
+    <app-simple-button [class]="'btn'" [type]="'button'" placeholder="{{ 'home-feature.home-page.get-started-cta' | translate }}"></app-simple-button>
+  </div>
+
+  <div class="container">
+    <div class="flex items-center flex-col">
+      <h2>{{ 'home-feature.home-page.subtitle' | translate }}</h2>
+      <p>{{ 'home-feature.home-page.subtitle-content' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="container mb-16 text-center">
+    <h2>{{ 'home-feature.home-page.join-title' | translate }}</h2>
+    <p>{{ 'home-feature.home-page.join-content' | translate }}</p>
+    <a class="btn" routerLink="/account/signup">{{ 'home-feature.home-page.sign-up-cta' | translate }}</a>
+
+    <div class="mt-4 text-center">
+      <p>{{ 'security-feature.sign-up.to.login' | translate }}</p>
+      <a class="btn" routerLink="/account/signin">{{ 'security-feature.sign-in-input' | translate }}</a>
+    </div>
+  </div>
+</main>

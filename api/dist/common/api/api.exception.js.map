@@ -1,0 +1,1 @@
+{"version":3,"file":"api.exception.js","sourceRoot":"","sources":["../../../src/common/api/api.exception.ts"],"names":[],"mappings":";;;AACA,2CAA+C;AAG/C,MAAa,YAAa,SAAQ,sBAAa;IAC7C,YAAY,IAAoB,EAAE,MAAa;QAC7C,KAAK,CAAC;YACJ,IAAI,EAAE,IAAI;YACV,IAAI,EAAE,IAAI;YACV,MAAM,EAAE,KAAK;SACd,EAAE,MAAM,CAAC,CAAC;IACb,CAAC;CACF;AARD,oCAQC"}
