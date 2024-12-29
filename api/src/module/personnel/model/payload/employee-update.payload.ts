@@ -3,8 +3,9 @@ import {Contract} from "../entity";
 import {IsDate, IsEmail, IsEnum, IsIBAN, IsNotEmpty, IsOptional, IsString, Length} from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 import {ApiCodeResponse} from "@common/api";
+import {Gender} from "../enum";
 
-export class EmployeeUpdatePayloads {
+export class EmployeeUpdatePayload {
     @ApiProperty()
     @IsNotEmpty({message: ApiCodeResponse.EMPLOYEE_PAYLOAD_ID_IS_MANDATORY})
     @Length(26,26, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_ID_LENGTH_ERROR})
@@ -43,6 +44,11 @@ export class EmployeeUpdatePayloads {
     @Length(1, 34, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_IBAN_LENGTH_ERROR})
     @IsIBAN({message: ApiCodeResponse.EMPLOYEE_PAYLOAD_IBAN_IS_NOT_VALID})
     iban: string;
+
+    @ApiProperty()
+    @IsOptional()
+    @IsEnum(Gender, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_GENDER_NOT_VALID})
+    gender: Gender;
 
     @ApiProperty()
     @IsOptional()

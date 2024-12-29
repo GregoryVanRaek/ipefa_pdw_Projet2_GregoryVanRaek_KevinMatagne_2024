@@ -15,6 +15,7 @@ const typeorm_1 = require("typeorm");
 const ulid_1 = require("ulid");
 const model_1 = require("../../../../common/model");
 const contract_entity_1 = require("./contract.entity");
+const enum_1 = require("../enum");
 let Employee = class Employee extends entity_1.BaseEntity {
 };
 exports.Employee = Employee;
@@ -46,6 +47,10 @@ __decorate([
     (0, typeorm_1.Column)({ length: 34, nullable: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "iban", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "enum", enum: enum_1.Gender, default: enum_1.Gender.Other, nullable: true }),
+    __metadata("design:type", Number)
+], Employee.prototype, "gender", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "enum", enum: model_1.UserRoleEnum, default: model_1.UserRoleEnum.Employee }),
     __metadata("design:type", Number)

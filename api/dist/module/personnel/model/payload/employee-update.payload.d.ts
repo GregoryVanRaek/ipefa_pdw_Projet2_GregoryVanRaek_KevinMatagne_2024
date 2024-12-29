@@ -1,6 +1,7 @@
 import { Address } from "@common/model";
 import { Contract } from "../entity";
-export declare class EmployeeUpdatePayloads {
+import { Gender } from "../enum";
+export declare class EmployeeUpdatePayload {
     employeeId: string;
     firstname: string;
     lastname: string;
@@ -8,6 +9,7 @@ export declare class EmployeeUpdatePayloads {
     mail: string;
     phone: string;
     iban: string;
+    gender: Gender;
     address: Address;
     contracts: Contract[];
 }

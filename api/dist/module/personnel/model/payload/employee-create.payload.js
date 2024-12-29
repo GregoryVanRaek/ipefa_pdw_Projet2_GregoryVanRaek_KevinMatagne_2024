@@ -14,6 +14,7 @@ const model_1 = require("../../../../common/model");
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
 const api_1 = require("../../../../common/api");
+const enum_1 = require("../enum");
 class EmployeeCreatePayload {
 }
 exports.EmployeeCreatePayload = EmployeeCreatePayload;
@@ -57,6 +58,12 @@ __decorate([
     (0, class_validator_1.IsIBAN)({ message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_IBAN_IS_NOT_VALID }),
     __metadata("design:type", String)
 ], EmployeeCreatePayload.prototype, "iban", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(enum_1.Gender, { message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_GENDER_NOT_VALID }),
+    __metadata("design:type", Number)
+], EmployeeCreatePayload.prototype, "gender", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsOptional)(),

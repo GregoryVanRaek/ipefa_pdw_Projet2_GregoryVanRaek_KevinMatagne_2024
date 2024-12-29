@@ -25,6 +25,10 @@ export declare enum ApiCodeResponse {
     CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY = "api.contract.payload.validation-startdate-is-mandatory",
     CONTRACT_PAYLOAD_EMPLOYEE_IS_MANDATORY = "api.contract.payload.validation-employee-is-mandatory",
     CONTRACT_PAYLOAD_ID_IS_MANDATORY = "api.contract.payload.validation-contract-id-is-mandatory",
+    CONTRACT_CREATE_ERROR = "api.contract-creation",
+    CONTRACT_DELETE_ERROR = "api.error.contract-delete",
+    CONTRACT_NOT_FOUND = "api.error.contract-not-found",
+    CONTRACT_UPDATE_ERROR = "api.error.contract-update",
     EMPLOYEE_PAYLOAD_FIRSTNAME_IS_NOT_STRING = "api.employee.payload.validation-firstname-is-not-string",
     EMPLOYEE_PAYLOAD_FIRSTNAME_LENGTH_ERROR = "api.employee.payload.validation-firstname-length-error",
     EMPLOYEE_PAYLOAD_FIRSTNAME_IS_MANDATORY = "api.employee.payload.validation-firstname-is-mandatory",
@@ -38,5 +42,10 @@ export declare enum ApiCodeResponse {
     EMPLOYEE_PAYLOAD_IBAN_LENGTH_ERROR = "api.employee.payload.validation-iban-length-error",
     EMPLOYEE_PAYLOAD_IBAN_IS_NOT_VALID = "api.employee.payload.validation-iban-is-invalid",
     EMPLOYEE_PAYLOAD_ID_IS_MANDATORY = "api.employee.payload.validation-id-is-mandatory",
-    EMPLOYEE_PAYLOAD_ID_LENGTH_ERROR = "api.employee.payload.validation-id-length-error"
+    EMPLOYEE_PAYLOAD_ID_LENGTH_ERROR = "api.employee.payload.validation-id-length-error",
+    EMPLOYEE_PAYLOAD_GENDER_NOT_VALID = "api.employee.payload.validation-gender-is-invalid",
+    EMPLOYEE_CREATE_ERROR = "api.employee-creation",
+    EMPLOYEE_DELETE_ERROR = "api.error.employee-delete",
+    EMPLOYEE_NOT_FOUND = "api.error.employee-not-found",
+    EMPLOYEE_UPDATE_ERROR = "api.error.employee-update"
 }
