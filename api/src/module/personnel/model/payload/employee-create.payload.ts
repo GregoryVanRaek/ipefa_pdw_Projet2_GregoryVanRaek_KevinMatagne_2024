@@ -1,6 +1,6 @@
 import {Address} from "@common/model";
 import {Contract} from "../entity";
-import {IsDate, IsEmail, IsEnum, IsIBAN, IsNotEmpty, IsOptional, IsString, Length} from "class-validator";
+import {IsDateString, IsEmail, IsEnum, IsIBAN, IsNotEmpty, IsOptional, IsString, Length} from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 import {ApiCodeResponse} from "@common/api";
 import { Gender } from "../enum";
@@ -19,7 +19,7 @@ export class EmployeeCreatePayload {
     lastname:string;
 
     @ApiProperty()
-    @IsDate({message: ApiCodeResponse.EMPLOYEE_PAYLOAD_BIRTHDATE_IS_NOT_VALID})
+    @IsDateString(undefined, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_BIRTHDATE_IS_NOT_VALID})
     @IsOptional()
     birthdate:Date;
 

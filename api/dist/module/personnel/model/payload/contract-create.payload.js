@@ -32,7 +32,7 @@ __decorate([
 ], ContractCreatePayload.prototype, "perks", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsDate)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID }),
+    (0, class_validator_1.IsDateString)(undefined, { message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID }),
     (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY }),
     __metadata("design:type", Date)
 ], ContractCreatePayload.prototype, "startDate", void 0);

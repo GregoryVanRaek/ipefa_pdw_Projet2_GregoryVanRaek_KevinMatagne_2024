@@ -26,7 +26,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_HOURLYRATE_IS_MANDATORY }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], ContractUpdatePayload.prototype, "hourlyRate", void 0);
 __decorate([
@@ -38,13 +38,13 @@ __decorate([
 ], ContractUpdatePayload.prototype, "perks", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsDate)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID }),
-    (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY }),
+    (0, class_validator_1.IsDateString)(undefined, { message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], ContractUpdatePayload.prototype, "startDate", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_EMPLOYEE_IS_MANDATORY }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", entity_1.Employee)
 ], ContractUpdatePayload.prototype, "employee", void 0);
 //# sourceMappingURL=contract-update.payload.js.map

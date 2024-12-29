@@ -13,7 +13,7 @@ const model_1 = require("./model");
 const model_2 = require("../../common/model");
 const typeorm_1 = require("@nestjs/typeorm");
 const service_1 = require("./service");
-const contract_service_1 = require("./service/contract.service");
+const controller_2 = require("./controller");
 ;
 let PersonnelModule = class PersonnelModule {
 };
@@ -21,8 +21,8 @@ exports.PersonnelModule = PersonnelModule;
 exports.PersonnelModule = PersonnelModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([model_1.Employee, model_1.Contract, model_2.Address])],
-        controllers: [controller_1.PersonnelController],
-        providers: [service_1.PersonnelService, contract_service_1.ContractService]
+        controllers: [controller_1.EmployeeController, controller_2.ContractController],
+        providers: [service_1.EmployeeService, service_1.ContractService, model_2.AddressService]
     })
 ], PersonnelModule);
 //# sourceMappingURL=personnel.module.js.map

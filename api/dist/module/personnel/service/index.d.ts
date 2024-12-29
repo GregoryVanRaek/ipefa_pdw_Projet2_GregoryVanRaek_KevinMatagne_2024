@@ -1,2 +1,2 @@
-export * from './personnel.service';
+export * from './employee.service';
 export * from './contract.service';

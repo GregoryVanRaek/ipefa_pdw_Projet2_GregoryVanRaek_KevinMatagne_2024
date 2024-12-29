@@ -34,7 +34,7 @@ __decorate([
 ], EmployeeCreatePayload.prototype, "lastname", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsDate)({ message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_BIRTHDATE_IS_NOT_VALID }),
+    (0, class_validator_1.IsDateString)(undefined, { message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_BIRTHDATE_IS_NOT_VALID }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], EmployeeCreatePayload.prototype, "birthdate", void 0);

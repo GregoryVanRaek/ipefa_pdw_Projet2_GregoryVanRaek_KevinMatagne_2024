@@ -1,8 +1,10 @@
 import { Employee, EmployeeCreatePayload, EmployeeUpdatePayload } from "../model";
 import { Repository } from "typeorm";
-export declare class PersonnelService {
+import { AddressService } from "@common/model";
+export declare class EmployeeService {
     private readonly repository;
-    constructor(repository: Repository<Employee>);
+    private readonly addressService;
+    constructor(repository: Repository<Employee>, addressService: AddressService);
     create(payload: EmployeeCreatePayload): Promise<Employee>;
     getAll(): Promise<Employee[]>;
     getOneById(id: string): Promise<Employee>;

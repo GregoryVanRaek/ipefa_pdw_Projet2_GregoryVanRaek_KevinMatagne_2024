@@ -1,6 +1,6 @@
-import {Address, UserRoleEnum} from "@common/model";
+import {Address, AddressPayload, UserRoleEnum} from "@common/model";
 import {Contract} from "../entity";
-import {IsDate, IsEmail, IsEnum, IsIBAN, IsNotEmpty, IsOptional, IsString, Length} from "class-validator";
+import {IsDate, IsDateString, IsEmail, IsEnum, IsIBAN, IsNotEmpty, IsOptional, IsString, Length} from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 import {ApiCodeResponse} from "@common/api";
 import {Gender} from "../enum";
@@ -14,17 +14,17 @@ export class EmployeeUpdatePayload {
     @ApiProperty()
     @IsString({message: ApiCodeResponse.EMPLOYEE_PAYLOAD_FIRSTNAME_IS_NOT_STRING})
     @Length(0, 255, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_FIRSTNAME_LENGTH_ERROR})
-    @IsNotEmpty({message: ApiCodeResponse.EMPLOYEE_PAYLOAD_FIRSTNAME_IS_MANDATORY})
+    @IsOptional()
     firstname:string;
 
     @ApiProperty()
     @IsString({message: ApiCodeResponse.EMPLOYEE_PAYLOAD_LASTNAME_IS_NOT_STRING})
     @Length(0, 255, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_LASTNAME_LENGTH_ERROR})
-    @IsNotEmpty({message: ApiCodeResponse.EMPLOYEE_PAYLOAD_LASTNAME_IS_MANDATORY})
+    @IsOptional()
     lastname:string;
 
     @ApiProperty()
-    @IsDate({message: ApiCodeResponse.EMPLOYEE_PAYLOAD_BIRTHDATE_IS_NOT_VALID})
+    @IsDateString(undefined, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_BIRTHDATE_IS_NOT_VALID})
     @IsOptional()
     birthdate:Date;
 
@@ -52,7 +52,7 @@ export class EmployeeUpdatePayload {
 
     @ApiProperty()
     @IsOptional()
-    address: Address
+    address: AddressPayload
 
     @ApiProperty()
     @IsOptional()

@@ -48,9 +48,15 @@ var ApiCodeResponse;
     ApiCodeResponse["EMPLOYEE_PAYLOAD_ID_IS_MANDATORY"] = "api.employee.payload.validation-id-is-mandatory";
     ApiCodeResponse["EMPLOYEE_PAYLOAD_ID_LENGTH_ERROR"] = "api.employee.payload.validation-id-length-error";
     ApiCodeResponse["EMPLOYEE_PAYLOAD_GENDER_NOT_VALID"] = "api.employee.payload.validation-gender-is-invalid";
-    ApiCodeResponse["EMPLOYEE_CREATE_ERROR"] = "api.employee-creation";
+    ApiCodeResponse["EMPLOYEE_CREATE_ERROR"] = "api.error.employee-creation";
     ApiCodeResponse["EMPLOYEE_DELETE_ERROR"] = "api.error.employee-delete";
     ApiCodeResponse["EMPLOYEE_NOT_FOUND"] = "api.error.employee-not-found";
     ApiCodeResponse["EMPLOYEE_UPDATE_ERROR"] = "api.error.employee-update";
+    ApiCodeResponse["ADDRESS_PAYLOAD_IS_NOT_STRING"] = "api.address.validation-is-not-string";
+    ApiCodeResponse["ADDRESS_PAYLOAD_LENGTH_ERROR"] = "api.address.validation-length-error";
+    ApiCodeResponse["ADDRESS_CREATE_ERROR"] = "api.error.address-creation";
+    ApiCodeResponse["ADDRESS_DELETE_ERROR"] = "api.error.address-delete";
+    ApiCodeResponse["ADDRESS_NOT_FOUND"] = "api.error.address-not-found";
+    ApiCodeResponse["ADDRESS_UPDATE_ERROR"] = "api.error.address-update";
 })(ApiCodeResponse || (exports.ApiCodeResponse = ApiCodeResponse = {}));
 //# sourceMappingURL=api-code.response.js.map

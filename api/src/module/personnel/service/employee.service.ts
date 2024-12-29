@@ -11,10 +11,12 @@ import {
     EmployeeUpdateException
 } from "../exception";
 import {isNil} from "lodash";
+import {Address, AddressService} from "@common/model";
 
 @Injectable()
-export class PersonnelService {
-    constructor(@InjectRepository(Employee) private readonly repository: Repository<Employee>) {}
+export class EmployeeService {
+    constructor(@InjectRepository(Employee) private readonly repository: Repository<Employee>
+                , private readonly addressService :AddressService) {}
 
     async create(payload: EmployeeCreatePayload): Promise<Employee>{
         try {
@@ -79,6 +81,14 @@ export class PersonnelService {
     async update(payload: EmployeeUpdatePayload): Promise<Employee> {
         try {
             let toUpdate = await this.getOneById(payload.employeeId);
+
+            let address :Address;
+
+            if (payload.address) {
+                address = await this.addressService.getOrCreateAddress(payload.address);
+                toUpdate.address = address;
+            }
+
             toUpdate.firstname = payload.firstname;
             toUpdate.lastname = payload.lastname;
             toUpdate.birthdate = payload.birthdate;
@@ -86,7 +96,6 @@ export class PersonnelService {
             toUpdate.phone = payload.phone;
             toUpdate.iban = payload.iban;
             toUpdate.gender = payload.gender;
-            toUpdate.address = payload.address;
 
             return await this.repository.save(toUpdate);
         } catch (e) {

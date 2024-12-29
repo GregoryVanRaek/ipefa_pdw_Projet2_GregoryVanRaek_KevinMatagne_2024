@@ -1,1 +1,2 @@
-export * from './personnel.controller';
+export * from './employee.controller';
+export * from './contract.controller';

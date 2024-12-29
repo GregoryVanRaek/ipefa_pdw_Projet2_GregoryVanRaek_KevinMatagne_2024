@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PersonnelService = void 0;
+exports.EmployeeService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const model_1 = require("../model");
@@ -21,9 +21,11 @@ const builder_pattern_1 = require("builder-pattern");
 const ulid_1 = require("ulid");
 const exception_1 = require("../exception");
 const lodash_1 = require("lodash");
-let PersonnelService = class PersonnelService {
-    constructor(repository) {
+const model_2 = require("../../../common/model");
+let EmployeeService = class EmployeeService {
+    constructor(repository, addressService) {
         this.repository = repository;
+        this.addressService = addressService;
     }
     async create(payload) {
         try {
@@ -84,6 +86,11 @@ let PersonnelService = class PersonnelService {
     async update(payload) {
         try {
             let toUpdate = await this.getOneById(payload.employeeId);
+            let address;
+            if (payload.address) {
+                address = await this.addressService.getOrCreateAddress(payload.address);
+                toUpdate.address = address;
+            }
             toUpdate.firstname = payload.firstname;
             toUpdate.lastname = payload.lastname;
             toUpdate.birthdate = payload.birthdate;
@@ -91,7 +98,6 @@ let PersonnelService = class PersonnelService {
             toUpdate.phone = payload.phone;
             toUpdate.iban = payload.iban;
             toUpdate.gender = payload.gender;
-            toUpdate.address = payload.address;
             return await this.repository.save(toUpdate);
         }
         catch (e) {
@@ -99,10 +105,11 @@ let PersonnelService = class PersonnelService {
         }
     }
 };
-exports.PersonnelService = PersonnelService;
-exports.PersonnelService = PersonnelService = __decorate([
+exports.EmployeeService = EmployeeService;
+exports.EmployeeService = EmployeeService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(model_1.Employee)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
-], PersonnelService);
-//# sourceMappingURL=personnel.service.js.map
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        model_2.AddressService])
+], EmployeeService);
+//# sourceMappingURL=employee.service.js.map

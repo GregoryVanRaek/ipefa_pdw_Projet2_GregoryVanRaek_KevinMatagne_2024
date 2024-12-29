@@ -1,5 +1,5 @@
 import {Employee} from "../entity";
-import {IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, Length} from "class-validator";
+import {IsDate, IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, Length} from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 import {ApiCodeResponse} from "@common/api";
 
@@ -11,7 +11,7 @@ export class ContractUpdatePayload {
 
     @ApiProperty()
     @IsNumber()
-    @IsNotEmpty({message: ApiCodeResponse.CONTRACT_PAYLOAD_HOURLYRATE_IS_MANDATORY})
+    @IsOptional()
     hourlyRate :number;
 
     @ApiProperty()
@@ -21,11 +21,11 @@ export class ContractUpdatePayload {
     perks:string;
 
     @ApiProperty()
-    @IsDate({message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID})
-    @IsNotEmpty({message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY})
+    @IsDateString(undefined, {message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID})
+    @IsOptional()
     startDate:Date;
 
     @ApiProperty()
-    @IsNotEmpty({message: ApiCodeResponse.CONTRACT_PAYLOAD_EMPLOYEE_IS_MANDATORY})
+    @IsOptional()
     employee:Employee;
 }

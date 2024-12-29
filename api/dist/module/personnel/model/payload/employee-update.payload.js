@@ -28,19 +28,19 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)({ message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_FIRSTNAME_IS_NOT_STRING }),
     (0, class_validator_1.Length)(0, 255, { message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_FIRSTNAME_LENGTH_ERROR }),
-    (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_FIRSTNAME_IS_MANDATORY }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], EmployeeUpdatePayload.prototype, "firstname", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)({ message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_LASTNAME_IS_NOT_STRING }),
     (0, class_validator_1.Length)(0, 255, { message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_LASTNAME_LENGTH_ERROR }),
-    (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_LASTNAME_IS_MANDATORY }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], EmployeeUpdatePayload.prototype, "lastname", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsDate)({ message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_BIRTHDATE_IS_NOT_VALID }),
+    (0, class_validator_1.IsDateString)(undefined, { message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_BIRTHDATE_IS_NOT_VALID }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], EmployeeUpdatePayload.prototype, "birthdate", void 0);
@@ -73,7 +73,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", model_1.Address)
+    __metadata("design:type", model_1.AddressPayload)
 ], EmployeeUpdatePayload.prototype, "address", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
