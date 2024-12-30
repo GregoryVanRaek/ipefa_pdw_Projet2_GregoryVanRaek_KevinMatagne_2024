@@ -1,14 +1,15 @@
 import { Routes } from '@angular/router';
 import { DashboardFallBackPageComponent } from './page';
-import { DashboardRouterComponent } from './router';
+import {RouterPageComponent} from '../router';
 
 export const dashboardRoutes: Routes = [
   {
     path:'',
-    component:DashboardRouterComponent,
+    component:RouterPageComponent,
     children:[
       {
         path:'',
+        pathMatch: 'full',
         loadComponent: () => import('./page').then(c => c.DashboardHomePageComponent)
       },
       {

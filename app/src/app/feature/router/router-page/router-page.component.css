@@ -22,3 +22,8 @@ nav{
   @apply px-4 py-3 rounded-full;
   border:2px solid var(--primary-color);
 }
+
+.icon-size {
+  width: 25px;
+  height: 25px;
+}

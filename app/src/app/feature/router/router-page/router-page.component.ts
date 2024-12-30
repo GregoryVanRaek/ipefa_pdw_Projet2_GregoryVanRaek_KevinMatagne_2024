@@ -1,12 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faArrowUpFromBracket, faChartSimple, faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
-import { SecurityService } from '../../../security';
-import { TranslateModule } from '@ngx-translate/core';
+import {FaIconComponent} from '@fortawesome/angular-fontawesome';
+import {TranslateModule} from '@ngx-translate/core';
+import { faArrowUpFromBracket, faChartSimple, faHouse, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
+import {SecurityService} from '../../security';
 
 @Component({
-  selector: 'app-dashboard-router',
+  selector: 'app-router-page',
   standalone: true,
   imports: [
     RouterOutlet,
@@ -14,10 +14,10 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterLink,
     TranslateModule
   ],
-  templateUrl: './dashboard-router.component.html',
-  styleUrl: './dashboard-router.component.scss'
+  templateUrl: './router-page.component.html',
+  styleUrl: './router-page.component.css'
 })
-export class DashboardRouterComponent {
+export class RouterPageComponent {
   constructor(public securityService :SecurityService) {
   }
 
@@ -25,13 +25,12 @@ export class DashboardRouterComponent {
   protected readonly faChartSimple = faChartSimple;
   protected readonly faHouse = faHouse;
   protected readonly faArrowUpFromBracket = faArrowUpFromBracket;
+  protected readonly faUsers = faUsers;
 
   username:string = "Demo";
   state:string = "Student";
 
-
   logout():void{
     return this.securityService.logOut();
   }
-
 }

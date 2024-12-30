@@ -50,7 +50,8 @@ export class SecurityService {
           if(response.result){
             this.account$.set(CredentialUtils.fromDto(response.data));
 
-            if(!window.location.pathname.startsWith(`/${AppNode.REDIRECT_TO_AUTHENTICATED}`)){
+            if(!window.location.pathname.startsWith(`/${AppNode.REDIRECT_TO_AUTHENTICATED}`)
+            && !window.location.pathname.startsWith(`/${AppNode.STAFF}`)){
               this.router.navigate([AppNode.REDIRECT_TO_AUTHENTICATED]).then();
             }
 

@@ -1,14 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {Button} from 'primeng/button';
+import {TranslateService} from '@ngx-translate/core';
+import {Language} from '@shared/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Button],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'app';
+  translate = inject(TranslateService);
+
+  ngOnInit(): void {
+    this.translate.setDefaultLang(Language.EN);
+    this.translate.use(Language.EN);
+  }
+
+  changeLanguage(language: string): void {
+    this.translate.use(language);
+  }
 }

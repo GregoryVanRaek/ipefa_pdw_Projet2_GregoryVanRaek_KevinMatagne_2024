@@ -1,9 +1,8 @@
-import { Component, computed, OnInit, signal, WritableSignal } from '@angular/core';
-import { CardComponent, handleFormError, InputComponent, LoginCardComponent, SimpleButtonComponent } from '@shared/ui';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
+import { handleFormError } from '@shared/ui';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgClass, NgForOf } from '@angular/common';
-import { LabelWithParamPipe } from '@shared/ui/text/pipe/label-with-param.pipe';
+import { NgClass } from '@angular/common';
 import { SignInPayload } from '@shared/api';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SecurityService } from '../../service';
@@ -13,15 +12,9 @@ import { FormError } from '@shared/core';
   selector: 'app-signin-page',
   standalone: true,
   imports: [
-    CardComponent,
     RouterLink,
     TranslateModule,
-    NgForOf,
-    LabelWithParamPipe,
-    LoginCardComponent,
     ReactiveFormsModule,
-    InputComponent,
-    SimpleButtonComponent,
     NgClass,
   ],
   templateUrl: './signin-page.component.html',

@@ -4,8 +4,18 @@
       <fa-icon [icon]="faChartSimple"></fa-icon>
       <h1 class="text-center">{{ 'dashboard-feature.router-title' | translate }}</h1>
     </div>
-    <a routerLink="/dashboard" class="nav-link"><fa-icon class="pr-4" [icon]="faHouse"></fa-icon>{{ 'dashboard-feature.router-nav-home' | translate }}</a>
-    <a routerLink="/home" class="nav-link" (click)="logout()"><fa-icon class="pr-4" [icon]="faArrowUpFromBracket"></fa-icon>{{ 'dashboard-feature.router-nav-logout' | translate }}</a>
+    <a routerLink="/dashboard" class="nav-link flex gap-4">
+      <fa-icon [icon]="faHouse" class="icon-size"></fa-icon>
+      <span>{{ 'dashboard-feature.router-nav-home' | translate }}</span>
+    </a>
+    <a routerLink="/staff" class="nav-link flex gap-4">
+      <fa-icon [icon]="faUsers" class="icon-size"></fa-icon>
+      <span>{{ 'dashboard-feature.router-nav-staff' | translate }}</span>
+    </a>
+    <a routerLink="/home" class="nav-link flex gap-4" (click)="logout()">
+      <fa-icon [icon]="faArrowUpFromBracket" class="icon-size"></fa-icon>
+      <span>{{ 'dashboard-feature.router-nav-logout' | translate }}</span>
+    </a>
   </nav>
 
   <div class="flex flex-col w-4/5">

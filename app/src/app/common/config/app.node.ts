@@ -5,8 +5,10 @@ export enum AppNode {
   REDIRECT_TO_AUTHENTICATED = AppNode.AUTHENTICATED,
   MEMBER = 'member',
   DETAIL = 'detail/:id',
+  STAFF = 'staff',
   SIGN_IN = 'signin',
   SIGN_UP = 'signup',
   HOME = 'home',
-  FALL_BACK = '**'
+  LIST = 'list',
+  FALL_BACK = '**',
 }
