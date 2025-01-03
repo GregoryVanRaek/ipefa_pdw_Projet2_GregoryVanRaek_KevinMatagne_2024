@@ -1,5 +1,92 @@
+<main class="p-6">
 
-@if(employee$()){
-  <p>{{employee$()?.firstname}}</p>
-  <p>{{employee$()?.lastname}}</p>
-}
+  <div class="mb-6">
+    <h1>{{ 'staff-feature-detail-title' | translate }}</h1>
+
+  </div>
+
+  @if(loading){
+    <p-progress-spinner/>
+  }
+  @else{
+    @if(employee$()){
+      <p-tabs value="0">
+        <p-tablist>
+          <p-tab class="capitalize" value="0">{{ 'staff-detail-feature-first-tab' | translate }}</p-tab>
+          <p-tab class="capitalize" value="1">{{ 'staff-detail-feature-second-tab' | translate }}</p-tab>
+          <p-tab class="capitalize" value="2">{{ 'staff-detail-feature-third-tab' | translate }}</p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <form [formGroup]="formGroup">
+              <div>
+                <h2 class="capitalize">{{ 'staff-detail-feature-personal-data' | translate }}</h2>
+                  <div class="my-8 flex w-2/5 justify-between">
+                    <p-floatlabel>
+                      <input formControlName="lastname" pInputText id="lastname"/>
+                      <label for="lastname">{{ "staff-lastname" | translate }}</label>
+                    </p-floatlabel>
+                    <p-floatlabel>
+                      <input formControlName="firstname" pInputText id="firstname"/>
+                      <label for="firstname">{{ "staff-firstname" | translate }}</label>
+                    </p-floatlabel>
+                  </div>
+                  <div class="my-8 flex gap-6 flex-col">
+                    <div class="flex justify-between w-2/5">
+                      <p-floatlabel>
+                        <input formControlName="role" pInputText id="role"/>
+                        <label for="role">{{ "staff-role" | translate }}</label>
+                      </p-floatlabel>
+                      <p-floatlabel>
+                        <input formControlName="gender" pInputText id="gender"/>
+                        <label for="gender">{{ "staff-gender" | translate }}</label>
+                      </p-floatlabel>
+                    </div>
+                    <p-floatlabel class="mt-2">
+                      <input formControlName="iban" pInputText id="iban" class="w-2/5" />
+                      <label for="iban">{{ "staff-iban" | translate }}</label>
+                    </p-floatlabel>
+                  </div>
+
+                <div class="mb-6">
+                  <p-floatlabel variant="on">
+                    <p-datepicker dateFormat="dd/mm/yy" formControlName="birthdate" showIcon iconDisplay="input" [showOnFocus]="false"/>
+                    <label>{{ "staff-birthdate" | translate }}</label>
+                  </p-floatlabel>
+                </div>
+              </div>
+
+              <div class="w-2/5">
+                <h2 class="capitalize">{{ 'staff-detail-feature-contact' | translate }}</h2>
+
+                <div class="my-8">
+                  <p-floatlabel >
+                    <input formControlName="mail" pInputText id="mail" class="w-full"/>
+                    <label for="mail">{{ "staff-mail" | translate }}</label>
+                  </p-floatlabel>
+                </div>
+                <div class="my-8 w-full">
+                  <p-floatlabel>
+                    <input formControlName="phone" pInputText id="phone" class="w-full"/>
+                    <label for="phone">{{ "staff-phone" | translate }}</label>
+                  </p-floatlabel>
+                </div>
+              </div>
+            </form>
+          </p-tabpanel>
+
+          <p-tabpanel value="1">
+            <h2 class="capitalize">{{ 'staff-detail-feature-second-tab' | translate }}</h2>
+          </p-tabpanel>
+
+          <p-tabpanel value="2">
+            <h2 class="capitalize">{{ 'staff-detail-feature-third-tab' | translate }}</h2>
+          </p-tabpanel>
+
+        </p-tabpanels>
+      </p-tabs>
+    }
+  }
+
+  <a class="btn cursor-pointer mt-6" routerLink="/staff">{{ 'staff-feature-detail-back-to-list' | translate }}</a>
+</main>

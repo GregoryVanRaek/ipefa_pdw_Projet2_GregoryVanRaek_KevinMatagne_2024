@@ -76,6 +76,10 @@ h2{
   @apply text-xl font-semibold mx-2
 }
 
+h3{
+  @apply text-lg font-medium mx-2
+}
+
 .page-wrapper-primary {
   background-color: var(--secondary-color);
   border-bottom: 1px solid var(--primary-color);
@@ -93,6 +97,7 @@ footer{
   color: var(--text-primary-color);
 
 }
+
 
 input[type="text"], input[type="password"], input[type="email"] {
   @apply mt-2 p-2 w-full rounded-xl;

@@ -26,8 +26,8 @@
             <td>{{ employee.mail }}</td>
             <td>{{ UserRoleEnum[employee.role] }}</td>
             <td class="flex gap-2">
-              <a class="btn btn-success" [routerLink]=[AppRoutes.STAFFDETAIL,employee.employeeId]>{{ 'overview-action-detail' | translate }}</a>
-              <a class="btn btn-danger">{{ 'overview-action-delete' | translate }}</a>
+              <a class="btn btn-success" [routerLink]=[AppRoutes.STAFFDETAIL,employee.employeeId]>{{ 'staff-overview-action-detail' | translate }}</a>
+              <a class="btn btn-danger">{{ 'staff-overview-action-delete' | translate }}</a>
             </td>
           </tr>
         </ng-template>

@@ -62,9 +62,30 @@
   "staff-feature-overview-title" : "staff",
   "staff-firstname" : "firstname",
   "staff-lastname" : "lastname",
+  "staff-birthdate": "birthdate",
   "staff-mail" : "mail",
+  "staff-gender" : "gender",
+  "staff-phone" : "phone",
   "staff-role" : "role",
+  "staff-iban" : "iban",
+
   "staff-overview-action" : "action",
-  "overview-action-detail" : "detail",
-  "overview-action-delete" : "delete"
+  "staff-overview-action-detail" : "detail",
+  "staff-overview-action-delete" : "delete",
+
+  "staff-feature-detail-title" : "Employee details",
+  "staff-feature-detail-back-to-list" : "back to list",
+  "staff-detail-feature-first-tab" : "personal & contact data" ,
+  "staff-detail-feature-second-tab" : "address",
+  "staff-detail-feature-third-tab" : "contract",
+  "staff-detail-feature-personal-data" : "personal data",
+  "staff-detail-feature-contact" : "contact",
+
+  "address-road" : "road",
+  "address-nb" : "number",
+  "address-cp" : "postal code",
+  "address-town" : "town",
+  "address-country": "country",
+  "address-complements" : "complements"
+
 }

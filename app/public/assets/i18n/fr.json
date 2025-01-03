@@ -62,11 +62,32 @@
   "staff-feature-overview-title" : "Travailleurs",
   "staff-firstname" : "prénom",
   "staff-lastname" : "nom",
+  "staff-birthdate": "date de naissance",
   "staff-mail" : "email",
+  "staff-gender" : "genre",
+  "staff-phone" : "telephone",
   "staff-role" : "role",
+  "staff-iban" : "iban",
+
   "staff-overview-action" : "action",
   "overview-action-detail" : "detail",
-  "overview-action-delete" : "supprimer"
+  "overview-action-delete" : "supprimer",
+
+  "staff-feature-detail-title" : "Détails employé",
+  "staff-feature-detail-back-to-list" : "retour à la liste",
+  "staff-detail-feature-first-tab" : "données personnelles & contact",
+  "staff-detail-feature-second-tab" : "adresse",
+  "staff-detail-feature-third-tab" : "contrat",
+  "staff-detail-feature-personal-data" : "données personnelles",
+  "staff-detail-feature-contact" : "contact",
+
+  "address-road" : "rue",
+  "address-nb" : "numero",
+  "address-cp" : "code postal",
+  "address-town" : "ville",
+  "address-country": "pays",
+  "address-complements" : "complements"
+
 
 }
 

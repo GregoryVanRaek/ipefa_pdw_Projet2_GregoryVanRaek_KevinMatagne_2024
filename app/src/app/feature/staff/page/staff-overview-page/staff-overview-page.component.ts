@@ -17,10 +17,7 @@ import {UserRoleEnum} from '@shared/api/data/enum/role';
   standalone: true,
   imports: [
     TranslatePipe,
-    Button,
-    FloatLabel,
     FormsModule,
-    InputText,
     ProgressSpinner,
     TableModule,
     RouterLink
