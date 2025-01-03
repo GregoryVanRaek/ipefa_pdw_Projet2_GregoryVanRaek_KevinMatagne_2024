@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import {StaffFallbackPageComponent} from './page';
-import {AppNode} from '../../common';
+import {AppNode, AppRoutes} from '../../common';
 import {RouterPageComponent} from '../router';
 
 export const staffRoutes: Routes = [
@@ -13,8 +13,8 @@ export const staffRoutes: Routes = [
         loadComponent: () => import('./page').then(c => c.StaffOverviewPageComponent)
       },
       {
-        path:AppNode.LIST,
-        loadComponent: () => import('./page').then(c => c.StaffListPageComponent)
+        path:`${AppRoutes.STAFFDETAIL}/:id`,
+        loadComponent: () => import('./page').then(c => c.StaffDetailPageComponent)
       },
       {
         path:'**',

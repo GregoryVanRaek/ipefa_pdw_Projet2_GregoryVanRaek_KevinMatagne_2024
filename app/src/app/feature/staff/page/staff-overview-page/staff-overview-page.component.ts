@@ -1,37 +1,56 @@
-import { Component } from '@angular/core';
-import {Dialog} from 'primeng/dialog';
-import {UIChart} from 'primeng/chart';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {TranslatePipe} from '@ngx-translate/core';
+import {Button} from 'primeng/button';
+import {StaffService} from '../../service';
+import {Employee} from '@shared/api/data/model/employee';
+import {FloatLabel} from 'primeng/floatlabel';
+import {FormsModule} from '@angular/forms';
+import {InputText} from 'primeng/inputtext';
+import {ProgressSpinner} from 'primeng/progressspinner';
+import {TableModule} from 'primeng/table';
+import {RouterLink} from '@angular/router';
+import { AppRoutes} from '../../../../common';
+import {UserRoleEnum} from '@shared/api/data/enum/role';
 
 @Component({
   selector: 'app-staff-overview-page',
   standalone: true,
   imports: [
-    Dialog,
-    UIChart
+    TranslatePipe,
+    Button,
+    FloatLabel,
+    FormsModule,
+    InputText,
+    ProgressSpinner,
+    TableModule,
+    RouterLink
   ],
   templateUrl: './staff-overview-page.component.html',
   styleUrl: './staff-overview-page.component.css'
 })
-export class StaffOverviewPageComponent {
-  departmentData = {
-    labels: ['Développement', 'Design', 'Marketing', 'RH'],
-    datasets: [{
-      data: [50, 30, 15, 5],
-      backgroundColor: ['#4caf50', '#ffeb3b', '#2196f3', '#ff5722']
-    }]
-  };
+export class StaffOverviewPageComponent implements OnInit{
+  protected readonly AppRoutes = AppRoutes;
+  service :StaffService = inject(StaffService);
 
-  ageData = {
-    labels: ['18-25', '26-35', '36-45', '46+'],
-    datasets: [{
-      data: [40, 30, 20, 10],
-      backgroundColor: '#42A5F5'
-    }]
-  };
+  employees$ :WritableSignal<Employee[]> = signal([]);
+  loading:boolean = true;
 
-  recentStaff = [
-    { name: 'Jane Doe', position: 'Développeur Backend', dateAdded: '10/12/2024' },
-    { name: 'John Smith', position: 'Designer UI/UX', dateAdded: '08/12/2024' },
-    { name: 'Alice Johnson', position: 'Responsable Marketing', dateAdded: '06/12/2024' }
-  ];
+  ngOnInit(): void {
+      this.getAll();
+  }
+
+  getAll() :void{
+    this.service.getAllEmployees().subscribe({
+      next:(employees) => {
+        this.employees$.set(employees);
+        this.loading = false;
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading = false;
+      }
+    });
+  }
+
+  protected readonly UserRoleEnum = UserRoleEnum;
 }

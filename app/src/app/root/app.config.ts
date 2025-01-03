@@ -4,10 +4,17 @@ import { routes } from './app.routes';
 import {providePrimeNG} from 'primeng/config';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import Aura from '@primeng/themes/aura';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors
+} from '@angular/common/http';
 import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {createTranslateLoader} from './app.translation';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
+import {httpInterceptor} from '@shared/api';
 
 
 export const appConfig: ApplicationConfig = {
@@ -32,6 +39,9 @@ export const appConfig: ApplicationConfig = {
           useClass: TranslateMessageFormatCompiler
         }
       })
+    ),
+    provideHttpClient(
+      withInterceptors([httpInterceptor])
     )
   ]
 };

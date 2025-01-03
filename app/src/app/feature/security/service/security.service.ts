@@ -44,7 +44,6 @@ export class SecurityService {
 
   private handleAuthenticatedChange(isAuthenticated :boolean):void{
     if(isAuthenticated){
-      console.log("is authenticated", isAuthenticated, this.tokenService.token$());
       this.api.get(ApiURI.ME).pipe(
         tap((response :ApiResponse) => {
           if(response.result){

@@ -57,7 +57,16 @@
   "dashboard-feature.router-nav-logout": "Se déconnecter",
   "dashboard-feature.header-title": "EURO ROLL",
   "dashboard-feature.fallback.page.title": "Cette page n'existe pas sur la route du dashboard",
-  "dashboard-feature.home-page": "Bienvenue sur votre tableau de bord"
+  "dashboard-feature.home-page": "Bienvenue sur votre tableau de bord",
+
+  "staff-feature-overview-title" : "Travailleurs",
+  "staff-firstname" : "prénom",
+  "staff-lastname" : "nom",
+  "staff-mail" : "email",
+  "staff-role" : "role",
+  "staff-overview-action" : "action",
+  "overview-action-detail" : "detail",
+  "overview-action-delete" : "supprimer"
 
 }
 

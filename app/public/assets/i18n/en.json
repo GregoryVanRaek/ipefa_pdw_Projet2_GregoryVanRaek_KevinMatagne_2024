@@ -57,6 +57,14 @@
   "dashboard-feature.router-nav-logout": "Logout",
   "dashboard-feature.header-title": "EURO ROLL",
   "dashboard-feature.fallback.page.title": "This page doesn't exist on the dashboard route",
-  "dashboard-feature.home-page": "Welcome to your Dashboard"
+  "dashboard-feature.home-page": "Welcome to your Dashboard",
 
+  "staff-feature-overview-title" : "staff",
+  "staff-firstname" : "firstname",
+  "staff-lastname" : "lastname",
+  "staff-mail" : "mail",
+  "staff-role" : "role",
+  "staff-overview-action" : "action",
+  "overview-action-detail" : "detail",
+  "overview-action-delete" : "delete"
 }
