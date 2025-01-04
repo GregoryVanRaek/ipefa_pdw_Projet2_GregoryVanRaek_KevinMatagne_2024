@@ -23,6 +23,7 @@ export class ApiService {
   }
 
   put(partURL: string, payload: Payload): Observable<ApiResponse> {
+    console.log(partURL, payload)
     return this.handle(this.http.put(`${this.baseURL}${partURL}`, payload));
   }
 

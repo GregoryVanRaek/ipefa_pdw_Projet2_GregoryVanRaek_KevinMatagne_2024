@@ -76,16 +76,22 @@
   "staff-feature-detail-title" : "Employee details",
   "staff-feature-detail-back-to-list" : "back to list",
   "staff-detail-feature-first-tab" : "personal & contact data" ,
-  "staff-detail-feature-second-tab" : "address",
-  "staff-detail-feature-third-tab" : "contract",
+  "staff-detail-feature-second-tab" : "contract",
   "staff-detail-feature-personal-data" : "personal data",
+  "staff-detail-feature-address" : "address",
   "staff-detail-feature-contact" : "contact",
+  "staff-detail-feature-update-toast-success" : "staff successfuly updated",
+  "staff-detail-feature-update-toast-error" : "a servor error occurred",
 
   "address-road" : "road",
   "address-nb" : "number",
   "address-cp" : "postal code",
   "address-town" : "town",
   "address-country": "country",
-  "address-complements" : "complements"
+  "address-complements" : "complements",
+
+  "btn-edit": "EDIT",
+  "btn-delete": "DELETE",
+  "btn-save": "SAVE"
 
 }

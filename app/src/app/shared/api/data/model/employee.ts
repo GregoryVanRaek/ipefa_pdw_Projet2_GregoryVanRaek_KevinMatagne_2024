@@ -4,15 +4,15 @@ import {Address} from '@shared/api/data/model/address';
 import {Contract} from '@shared/api/data/model/contract';
 
 export interface Employee{
-  Id:string;
+  employeeId:string;
   firstname:string;
   lastname:string;
-  birthdate:Date;
+  birthdate:string;
   mail:string;
   phone:string;
   iban:string;
-  gender:Gender;
-  role:UserRoleEnum;
+  gender:any;
+  role:any;
   address:Address;
   contract:Contract[];
 }

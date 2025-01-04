@@ -11,5 +11,6 @@ export enum AppNode {
   HOME = 'home',
   LIST = 'list',
   EMPLOYEE='employee',
+  UPDATE = 'update',
   FALL_BACK = '**',
 }

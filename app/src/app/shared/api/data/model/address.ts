@@ -1,5 +1,5 @@
 export interface Address{
-  id:string;
+  addressId:string;
   road:string;
   nb:string;
   cp:string;

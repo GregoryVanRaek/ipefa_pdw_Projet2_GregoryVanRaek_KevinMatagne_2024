@@ -6,5 +6,6 @@ export enum AppRoutes {
   MEMBER_DETAIL = `${AppRoutes.MEMBER}/detail/`,
   STAFFLIST = `${AppNode.EMPLOYEE}/${AppNode.LIST}`,
   STAFFDETAIL =`${AppNode.EMPLOYEE}/${AppNode.DETAIL}`,
+  STAFFUPDATE = `${AppNode.EMPLOYEE}/${AppNode.UPDATE}`,
   PUBLIC = `/${AppNode.PUBLIC}`,
 }

@@ -4,7 +4,7 @@ header{
 }
 
 nav{
-  @apply flex flex-col w-1/5 p-4;
+  @apply flex flex-col w-1/5 p-4 transform lg:translate-x-0 lg:flex;;
   background-color: var(--primary-color);
   color: var(--text-primary-color);
 }
@@ -27,3 +27,4 @@ nav{
   width: 25px;
   height: 25px;
 }
+

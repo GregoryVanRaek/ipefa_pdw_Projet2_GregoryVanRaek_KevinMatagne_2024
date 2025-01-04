@@ -76,18 +76,22 @@
   "staff-feature-detail-title" : "Détails employé",
   "staff-feature-detail-back-to-list" : "retour à la liste",
   "staff-detail-feature-first-tab" : "données personnelles & contact",
-  "staff-detail-feature-second-tab" : "adresse",
-  "staff-detail-feature-third-tab" : "contrat",
+  "staff-detail-feature-second-tab" : "contrat",
   "staff-detail-feature-personal-data" : "données personnelles",
+  "staff-detail-feature-address" : "adresse",
   "staff-detail-feature-contact" : "contact",
+  "staff-detail-feature-update-toast-success" : "Le membre du personnel a bien été mis à jour",
+  "staff-detail-feature-update-toast-error" : "Une erreur serveur est survenue",
 
   "address-road" : "rue",
   "address-nb" : "numero",
   "address-cp" : "code postal",
   "address-town" : "ville",
   "address-country": "pays",
-  "address-complements" : "complements"
+  "address-complements" : "complements",
 
-
+  "btn-edit": "EDITER",
+  "btn-delete": "SUPPRIMER",
+  "btn-save": "SAUVEGARDER"
 }
 
