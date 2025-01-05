@@ -3,9 +3,7 @@ import {TranslatePipe} from '@ngx-translate/core';
 import {Button} from 'primeng/button';
 import {StaffService} from '../../service';
 import {Employee} from '@shared/api/data/model/employee';
-import {FloatLabel} from 'primeng/floatlabel';
 import {FormsModule} from '@angular/forms';
-import {InputText} from 'primeng/inputtext';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {TableModule} from 'primeng/table';
 import {RouterLink} from '@angular/router';
@@ -20,7 +18,8 @@ import {UserRoleEnum} from '@shared/api/data/enum/role';
     FormsModule,
     ProgressSpinner,
     TableModule,
-    RouterLink
+    RouterLink,
+    Button
   ],
   templateUrl: './staff-overview-page.component.html',
   styleUrl: './staff-overview-page.component.css'

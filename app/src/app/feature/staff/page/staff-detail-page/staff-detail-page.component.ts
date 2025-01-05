@@ -9,12 +9,12 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {Gender} from '@shared/api/data/enum/gender';
 import {UserRoleEnum} from '@shared/api/data/enum/role';
-import {DatePicker} from 'primeng/datepicker';
 import { TabsModule } from 'primeng/tabs';
 import {Button} from 'primeng/button';
-import {ToastService} from '@shared/services';
 import {Toast, ToastModule} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {Calendar} from 'primeng/calendar';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-staff-detail-page',
@@ -26,23 +26,33 @@ import {MessageService} from 'primeng/api';
     InputText,
     ReactiveFormsModule,
     ProgressSpinner,
-    DatePicker,
     TabsModule,
     Button,
     Toast,
-    ToastModule
+    ToastModule,
+    Calendar,
+    ConfirmDialogModule
   ],
   templateUrl: './staff-detail-page.component.html',
   styleUrl: './staff-detail-page.component.css'
 })
 export class StaffDetailPageComponent implements OnInit {
+  public staffFormGroup :FormGroup<any> = new FormGroup<any>({});
+
   employee$:WritableSignal<Employee | null> = signal(null);
   employeeId!:string;
-  public staffFormGroup :FormGroup<any> = new FormGroup<any>({});
+
   loading:boolean = true;
   isEditMode: boolean = false;
 
-  constructor(private route:ActivatedRoute, private service:StaffService, private readonly messageService :MessageService, private translateService :TranslateService) {
+  // DI
+  private readonly route:ActivatedRoute = inject(ActivatedRoute);
+  private readonly service:StaffService = inject(StaffService);
+  private readonly translateService :TranslateService = inject(TranslateService);
+  private readonly messageService :MessageService = inject(MessageService)
+  private readonly confirmationService :ConfirmationService = inject(ConfirmationService)
+
+  constructor() {
     this.staffFormGroup = new FormGroup({
       lastname:new FormControl('', Validators.required),
       firstname:new FormControl('', Validators.required),
@@ -120,7 +130,6 @@ export class StaffDetailPageComponent implements OnInit {
   update() :void{
     const employee :Employee = this.staffFormGroup.value;
     employee.employeeId = this.employeeId;
-
     employee.gender = Gender[employee.gender];
     employee.role = UserRoleEnum[employee.role];
 
@@ -132,8 +141,38 @@ export class StaffDetailPageComponent implements OnInit {
       error : (err) => {
         const message :string = this.translateService.instant('staff-detail-feature-update-toast-error') + err.message;
         this.messageService.add({ severity: 'error', summary: message });
-      }
+      },
     })
+  }
+
+  delete(): void {
+    this.confirmationService.confirm({
+      message: this.translateService.instant('staff-detail-feature-delete-confirmation'),
+      header: this.translateService.instant('staff-detail-feature-delete-confirmation-header'),
+      acceptLabel: this.translateService.instant('btn-confirm'),
+      rejectLabel: this.translateService.instant('btn-cancel'),
+      icon : "pi pi-exclamation-triangle",
+      acceptButtonStyleClass: 'p-button-secondary',
+      rejectButtonStyleClass: 'p-button-danger',
+      accept: () => {
+        this.service.deleteEmployee(this.employeeId).subscribe({
+          next: (reponse) => {
+            console.log(reponse)
+            const successMessage = this.translateService.instant('staff-detail-feature-delete-toast-success');
+            this.messageService.add({ severity: 'success', summary: successMessage });
+          },
+          error: (err) => {
+            console.log(err)
+            const errorMessage = this.translateService.instant('staff-detail-feature-delete-toast-error') + err.message;
+            this.messageService.add({ severity: 'error', summary: errorMessage });
+          }
+        });
+      },
+      reject: () => {
+        const rejectMessage = this.translateService.instant('staff-detail-feature-delete-toast-cancel');
+        this.messageService.add({ severity: 'info', summary: rejectMessage });
+      }
+    });
   }
 
 }

@@ -1,9 +1,8 @@
 <main class="p-6">
 
-  <div class="mb-6">
-    <h1>{{ 'staff-feature-detail-title' | translate }}</h1>
+  <p-button severity="secondary" routerLink="/staff"><i class="pi pi-arrow-left"></i>{{ 'staff-feature-detail-back-to-list' | translate }}</p-button>
 
-  </div>
+  <h1 class="mb-6">{{ 'staff-feature-detail-title' | translate }}</h1>
 
   @if(loading){
     <p-progress-spinner/>
@@ -17,11 +16,11 @@
         </p-tablist>
         <p-tabpanels>
           <p-tabpanel value="0">
-            <form [formGroup]="staffFormGroup" class="flex justify-between flex-wrap mx-10" (ngSubmit)="update()">
+            <form [formGroup]="staffFormGroup" class="flex justify-between flex-wrap mx-20" (ngSubmit)="update()">
               <div class="form-section">
                 <div class="flex gap-4 mb-4">
                   <p-button variant="outlined" (click)="onEditClick()" severity="warn">{{ "btn-edit" | translate }}</p-button>
-                  <p-button variant="outlined" (click)="onEditClick()" severity="danger">{{ "btn-delete" | translate }}</p-button>
+                  <p-button variant="outlined" (click)="delete()" severity="danger">{{ "btn-delete" | translate }}</p-button>
                 </div>
                 <h2>{{ 'staff-detail-feature-personal-data' | translate }}</h2>
                   <div class="my-8 flex justify-between flex-wrap gap-8">
@@ -49,21 +48,12 @@
                       <input formControlName="iban" pInputText id="iban" class="w-full" />
                       <label for="iban">{{ "staff-iban" | translate }}</label>
                     </p-floatlabel>
+                    <p-float-label>
+                      <p-calendar showIcon iconDisplay="input" formControlName="birthdate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
+                      <label class="pt-2">{{ "staff-birthdate" | translate }}</label>
+                    </p-float-label>
                   </div>
 
-                <div class="form-section">
-                  <p-floatlabel>
-                    <p-datepicker
-                      dateFormat="dd/mm/yy"
-                      formControlName="birthdate"
-                      showIcon
-                      iconDisplay="input"
-                      [showOnFocus]="false"
-                      class="max-w-lg max-h-80">
-                    </p-datepicker>
-                    <label class="pt-2">{{ "staff-birthdate" | translate }}</label>
-                  </p-floatlabel>
-                </div>
                 <div class="mt-4">
                   <h2>{{ 'staff-detail-feature-contact' | translate }}</h2>
 
@@ -83,7 +73,7 @@
               </div>
 
               <div class="form-section">
-                <h2 class="capitalize">{{ 'staff-detail-feature-address' | translate }}</h2>
+                <h2 class="capitalize mt-12">{{ 'staff-detail-feature-address' | translate }}</h2>
 
                 <div formGroupName="address">
                   <div class="my-8 flex gap-6 flex-wrap">
@@ -121,7 +111,6 @@
                   <div class="mt-4">
                     <p-button type="submit">{{ "btn-save" | translate }}</p-button>
                   </div>
-                  <p-toast class="capitalize"/>
                 }
               </div>
             </form>
@@ -136,7 +125,6 @@
     }
   }
 
-  <a class="btn cursor-pointer mt-6" routerLink="/staff">{{ 'staff-feature-detail-back-to-list' | translate }}</a>
-
-
+  <p-toast />
+  <p-confirmDialog />
 </main>

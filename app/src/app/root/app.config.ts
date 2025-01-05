@@ -15,7 +15,7 @@ import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translat
 import {createTranslateLoader} from './app.translation';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 import {httpInterceptor} from '@shared/api';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 
 
 export const appConfig: ApplicationConfig = {
@@ -44,6 +44,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([httpInterceptor])
     ),
-    MessageService
+    MessageService,
+    ConfirmationService
   ]
 };

@@ -74,7 +74,7 @@
   "staff-overview-action-delete" : "delete",
 
   "staff-feature-detail-title" : "Employee details",
-  "staff-feature-detail-back-to-list" : "back to list",
+  "staff-feature-detail-back-to-list" : "BACK TO LIST",
   "staff-detail-feature-first-tab" : "personal & contact data" ,
   "staff-detail-feature-second-tab" : "contract",
   "staff-detail-feature-personal-data" : "personal data",
@@ -90,8 +90,18 @@
   "address-country": "country",
   "address-complements" : "complements",
 
+  "btn-confirm": "CONFIRM",
+  "btn-cancel" : "CANCEL",
   "btn-edit": "EDIT",
   "btn-delete": "DELETE",
-  "btn-save": "SAVE"
+  "btn-save": "SAVE",
+  "btn-detail": "DETAIL",
+
+  "staff-detail-feature-delete-confirmation": "Are you sure you want to delete this staff member?",
+  "staff-detail-feature-delete-confirmation-header": "Confirmation",
+  "staff-detail-feature-delete-toast-success": "Staff member deleted successfully!",
+  "staff-detail-feature-delete-toast-error": "Error occurred while deleting the staff member: ",
+  "staff-detail-feature-delete-toast-cancel": "Delete action cancelled."
+
 
 }

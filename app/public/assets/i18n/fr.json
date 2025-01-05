@@ -74,7 +74,7 @@
   "overview-action-delete" : "supprimer",
 
   "staff-feature-detail-title" : "Détails employé",
-  "staff-feature-detail-back-to-list" : "retour à la liste",
+  "staff-feature-detail-back-to-list" : "RETOUR A LA LISTE",
   "staff-detail-feature-first-tab" : "données personnelles & contact",
   "staff-detail-feature-second-tab" : "contrat",
   "staff-detail-feature-personal-data" : "données personnelles",
@@ -90,8 +90,17 @@
   "address-country": "pays",
   "address-complements" : "complements",
 
+  "btn-confirm": "CONFIRMER",
+  "btn-cancel" : "ANNULER",
   "btn-edit": "EDITER",
   "btn-delete": "SUPPRIMER",
-  "btn-save": "SAUVEGARDER"
+  "btn-save": "SAUVEGARDER",
+  "btn-detail": "DETAIL",
+
+  "staff-detail-feature-delete-confirmation": "Êtes-vous sur de vouloir supprimer ce travailleur ?",
+  "staff-detail-feature-delete-confirmation-header": "Confirmation",
+  "staff-detail-feature-delete-toast-success": "Le travailleur a été supprimé avec succès",
+  "staff-detail-feature-delete-toast-error": "Une erreur a eu lieu durant la suppression : ",
+  "staff-detail-feature-delete-toast-cancel": "Action annulée"
 }
 
