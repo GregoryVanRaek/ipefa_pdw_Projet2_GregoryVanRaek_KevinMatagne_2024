@@ -43,7 +43,6 @@ export class StaffCreatePageComponent implements CanComponentDeactivate {
   // DI
   private readonly service :StaffService = inject(StaffService);
   private readonly translateService :TranslateService = inject(TranslateService);
-  private readonly messageService :MessageService = inject(MessageService);
   private readonly confirmationService :ConfirmationService = inject(ConfirmationService);
 
   constructor() {

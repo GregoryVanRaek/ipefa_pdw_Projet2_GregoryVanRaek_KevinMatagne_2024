@@ -15,6 +15,7 @@ import {Toast, ToastModule} from 'primeng/toast';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Calendar} from 'primeng/calendar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {CanComponentDeactivate} from '@shared/core';
 
 @Component({
   selector: 'app-staff-detail-page',
@@ -36,7 +37,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
   templateUrl: './staff-detail-page.component.html',
   styleUrl: './staff-detail-page.component.css'
 })
-export class StaffDetailPageComponent implements OnInit {
+export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate {
   public staffFormGroup :FormGroup<any> = new FormGroup<any>({});
 
   employee$:WritableSignal<Employee | null> = signal(null);
@@ -173,6 +174,29 @@ export class StaffDetailPageComponent implements OnInit {
         this.messageService.add({ severity: 'info', summary: rejectMessage });
       }
     });
+  }
+
+  canDeactivate(): boolean | Promise<boolean> {
+    if (this.staffFormGroup.dirty) {
+      return new Promise((resolve) => {
+        this.confirmationService.confirm({
+          message: this.translateService.instant('staff-feature-candeactivate-message'),
+          header: this.translateService.instant('staff-feature-create-title'),
+          acceptLabel: this.translateService.instant('btn-confirm'),
+          rejectLabel: this.translateService.instant('btn-cancel'),
+          icon : "pi pi-exclamation-triangle",
+          acceptButtonStyleClass: 'p-button-secondary',
+          rejectButtonStyleClass: 'p-button-danger',
+          accept: () => {
+            resolve(true);
+          },
+          reject: () => {
+            resolve(false);
+          }
+        });
+      })
+    }
+    return true;
   }
 
 }

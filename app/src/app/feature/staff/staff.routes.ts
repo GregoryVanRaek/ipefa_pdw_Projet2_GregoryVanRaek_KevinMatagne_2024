@@ -15,6 +15,7 @@ export const staffRoutes: Routes = [
       },
       {
         path:`${AppNode.DETAIL}/:id`,
+        canDeactivate:[staffCreateGuard],
         loadComponent: () => import('./page').then(c => c.StaffDetailPageComponent)
       },
       {
