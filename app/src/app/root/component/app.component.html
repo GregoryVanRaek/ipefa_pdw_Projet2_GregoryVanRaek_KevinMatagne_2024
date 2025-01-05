@@ -1,8 +1,6 @@
-<h1 class="text-3xl font-bold underline bg-amber-600">
-  Test Tailwind
-</h1>
-
-
-<div class="card flex justify-center">
-  <p-button label="Test PrimeNG"></p-button>
+<div class="text-right absolute bottom-5 left-5 text-cyan-50 z-50">
+  <span (click)="changeLanguage('en')" class="cursor-pointer">en</span>
+  <span class="px-2">|</span>
+  <span (click)="changeLanguage('fr')" class="cursor-pointer">fr</span>
 </div>
+<router-outlet></router-outlet>

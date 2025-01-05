@@ -1,0 +1,41 @@
+<main class="flex">
+  <nav class="min-h-screen">
+    <div class="flex gap-4 items-center">
+      <fa-icon [icon]="faChartSimple"></fa-icon>
+      <h1 class="text-center">{{ 'dashboard-feature.router-title' | translate }}</h1>
+    </div>
+    <a routerLink="/dashboard" class="nav-link flex gap-4">
+      <fa-icon [icon]="faHouse" class="icon-size"></fa-icon>
+      <span>{{ 'dashboard-feature.router-nav-home' | translate }}</span>
+    </a>
+    <a routerLink="/staff" class="nav-link flex gap-4">
+      <fa-icon [icon]="faUsers" class="icon-size"></fa-icon>
+      <span>{{ 'dashboard-feature.router-nav-staff' | translate }}</span>
+    </a>
+    <a routerLink="/home" class="nav-link flex gap-4" (click)="logout()">
+      <fa-icon [icon]="faArrowUpFromBracket" class="icon-size"></fa-icon>
+      <span>{{ 'dashboard-feature.router-nav-logout' | translate }}</span>
+    </a>
+  </nav>
+
+  <div class="flex flex-col w-4/5">
+    <header class="p-4">
+      <div class="flex flex-row justify-between items-center">
+        <h2>{{ 'dashboard-feature.header-title' | translate }}</h2>
+        <div class="flex flex-row gap-4 items-center">
+          <fa-icon class="user-icon" [icon]="faUser"></fa-icon>
+          <div class="flex flex-col">
+            <p class="font-bold text-s">{{ username }}</p>
+            <p class="">{{ state }}</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <span class="page-wrapper-primary"></span>
+
+    <section id="content" class="flex-grow p-4 bg-gray-100">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</main>

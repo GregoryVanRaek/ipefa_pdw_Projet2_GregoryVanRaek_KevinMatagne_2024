@@ -1,0 +1,7 @@
+label, h2{
+  @apply capitalize
+}
+
+.form-section{
+  @apply mt-4 max-w-lg ;
+}

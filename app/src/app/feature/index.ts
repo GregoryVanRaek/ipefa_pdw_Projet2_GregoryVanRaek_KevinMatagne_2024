@@ -1,2 +1,5 @@
 export * from './security'
 export * from './dashboard'
+export * from './home'
+export * from './staff'
+export * from './router'

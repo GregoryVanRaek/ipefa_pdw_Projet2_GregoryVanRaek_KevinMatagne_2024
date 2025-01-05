@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CardComponent, SimpleButtonComponent } from '@shared/ui';
+import { SimpleButtonComponent } from '@shared/ui';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [
     SimpleButtonComponent,
-    CardComponent,
     RouterLink,
     TranslateModule
   ],

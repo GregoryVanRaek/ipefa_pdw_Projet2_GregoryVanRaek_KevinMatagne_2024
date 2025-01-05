@@ -24,6 +24,10 @@ export const routes: Routes = [
     loadChildren: () => import('../feature/dashboard').then(r => r.dashboardRoutes)
   },
   {
+    path:AppNode.STAFF,
+    loadChildren:() => import('../feature/staff').then(c => c.staffRoutes)
+  },
+  {
     path:AppNode.FALL_BACK,
     component:GlobalFallBackPageComponent
   }
