@@ -17,7 +17,7 @@ let Address = class Address extends base_entity_1.BaseEntity {
 };
 exports.Address = Address;
 __decorate([
-    (0, typeorm_1.PrimaryColumn)('varchar', { length: 26, default: () => `'${(0, ulid_1.ulid)()}'` }),
+    (0, typeorm_1.PrimaryColumn)('varchar', { length: 26, default: () => `'${(0, ulid_1.ulid)()}'`, unique: true }),
     __metadata("design:type", String)
 ], Address.prototype, "addressId", void 0);
 __decorate([
@@ -45,7 +45,6 @@ __decorate([
     __metadata("design:type", String)
 ], Address.prototype, "complement", void 0);
 exports.Address = Address = __decorate([
-    (0, typeorm_1.Entity)(),
-    (0, typeorm_1.Unique)(['road', 'nb', 'cp', 'town', 'country'])
+    (0, typeorm_1.Entity)()
 ], Address);
 //# sourceMappingURL=address.entity.js.map

@@ -3,9 +3,8 @@ import {BaseEntity} from './base.entity';
 import {ulid} from 'ulid';
 
 @Entity()
-@Unique(['road', 'nb', 'cp', 'town', 'country'])
 export class Address extends BaseEntity {
-  @PrimaryColumn('varchar', {length: 26, default: () => `'${ulid()}'`})
+  @PrimaryColumn('varchar', {length: 26, default: () => `'${ulid()}'`, unique:true})
   addressId: string;
 
   @Column({length:50,nullable: true, unique: false})

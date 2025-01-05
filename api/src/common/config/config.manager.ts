@@ -10,6 +10,7 @@ class ConfigManager {
   }
   public getTypeOrmConfig(): TypeOrmModuleOptions {
     return {
+      //logging:true,
       type: this.getValue(ConfigKey.DB_TYPE) as any,
       host: this.getValue(ConfigKey.DB_HOST),
       port: parseInt(this.getValue(ConfigKey.DB_PORT)),
