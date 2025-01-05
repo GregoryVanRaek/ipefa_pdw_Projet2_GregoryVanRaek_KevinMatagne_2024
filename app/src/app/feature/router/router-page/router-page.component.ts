@@ -21,6 +21,8 @@ export class RouterPageComponent {
   constructor(public securityService :SecurityService) {
   }
 
+  //TODO: responsive design
+
   protected readonly faUser = faUser;
   protected readonly faChartSimple = faChartSimple;
   protected readonly faHouse = faHouse;

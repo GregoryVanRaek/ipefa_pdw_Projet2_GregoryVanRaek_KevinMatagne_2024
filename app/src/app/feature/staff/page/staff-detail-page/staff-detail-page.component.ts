@@ -52,6 +52,8 @@ export class StaffDetailPageComponent implements OnInit {
   private readonly messageService :MessageService = inject(MessageService)
   private readonly confirmationService :ConfirmationService = inject(ConfirmationService)
 
+  // TODO: refactor code in multiple component + create floatlabel custom component + responsive design
+
   constructor() {
     this.staffFormGroup = new FormGroup({
       lastname:new FormControl('', Validators.required),
@@ -156,13 +158,11 @@ export class StaffDetailPageComponent implements OnInit {
       rejectButtonStyleClass: 'p-button-danger',
       accept: () => {
         this.service.deleteEmployee(this.employeeId).subscribe({
-          next: (reponse) => {
-            console.log(reponse)
+          next: () => {
             const successMessage = this.translateService.instant('staff-detail-feature-delete-toast-success');
             this.messageService.add({ severity: 'success', summary: successMessage });
           },
           error: (err) => {
-            console.log(err)
             const errorMessage = this.translateService.instant('staff-detail-feature-delete-toast-error') + err.message;
             this.messageService.add({ severity: 'error', summary: errorMessage });
           }

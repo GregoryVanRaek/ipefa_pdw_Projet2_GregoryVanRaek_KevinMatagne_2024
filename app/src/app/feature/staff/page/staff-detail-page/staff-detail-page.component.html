@@ -1,9 +1,10 @@
 <main class="p-6">
 
-  <p-button severity="secondary" routerLink="/staff"><i class="pi pi-arrow-left"></i>{{ 'staff-feature-detail-back-to-list' | translate }}</p-button>
+  <p-button raised severity="secondary" routerLink="/staff"><i class="pi pi-arrow-left"></i>{{ 'staff-feature-detail-back-to-list' | translate }}</p-button>
 
   <h1 class="mb-6">{{ 'staff-feature-detail-title' | translate }}</h1>
 
+<!--  TODO: error handling-->
   @if(loading){
     <p-progress-spinner/>
   }
@@ -19,8 +20,8 @@
             <form [formGroup]="staffFormGroup" class="flex justify-between flex-wrap mx-20" (ngSubmit)="update()">
               <div class="form-section">
                 <div class="flex gap-4 mb-4">
-                  <p-button variant="outlined" (click)="onEditClick()" severity="warn">{{ "btn-edit" | translate }}</p-button>
-                  <p-button variant="outlined" (click)="delete()" severity="danger">{{ "btn-delete" | translate }}</p-button>
+                  <p-button variant="outlined" (click)="onEditClick()" severity="warn"><i class="pi pi-pencil"></i>{{ "btn-edit" | translate }}</p-button>
+                  <p-button variant="outlined" (click)="delete()" severity="danger"><i class="pi pi-times"></i>{{ "btn-delete" | translate }}</p-button>
                 </div>
                 <h2>{{ 'staff-detail-feature-personal-data' | translate }}</h2>
                   <div class="my-8 flex justify-between flex-wrap gap-8">
@@ -109,7 +110,7 @@
                 </div>
                 @if(isEditMode){
                   <div class="mt-4">
-                    <p-button type="submit">{{ "btn-save" | translate }}</p-button>
+                    <p-button type="submit"><i class="pi pi-save"></i>{{ "btn-save" | translate }}</p-button>
                   </div>
                 }
               </div>

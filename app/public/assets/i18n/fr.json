@@ -96,11 +96,16 @@
   "btn-delete": "SUPPRIMER",
   "btn-save": "SAUVEGARDER",
   "btn-detail": "DETAIL",
+  "btn-create": "AJOUTER",
 
   "staff-detail-feature-delete-confirmation": "Êtes-vous sur de vouloir supprimer ce travailleur ?",
   "staff-detail-feature-delete-confirmation-header": "Confirmation",
   "staff-detail-feature-delete-toast-success": "Le travailleur a été supprimé avec succès",
   "staff-detail-feature-delete-toast-error": "Une erreur a eu lieu durant la suppression : ",
-  "staff-detail-feature-delete-toast-cancel": "Action annulée"
+  "staff-detail-feature-delete-toast-cancel": "Action annulée",
+
+  "staff-feature-create-title": "Ajout d'un nouveau travailleur",
+  "staff-feature-candeactivate-message" : "Vous avez des modifications non sauvegardées. Voulez-vous vraiment quitter ?"
+
 }
 

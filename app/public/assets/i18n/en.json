@@ -96,12 +96,15 @@
   "btn-delete": "DELETE",
   "btn-save": "SAVE",
   "btn-detail": "DETAIL",
+  "btn-create": "ADD",
 
   "staff-detail-feature-delete-confirmation": "Are you sure you want to delete this staff member?",
   "staff-detail-feature-delete-confirmation-header": "Confirmation",
   "staff-detail-feature-delete-toast-success": "Staff member deleted successfully!",
   "staff-detail-feature-delete-toast-error": "Error occurred while deleting the staff member: ",
-  "staff-detail-feature-delete-toast-cancel": "Delete action cancelled."
+  "staff-detail-feature-delete-toast-cancel": "Delete action cancelled.",
 
+  "staff-feature-create-title": "Add new staff",
+  "staff-feature-candeactivate-message" : "You have modifications not saved. Do you really want to quit ?"
 
 }

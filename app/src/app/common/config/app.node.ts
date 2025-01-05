@@ -4,6 +4,7 @@ export enum AppNode {
   REDIRECT_TO_PUBLIC = AppNode.PUBLIC,
   REDIRECT_TO_AUTHENTICATED = AppNode.AUTHENTICATED,
   MEMBER = 'member',
+  CREATE = "create",
   DETAIL = 'detail',
   STAFF = 'staff',
   SIGN_IN = 'signin',

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {StaffFallbackPageComponent} from './page';
 import {AppNode, AppRoutes} from '../../common';
 import {RouterPageComponent} from '../router';
+import {staffCreateGuard} from './guard';
 
 export const staffRoutes: Routes = [
   {
@@ -13,8 +14,13 @@ export const staffRoutes: Routes = [
         loadComponent: () => import('./page').then(c => c.StaffOverviewPageComponent)
       },
       {
-        path:`${AppRoutes.STAFFDETAIL}/:id`,
+        path:`${AppNode.DETAIL}/:id`,
         loadComponent: () => import('./page').then(c => c.StaffDetailPageComponent)
+      },
+      {
+        path: `${AppNode.CREATE}`,
+        canDeactivate:[staffCreateGuard],
+        loadComponent: () => import('./page').then(c => c.StaffCreatePageComponent)
       },
       {
         path:'**',
