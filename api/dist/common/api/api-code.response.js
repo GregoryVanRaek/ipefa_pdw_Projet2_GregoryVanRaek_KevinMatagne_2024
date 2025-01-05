@@ -48,6 +48,7 @@ var ApiCodeResponse;
     ApiCodeResponse["EMPLOYEE_PAYLOAD_ID_IS_MANDATORY"] = "api.employee.payload.validation-id-is-mandatory";
     ApiCodeResponse["EMPLOYEE_PAYLOAD_ID_LENGTH_ERROR"] = "api.employee.payload.validation-id-length-error";
     ApiCodeResponse["EMPLOYEE_PAYLOAD_GENDER_NOT_VALID"] = "api.employee.payload.validation-gender-is-invalid";
+    ApiCodeResponse["EMPLOYEE_PAYLOAD_ROLE_NOT_VALID"] = "api.employee.payload.validation-role-is-invalid";
     ApiCodeResponse["EMPLOYEE_CREATE_ERROR"] = "api.error.employee-creation";
     ApiCodeResponse["EMPLOYEE_DELETE_ERROR"] = "api.error.employee-delete";
     ApiCodeResponse["EMPLOYEE_NOT_FOUND"] = "api.error.employee-not-found";

@@ -101,6 +101,18 @@ let AddressService = class AddressService {
         if (payload.addressId) {
             return this.updateAddressIfNeeded(payload.addressId, payload);
         }
+        else {
+            const add = await this.repository.findOneBy({
+                road: payload.road,
+                nb: payload.nb,
+                cp: payload.cp,
+                town: payload.town,
+                country: payload.country
+            });
+            if (add) {
+                return this.updateAddressIfNeeded(add.addressId, payload);
+            }
+        }
         return this.create(payload);
     }
 };

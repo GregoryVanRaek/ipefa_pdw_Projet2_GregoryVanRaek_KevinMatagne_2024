@@ -47,6 +47,7 @@ export enum ApiCodeResponse {
   EMPLOYEE_PAYLOAD_ID_IS_MANDATORY = 'api.employee.payload.validation-id-is-mandatory',
   EMPLOYEE_PAYLOAD_ID_LENGTH_ERROR = 'api.employee.payload.validation-id-length-error',
   EMPLOYEE_PAYLOAD_GENDER_NOT_VALID = 'api.employee.payload.validation-gender-is-invalid',
+  EMPLOYEE_PAYLOAD_ROLE_NOT_VALID = 'api.employee.payload.validation-role-is-invalid',
   EMPLOYEE_CREATE_ERROR = 'api.error.employee-creation',
   EMPLOYEE_DELETE_ERROR='api.error.employee-delete',
   EMPLOYEE_NOT_FOUND='api.error.employee-not-found',
@@ -57,7 +58,7 @@ export enum ApiCodeResponse {
   ADDRESS_CREATE_ERROR = 'api.error.address-creation',
   ADDRESS_DELETE_ERROR = "api.error.address-delete",
   ADDRESS_NOT_FOUND = "api.error.address-not-found",
-  ADDRESS_UPDATE_ERROR = "api.error.address-update",
+  ADDRESS_UPDATE_ERROR = "api.error.address-update"
 
 
 }

@@ -67,6 +67,12 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(model_1.UserRoleEnum, { message: api_1.ApiCodeResponse.EMPLOYEE_PAYLOAD_ROLE_NOT_VALID }),
+    __metadata("design:type", Number)
+], EmployeeCreatePayload.prototype, "role", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", model_1.Address)
 ], EmployeeCreatePayload.prototype, "address", void 0);
 __decorate([

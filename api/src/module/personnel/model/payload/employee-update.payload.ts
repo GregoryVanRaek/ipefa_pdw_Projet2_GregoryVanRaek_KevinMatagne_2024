@@ -1,6 +1,6 @@
-import {Address, AddressPayload, UserRoleEnum} from "@common/model";
+import {AddressPayload, UserRoleEnum} from "@common/model";
 import {Contract} from "../entity";
-import {IsDate, IsDateString, IsEmail, IsEnum, IsIBAN, IsNotEmpty, IsOptional, IsString, Length} from "class-validator";
+import {IsDateString, IsEmail, IsEnum, IsIBAN, IsNotEmpty, IsOptional, IsString, Length} from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 import {ApiCodeResponse} from "@common/api";
 import {Gender} from "../enum";
@@ -49,6 +49,11 @@ export class EmployeeUpdatePayload {
     @IsOptional()
     @IsEnum(Gender, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_GENDER_NOT_VALID})
     gender: Gender;
+
+    @ApiProperty()
+    @IsOptional()
+    @IsEnum(UserRoleEnum, {message: ApiCodeResponse.EMPLOYEE_PAYLOAD_ROLE_NOT_VALID})
+    role:UserRoleEnum;
 
     @ApiProperty()
     @IsOptional()

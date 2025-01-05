@@ -20,6 +20,12 @@ export class EmployeeService {
 
     async create(payload: EmployeeCreatePayload): Promise<Employee>{
         try {
+            let address :Address;
+
+            if (payload.address) {
+                address = await this.addressService.getOrCreateAddress(payload.address);
+            }
+
             return await this.repository.save(Builder<Employee>()
                 .employeeId(`${ulid()}`)
                 .firstname(payload.firstname)
@@ -29,7 +35,8 @@ export class EmployeeService {
                 .phone(payload.phone)
                 .iban(payload.iban)
                 .gender(payload.gender)
-                .address(payload.address)
+                .role(payload.role)
+                .address(address)
                 .build()
             );
         } catch (e) {
@@ -91,9 +98,10 @@ export class EmployeeService {
 
             toUpdate.firstname = payload.firstname;
             toUpdate.lastname = payload.lastname;
-            toUpdate.birthdate = payload.birthdate;
+            toUpdate.birthdate = new Date(payload.birthdate);
             toUpdate.mail = payload.mail;
             toUpdate.phone = payload.phone;
+            toUpdate.role = payload.role;
             toUpdate.iban = payload.iban;
             toUpdate.gender = payload.gender;
 

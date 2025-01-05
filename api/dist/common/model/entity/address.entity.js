@@ -45,6 +45,7 @@ __decorate([
     __metadata("design:type", String)
 ], Address.prototype, "complement", void 0);
 exports.Address = Address = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    (0, typeorm_1.Unique)(['road', 'nb', 'cp', 'town', 'country'])
 ], Address);
 //# sourceMappingURL=address.entity.js.map

@@ -29,6 +29,10 @@ let EmployeeService = class EmployeeService {
     }
     async create(payload) {
         try {
+            let address;
+            if (payload.address) {
+                address = await this.addressService.getOrCreateAddress(payload.address);
+            }
             return await this.repository.save((0, builder_pattern_1.Builder)()
                 .employeeId(`${(0, ulid_1.ulid)()}`)
                 .firstname(payload.firstname)
@@ -38,7 +42,8 @@ let EmployeeService = class EmployeeService {
                 .phone(payload.phone)
                 .iban(payload.iban)
                 .gender(payload.gender)
-                .address(payload.address)
+                .role(payload.role)
+                .address(address)
                 .build());
         }
         catch (e) {
@@ -93,9 +98,10 @@ let EmployeeService = class EmployeeService {
             }
             toUpdate.firstname = payload.firstname;
             toUpdate.lastname = payload.lastname;
-            toUpdate.birthdate = payload.birthdate;
+            toUpdate.birthdate = new Date(payload.birthdate);
             toUpdate.mail = payload.mail;
             toUpdate.phone = payload.phone;
+            toUpdate.role = payload.role;
             toUpdate.iban = payload.iban;
             toUpdate.gender = payload.gender;
             return await this.repository.save(toUpdate);

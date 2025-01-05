@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import {Column, Repository} from "typeorm";
 import {Builder} from "builder-pattern";
 import {ulid} from "ulid";
 import {isNil} from "lodash";
@@ -98,7 +98,20 @@ export class AddressService {
         if (payload.addressId) {
             return this.updateAddressIfNeeded(payload.addressId, payload);
         }
+        else{
+            const add :Address = await this.repository.findOneBy({
+                road : payload.road,
+                nb : payload.nb,
+                cp : payload.cp,
+                town : payload.town,
+                country : payload.country
+            });
+            if(add){
+                return this.updateAddressIfNeeded(add.addressId, payload);
+            }
+        }
         return this.create(payload);
     }
 
 }
+

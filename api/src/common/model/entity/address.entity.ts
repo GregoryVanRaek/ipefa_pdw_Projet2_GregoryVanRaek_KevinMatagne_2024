@@ -1,8 +1,9 @@
-import {Column, Entity, PrimaryColumn} from 'typeorm';
+import {Column, Entity, PrimaryColumn, Unique} from 'typeorm';
 import {BaseEntity} from './base.entity';
 import {ulid} from 'ulid';
 
 @Entity()
+@Unique(['road', 'nb', 'cp', 'town', 'country'])
 export class Address extends BaseEntity {
   @PrimaryColumn('varchar', {length: 26, default: () => `'${ulid()}'`})
   addressId: string;
