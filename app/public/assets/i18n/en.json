@@ -72,6 +72,7 @@
   "staff-overview-action" : "action",
   "staff-overview-action-detail" : "detail",
   "staff-overview-action-delete" : "delete",
+  "staff-overview-no-staff" : "Any employee registered yet",
 
   "staff-feature-detail-title" : "Employee details",
   "staff-feature-detail-back-to-list" : "BACK TO LIST",

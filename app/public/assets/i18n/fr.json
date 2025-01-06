@@ -60,6 +60,8 @@
   "dashboard-feature.home-page": "Bienvenue sur votre tableau de bord",
 
   "staff-feature-overview-title" : "Travailleurs",
+  "staff-overview-no-staff" : "Pas encore de travailleurs enregistrés",
+
   "staff-firstname" : "prénom",
   "staff-lastname" : "nom",
   "staff-birthdate": "date de naissance",
