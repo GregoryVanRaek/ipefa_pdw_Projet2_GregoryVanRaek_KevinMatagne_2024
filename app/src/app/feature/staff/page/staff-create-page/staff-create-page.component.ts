@@ -4,14 +4,12 @@ import {Calendar} from 'primeng/calendar';
 import {ConfirmDialog} from 'primeng/confirmdialog';
 import {FloatLabel} from 'primeng/floatlabel';
 import {InputText} from 'primeng/inputtext';
-import {ProgressSpinner} from 'primeng/progressspinner';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RouterLink} from '@angular/router';
-import {Tab, TabList, TabPanel, TabPanels, Tabs} from 'primeng/tabs';
 import {Toast} from 'primeng/toast';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {CanComponentDeactivate} from '@shared/core';
-import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
 import {StaffService} from '../../service';
 
 @Component({
@@ -23,14 +21,8 @@ import {StaffService} from '../../service';
     ConfirmDialog,
     FloatLabel,
     InputText,
-    ProgressSpinner,
     ReactiveFormsModule,
     RouterLink,
-    Tab,
-    TabList,
-    TabPanel,
-    TabPanels,
-    Tabs,
     Toast,
     TranslatePipe
   ],
