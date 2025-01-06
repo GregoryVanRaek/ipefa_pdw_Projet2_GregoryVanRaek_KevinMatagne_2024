@@ -21,9 +21,12 @@ export class ContractService {
         try {
             return await this.repository.save(Builder<Contract>()
                 .contractId(`${ulid()}`)
-                .hourlyRate(payload.hourlyRate)
+                .salary(payload.salary)
                 .perks(payload.perks)
                 .startDate(payload.startDate)
+                .endDate(payload.endDate)
+                .contratType(payload.contratType)
+                .weeklySchedule(payload.weeklySchedule)
                 .employee(payload.employee)
                 .build()
             )
@@ -69,9 +72,12 @@ export class ContractService {
         try {
             const toUpdate = await this.getOneById(payload.contractId);
 
-            toUpdate.hourlyRate = payload.hourlyRate;
+            toUpdate.salary = payload.salary;
             toUpdate.perks = payload.perks;
             toUpdate.startDate = payload.startDate;
+            toUpdate.endDate = payload.endDate;
+            toUpdate.contratType = payload.contratType;
+            toUpdate.weeklySchedule = payload.weeklySchedule;
 
             return await this.repository.save(toUpdate);
         }

@@ -29,6 +29,8 @@ var ApiCodeResponse;
     ApiCodeResponse["CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY"] = "api.contract.payload.validation-startdate-is-mandatory";
     ApiCodeResponse["CONTRACT_PAYLOAD_EMPLOYEE_IS_MANDATORY"] = "api.contract.payload.validation-employee-is-mandatory";
     ApiCodeResponse["CONTRACT_PAYLOAD_ID_IS_MANDATORY"] = "api.contract.payload.validation-contract-id-is-mandatory";
+    ApiCodeResponse["CONTRACT_PAYLOAD_CONTRAT_TYPE_IS_NOT_STRING"] = "api.contract.payload.validation-contract-type-is-not-string";
+    ApiCodeResponse["CONTRACT_PAYLOAD_WEEKLYSCHEDULE_IS_NOT_NUMBER"] = "api.contract.payload.validation-contract-weeklyschedule-is-not-number";
     ApiCodeResponse["CONTRACT_CREATE_ERROR"] = "api.contract-creation";
     ApiCodeResponse["CONTRACT_DELETE_ERROR"] = "api.error.contract-delete";
     ApiCodeResponse["CONTRACT_NOT_FOUND"] = "api.error.contract-not-found";

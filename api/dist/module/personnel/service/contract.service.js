@@ -29,9 +29,12 @@ let ContractService = class ContractService {
         try {
             return await this.repository.save((0, builder_pattern_1.Builder)()
                 .contractId(`${(0, ulid_1.ulid)()}`)
-                .hourlyRate(payload.hourlyRate)
+                .salary(payload.salary)
                 .perks(payload.perks)
                 .startDate(payload.startDate)
+                .endDate(payload.endDate)
+                .contratType(payload.contratType)
+                .weeklySchedule(payload.weeklySchedule)
                 .employee(payload.employee)
                 .build());
         }
@@ -72,9 +75,12 @@ let ContractService = class ContractService {
     async update(payload) {
         try {
             const toUpdate = await this.getOneById(payload.contractId);
-            toUpdate.hourlyRate = payload.hourlyRate;
+            toUpdate.salary = payload.salary;
             toUpdate.perks = payload.perks;
             toUpdate.startDate = payload.startDate;
+            toUpdate.endDate = payload.endDate;
+            toUpdate.contratType = payload.contratType;
+            toUpdate.weeklySchedule = payload.weeklySchedule;
             return await this.repository.save(toUpdate);
         }
         catch (error) {

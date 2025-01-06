@@ -22,7 +22,7 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_HOURLYRATE_IS_MANDATORY }),
     __metadata("design:type", Number)
-], ContractCreatePayload.prototype, "hourlyRate", void 0);
+], ContractCreatePayload.prototype, "salary", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_PERKS_IS_NOT_STRING }),
@@ -36,6 +36,22 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY }),
     __metadata("design:type", Date)
 ], ContractCreatePayload.prototype, "startDate", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsDateString)(undefined, { message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID }),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Date)
+], ContractCreatePayload.prototype, "endDate", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsString)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_CONTRAT_TYPE_IS_NOT_STRING }),
+    __metadata("design:type", String)
+], ContractCreatePayload.prototype, "contratType", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNumber)(undefined, { message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_WEEKLYSCHEDULE_IS_NOT_NUMBER }),
+    __metadata("design:type", Number)
+], ContractCreatePayload.prototype, "weeklySchedule", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_EMPLOYEE_IS_MANDATORY }),

@@ -24,7 +24,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ nullable: false, unique: false }),
     __metadata("design:type", Number)
-], Contract.prototype, "hourlyRate", void 0);
+], Contract.prototype, "salary", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 255, nullable: true, unique: false }),
     __metadata("design:type", String)
@@ -33,6 +33,18 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", Date)
 ], Contract.prototype, "startDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", Date)
+], Contract.prototype, "endDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false }),
+    __metadata("design:type", String)
+], Contract.prototype, "contratType", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: false }),
+    __metadata("design:type", Number)
+], Contract.prototype, "weeklySchedule", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => employee_entity_1.Employee, (e) => e.employeeContracts, { eager: false }),
     (0, typeorm_1.JoinColumn)({ referencedColumnName: 'employeeId', name: 'employeeId_fk' }),

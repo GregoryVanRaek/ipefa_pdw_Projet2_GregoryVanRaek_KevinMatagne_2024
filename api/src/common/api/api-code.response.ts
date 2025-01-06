@@ -27,6 +27,8 @@ export enum ApiCodeResponse {
   CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY = 'api.contract.payload.validation-startdate-is-mandatory',
   CONTRACT_PAYLOAD_EMPLOYEE_IS_MANDATORY = 'api.contract.payload.validation-employee-is-mandatory',
   CONTRACT_PAYLOAD_ID_IS_MANDATORY = 'api.contract.payload.validation-contract-id-is-mandatory',
+  CONTRACT_PAYLOAD_CONTRAT_TYPE_IS_NOT_STRING = 'api.contract.payload.validation-contract-type-is-not-string',
+  CONTRACT_PAYLOAD_WEEKLYSCHEDULE_IS_NOT_NUMBER = 'api.contract.payload.validation-contract-weeklyschedule-is-not-number',
   CONTRACT_CREATE_ERROR = 'api.contract-creation',
   CONTRACT_DELETE_ERROR='api.error.contract-delete',
   CONTRACT_NOT_FOUND='api.error.contract-not-found',
@@ -58,7 +60,8 @@ export enum ApiCodeResponse {
   ADDRESS_CREATE_ERROR = 'api.error.address-creation',
   ADDRESS_DELETE_ERROR = "api.error.address-delete",
   ADDRESS_NOT_FOUND = "api.error.address-not-found",
-  ADDRESS_UPDATE_ERROR = "api.error.address-update"
+  ADDRESS_UPDATE_ERROR = "api.error.address-update",
+
 
 
 }

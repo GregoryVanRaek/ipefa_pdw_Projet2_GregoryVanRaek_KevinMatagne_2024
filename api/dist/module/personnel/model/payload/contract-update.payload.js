@@ -26,9 +26,9 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_HOURLYRATE_IS_MANDATORY }),
     __metadata("design:type", Number)
-], ContractUpdatePayload.prototype, "hourlyRate", void 0);
+], ContractUpdatePayload.prototype, "salary", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_PERKS_IS_NOT_STRING }),
@@ -39,12 +39,28 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsDateString)(undefined, { message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID }),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY }),
     __metadata("design:type", Date)
 ], ContractUpdatePayload.prototype, "startDate", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsDateString)(undefined, { message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID }),
     (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Date)
+], ContractUpdatePayload.prototype, "endDate", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsString)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_CONTRAT_TYPE_IS_NOT_STRING }),
+    __metadata("design:type", String)
+], ContractUpdatePayload.prototype, "contratType", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNumber)(undefined, { message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_WEEKLYSCHEDULE_IS_NOT_NUMBER }),
+    __metadata("design:type", Number)
+], ContractUpdatePayload.prototype, "weeklySchedule", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNotEmpty)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_EMPLOYEE_IS_MANDATORY }),
     __metadata("design:type", entity_1.Employee)
 ], ContractUpdatePayload.prototype, "employee", void 0);
 //# sourceMappingURL=contract-update.payload.js.map

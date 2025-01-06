@@ -11,8 +11,8 @@ export class ContractUpdatePayload {
 
     @ApiProperty()
     @IsNumber()
-    @IsOptional()
-    hourlyRate :number;
+    @IsNotEmpty({message: ApiCodeResponse.CONTRACT_PAYLOAD_HOURLYRATE_IS_MANDATORY})
+    salary :number;
 
     @ApiProperty()
     @IsString({message: ApiCodeResponse.CONTRACT_PAYLOAD_PERKS_IS_NOT_STRING})
@@ -22,10 +22,23 @@ export class ContractUpdatePayload {
 
     @ApiProperty()
     @IsDateString(undefined, {message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID})
-    @IsOptional()
+    @IsNotEmpty({message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY})
     startDate:Date;
 
     @ApiProperty()
+    @IsDateString(undefined, {message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID})
     @IsOptional()
+    endDate:Date;
+
+    @ApiProperty()
+    @IsString({message: ApiCodeResponse.CONTRACT_PAYLOAD_CONTRAT_TYPE_IS_NOT_STRING})
+    contratType:string;
+
+    @ApiProperty()
+    @IsNumber(undefined, {message: ApiCodeResponse.CONTRACT_PAYLOAD_WEEKLYSCHEDULE_IS_NOT_NUMBER})
+    weeklySchedule:number;
+
+    @ApiProperty()
+    @IsNotEmpty({message: ApiCodeResponse.CONTRACT_PAYLOAD_EMPLOYEE_IS_MANDATORY})
     employee:Employee;
 }
