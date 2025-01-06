@@ -14,5 +14,6 @@ export enum AppNode {
   EMPLOYEE='employee',
   UPDATE = 'update',
   DELETE = 'delete',
+  CONTRACT = 'contract',
   FALL_BACK = '**',
 }

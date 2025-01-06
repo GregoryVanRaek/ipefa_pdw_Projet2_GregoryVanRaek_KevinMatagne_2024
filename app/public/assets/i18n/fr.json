@@ -107,6 +107,8 @@
   "staff-detail-feature-delete-toast-cancel": "Action annulée",
 
   "staff-feature-create-title": "Ajout d'un nouveau travailleur",
+  "staff-feature-create-confirmation" : "Le travailleur a été créé avec succès",
+  "staff-feature-create-error" : "Une erreur a eu lieu durant la création: ",
   "staff-feature-candeactivate-message" : "Vous avez des modifications non sauvegardées. Voulez-vous vraiment quitter ?"
 
 }

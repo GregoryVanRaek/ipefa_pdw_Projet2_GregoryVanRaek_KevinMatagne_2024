@@ -16,6 +16,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {Calendar} from 'primeng/calendar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {CanComponentDeactivate} from '@shared/core';
+import {ContractService} from '../../../contract';
 
 @Component({
   selector: 'app-staff-detail-page',
@@ -32,7 +33,7 @@ import {CanComponentDeactivate} from '@shared/core';
     Toast,
     ToastModule,
     Calendar,
-    ConfirmDialogModule
+    ConfirmDialogModule,
   ],
   templateUrl: './staff-detail-page.component.html',
   styleUrl: './staff-detail-page.component.css'
@@ -52,6 +53,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
   private readonly translateService :TranslateService = inject(TranslateService);
   private readonly messageService :MessageService = inject(MessageService)
   private readonly confirmationService :ConfirmationService = inject(ConfirmationService)
+  private readonly contractService :ContractService = inject(ContractService);
 
   // TODO: refactor code in multiple component + create floatlabel custom component + responsive design
 
@@ -174,6 +176,10 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
         this.messageService.add({ severity: 'info', summary: rejectMessage });
       }
     });
+  }
+
+  create() :void{
+    const employee :Employee = this.staffFormGroup.value;
   }
 
   canDeactivate(): boolean | Promise<boolean> {

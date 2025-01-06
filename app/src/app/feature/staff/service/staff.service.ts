@@ -29,4 +29,7 @@ export class StaffService {
     return this.api.delete(`${AppRoutes.STAFFDELETE}/${id}`)
   }
 
+  createEmployee(payload :Employee) : Observable<ApiResponse>{
+    return this.api.post(AppRoutes.STAFFCREATE, payload);
+  }
 }

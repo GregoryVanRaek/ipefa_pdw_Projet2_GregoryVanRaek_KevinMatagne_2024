@@ -110,7 +110,7 @@
                 </div>
                 @if(isEditMode){
                   <div class="mt-4">
-                    <p-button type="submit"><i class="pi pi-save"></i>{{ "btn-save" | translate }}</p-button>
+                    <p-button type="submit" (click)="create()"><i class="pi pi-save"></i>{{ "btn-save" | translate }}</p-button>
                   </div>
                 }
               </div>

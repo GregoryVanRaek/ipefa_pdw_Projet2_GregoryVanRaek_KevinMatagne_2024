@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import {StaffFallbackPageComponent} from './page';
-import {AppNode, AppRoutes} from '../../common';
+import {AppNode} from '../../common';
 import {RouterPageComponent} from '../router';
 import {staffCreateGuard} from './guard';
 

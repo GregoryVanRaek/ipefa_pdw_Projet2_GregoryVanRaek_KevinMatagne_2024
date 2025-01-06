@@ -106,6 +106,8 @@
   "staff-detail-feature-delete-toast-cancel": "Delete action cancelled.",
 
   "staff-feature-create-title": "Add new staff",
+  "staff-feature-create-confirmation" : "Staff successfully created",
+  "staff-feature-create-error" : "Error occurred while creating the staff member:",
   "staff-feature-candeactivate-message" : "You have modifications not saved. Do you really want to quit ?"
 
 }
