@@ -109,7 +109,25 @@
   "staff-feature-create-title": "Ajout d'un nouveau travailleur",
   "staff-feature-create-confirmation" : "Le travailleur a été créé avec succès",
   "staff-feature-create-error" : "Une erreur a eu lieu durant la création: ",
-  "staff-feature-candeactivate-message" : "Vous avez des modifications non sauvegardées. Voulez-vous vraiment quitter ?"
+  "staff-feature-candeactivate-message" : "Vous avez des modifications non sauvegardées. Voulez-vous vraiment quitter ?",
 
+  "form-validation-all-field-must-be-completed" : "tous les champs doivent être remplis",
+
+  "contract-create-feature-salary" : "salaire",
+  "contract-create-feature-perks" : "avantages",
+  "contract-create-feature-startDate" : "date de début",
+  "contract-create-feature-endDate" : "date de fin",
+  "contract-create-feature-contratType" : "type de contrat",
+  "contract-create-feature-weeklySchedule" : "horaire hebdomadaire",
+
+  "perks.ticket_restaurant": "Ticket restaurant",
+  "perks.eco-cheques": "Éco-chèques",
+  "perks.assurance-group": "Assurance groupe",
+  "perks.frais-forfaitaires": "Frais forfaitaires",
+  "perks.teletravail": "Télétravail",
+  "perks.voiture-de-societe": "Voiture de société",
+  "perks.carte-carburant": "Carte carburant",
+  "perks.ordinateur": "Ordinateur",
+  "perks.telephone": "Téléphone"
 }
 

@@ -14,6 +14,7 @@ import {StaffService} from '../../service';
 import {Gender} from '@shared/api/data/enum/gender';
 import {Select} from 'primeng/select';
 import {Employee} from '@shared/api/data/model/employee';
+import {UserRoleEnum} from '@shared/api/data/enum/role';
 
 @Component({
   selector: 'app-staff-create-page',
@@ -43,6 +44,11 @@ export class StaffCreatePageComponent implements CanComponentDeactivate {
     { label: 'Female', value: Gender.Female },
     { label: 'Other', value: Gender.Other }
   ];
+  public roles: { label: string; value: any }[] = [
+    { label: 'Admin', value: Gender.Male },
+    { label: 'Manager', value: Gender.Female },
+    { label: 'Employee', value: Gender.Other }
+  ];
 
   // DI
   private readonly service :StaffService = inject(StaffService);
@@ -70,7 +76,6 @@ export class StaffCreatePageComponent implements CanComponentDeactivate {
         complements: new FormControl('/'),
       })
     })
-
   }
 
   // implement guard to be sure that the user doesn't quit de page without saving data
@@ -100,15 +105,22 @@ export class StaffCreatePageComponent implements CanComponentDeactivate {
   create() :void{
     if(this.formGroup.valid){
       const employee :Employee = this.formGroup.value;
+      employee.gender = employee.gender.value;
+      employee.role = UserRoleEnum[employee.role];
 
       this.service.createEmployee(employee).subscribe({
-        next:(employee) => {
-          this.messageService.add(this.translateService.instant('staff-feature-create-confirmation'))
+        next:() => {
+          const message :string = this.translateService.instant('staff-feature-create-confirmation')
+          this.messageService.add({ severity: 'success', summary: message});
+
           this.isNavigating = true;
-          this.router.navigate(['/employee']);
+          setTimeout(() => {
+            this.router.navigate(['/staff']);
+          }, 1000);
         },
         error : (err) => {
-          this.messageService.add(this.translateService.instant('staff-feature-create-error') + err);
+          const message :string = this.translateService.instant('staff-feature-create-error') + err;
+          this.messageService.add({ severity: 'error', summary: message});
         }
       })
     }

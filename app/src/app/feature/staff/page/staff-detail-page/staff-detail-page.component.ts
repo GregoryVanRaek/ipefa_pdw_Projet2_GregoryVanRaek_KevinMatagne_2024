@@ -16,7 +16,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {Calendar} from 'primeng/calendar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {CanComponentDeactivate} from '@shared/core';
-import {ContractService} from '../../../contract';
+import {ContractCreatePageComponent} from '../../../contract';
 
 @Component({
   selector: 'app-staff-detail-page',
@@ -34,6 +34,7 @@ import {ContractService} from '../../../contract';
     ToastModule,
     Calendar,
     ConfirmDialogModule,
+    ContractCreatePageComponent,
   ],
   templateUrl: './staff-detail-page.component.html',
   styleUrl: './staff-detail-page.component.css'
@@ -46,6 +47,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
   loading:boolean = true;
   isEditMode: boolean = false;
+  newContract :boolean = false;
 
   // DI
   private readonly route:ActivatedRoute = inject(ActivatedRoute);
@@ -53,9 +55,8 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
   private readonly translateService :TranslateService = inject(TranslateService);
   private readonly messageService :MessageService = inject(MessageService)
   private readonly confirmationService :ConfirmationService = inject(ConfirmationService)
-  private readonly contractService :ContractService = inject(ContractService);
 
-  // TODO: refactor code in multiple component + create floatlabel custom component + responsive design
+  // TODO: refactor code in multiple component + responsive design
 
   constructor() {
     this.staffFormGroup = new FormGroup({
@@ -133,21 +134,28 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
   }
 
   update() :void{
+    let message :string;
     const employee :Employee = this.staffFormGroup.value;
     employee.employeeId = this.employeeId;
     employee.gender = Gender[employee.gender];
     employee.role = UserRoleEnum[employee.role];
 
-    this.service.updateEmployee(employee).subscribe({
-      next : () => {
-        const message :string = this.translateService.instant('staff-detail-feature-update-toast-success')
-        this.messageService.add({ severity: 'success', summary: message});
-      },
-      error : (err) => {
-        const message :string = this.translateService.instant('staff-detail-feature-update-toast-error') + err.message;
-        this.messageService.add({ severity: 'error', summary: message });
-      },
-    })
+    if(this.staffFormGroup.valid){
+      this.service.updateEmployee(employee).subscribe({
+        next : () => {
+          message = this.translateService.instant('staff-detail-feature-update-toast-success')
+          this.messageService.add({ severity: 'success', summary: message});
+        },
+        error : (err) => {
+          message = this.translateService.instant('staff-detail-feature-update-toast-error') + err.message;
+          this.messageService.add({ severity: 'error', summary: message });
+        },
+      })
+    }
+    else{
+      message = this.translateService.instant('form-validation-all-field-must-be-completed')
+      this.messageService.add({ severity: 'error', summary: message});
+    }
   }
 
   delete(): void {
@@ -178,10 +186,6 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
     });
   }
 
-  create() :void{
-    const employee :Employee = this.staffFormGroup.value;
-  }
-
   canDeactivate(): boolean | Promise<boolean> {
     if (this.staffFormGroup.dirty) {
       return new Promise((resolve) => {
@@ -203,6 +207,10 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
       })
     }
     return true;
+  }
+
+  newContractOnClick(){
+    this.newContract = !this.newContract;
   }
 
 }

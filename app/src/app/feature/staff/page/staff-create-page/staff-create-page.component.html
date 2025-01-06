@@ -23,20 +23,23 @@
         <div class="my-8 flex gap-6 flex-col flex-wrap">
           <div class="flex justify-between flex-wrap gap-6">
             <p-floatlabel>
-              <input formControlName="role" pInputText id="role"/>
+              <p-select
+                id="role"
+                formControlName="role"
+                [options]="roles"
+                optionLabel="label"
+                class="w-48">
+              </p-select>
               <label for="role">{{ "staff-role" | translate }}</label>
             </p-floatlabel>
-<!--            <p-floatlabel>-->
-<!--              <input formControlName="gender" pInputText id="gender"/>-->
-<!--              <label for="gender">{{ "staff-gender" | translate }}</label>-->
-<!--            </p-floatlabel>-->
+
             <p-floatlabel>
               <p-select
                 id="gender"
                 formControlName="gender"
                 [options]="genders"
                 optionLabel="label"
-                class="w-full md:w-56">
+                class="w-48">
               </p-select>
               <label for="gender">{{ "staff-gender" | translate }}</label>
             </p-floatlabel>

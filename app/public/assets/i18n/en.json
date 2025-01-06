@@ -108,6 +108,24 @@
   "staff-feature-create-title": "Add new staff",
   "staff-feature-create-confirmation" : "Staff successfully created",
   "staff-feature-create-error" : "Error occurred while creating the staff member:",
-  "staff-feature-candeactivate-message" : "You have modifications not saved. Do you really want to quit ?"
+  "staff-feature-candeactivate-message" : "You have modifications not saved. Do you really want to quit ?",
 
+  "form-validation-all-field-must-be-completed" : "all field must be completed",
+
+  "contract-create-feature-salary" : "salary",
+  "contract-create-feature-perks" : "perks",
+  "contract-create-feature-startDate" : "star date",
+  "contract-create-feature-endDate" : "end date",
+  "contract-create-feature-contratType" : "contrat type",
+  "contract-create-feature-weeklySchedule" : "weekly schedule",
+
+  "perks.ticket_restaurant": "Meal voucher",
+  "perks.eco-cheques": "Eco-cheques",
+  "perks.assurance-group": "Group insurance",
+  "perks.frais-forfaitaires": "Flat-rate expenses",
+  "perks.teletravail": "Remote work",
+  "perks.voiture-de-societe": "Company car",
+  "perks.carte-carburant": "Fuel card",
+  "perks.ordinateur": "Computer",
+  "perks.telephone": "Phone"
 }

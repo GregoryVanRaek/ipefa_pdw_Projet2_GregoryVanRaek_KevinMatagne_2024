@@ -110,7 +110,7 @@
                 </div>
                 @if(isEditMode){
                   <div class="mt-4">
-                    <p-button type="submit" (click)="create()"><i class="pi pi-save"></i>{{ "btn-save" | translate }}</p-button>
+                    <p-button type="submit"><i class="pi pi-save"></i>{{ "btn-save" | translate }}</p-button>
                   </div>
                 }
               </div>
@@ -118,7 +118,15 @@
           </p-tabpanel>
 
           <p-tabpanel value="1">
-            <h2 class="capitalize">{{ 'staff-detail-feature-second-tab' | translate }}</h2>
+            <div class="flex gap-4 items-center">
+              <h2 class="capitalize my-4">{{ 'staff-detail-feature-second-tab' | translate }}</h2>
+              <p-button outlined raised (click)="newContractOnClick()"><i class="pi pi-plus"></i>{{ "btn-create" | translate }}</p-button>
+            </div>
+
+            @if(this.newContract){
+              <app-contract-create-page [employeddId]="employeeId"></app-contract-create-page>
+            }
+
           </p-tabpanel>
 
         </p-tabpanels>
