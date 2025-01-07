@@ -84,6 +84,7 @@
   "staff-detail-feature-contact" : "contact",
   "staff-detail-feature-update-toast-success" : "Le membre du personnel a bien été mis à jour",
   "staff-detail-feature-update-toast-error" : "Une erreur serveur est survenue",
+  "staff-detail-feature-not-found" : "le travailleur n'a pas été trouvé",
 
   "address-road" : "rue",
   "address-nb" : "numero",
@@ -117,8 +118,14 @@
   "contract-create-feature-perks" : "avantages",
   "contract-create-feature-startDate" : "date de début",
   "contract-create-feature-endDate" : "date de fin",
-  "contract-create-feature-contratType" : "type de contrat",
+  "contract-create-feature-contractType" : "type de contrat",
   "contract-create-feature-weeklySchedule" : "horaire hebdomadaire",
+  "contract-create-feature-success" : "le contrat a été créé avec succès",
+  "contract-create-feature-error" : "une erreur a eu lieu durant la création du contrat",
+  "contract-feature-current" : "contrat en cours",
+  "contract.student": "contrat étudiant",
+  "contract.worker": "contrat ouvrier",
+  "contract.employee": "contrat employé",
 
   "perks.ticket_restaurant": "Ticket restaurant",
   "perks.eco-cheques": "Éco-chèques",

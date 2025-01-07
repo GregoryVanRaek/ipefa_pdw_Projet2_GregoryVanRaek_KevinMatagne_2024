@@ -12,5 +12,4 @@ export interface Employee{
   gender:any;
   role:any;
   address:Address;
-  contract:Contract[];
 }

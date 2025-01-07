@@ -1,28 +1,30 @@
-<form [formGroup]="formGroup" (ngSubmit)="create()">
-  <div class="flex flex-col gap-8 my-8">
+<form [formGroup]="formGroup" (ngSubmit)="update()">
+  <div class="flex flex-col gap-8 my-6">
     <p-float-label>
-      <p-input-number formControlName="salary" mode="currency" inputId="salary" currency="EUR" locale="be-BE" />
+      <p-input-number id="salary" formControlName="salary" mode="currency" inputId="salary" currency="EUR" locale="be-BE" />
       <label for="salary">{{ 'contract-create-feature-salary' | translate }}</label>
     </p-float-label>
     <p-float-label>
-      <p-multi-select autocomplete [options]="getTranslatedPerks()" formControlName="perks" optionLabel="label" display="chip" styleClass="w-full md:w-80" />
+      <p-multi-select id="perks" autocomplete [options]="getTranslatedPerks()" formControlName="perks" optionLabel="label" display="chip" styleClass="w-full md:w-80" />
       <label for="perks">{{ 'contract-create-feature-perks' | translate }}</label>
     </p-float-label>
+
     <p-float-label>
       <p-calendar showIcon iconDisplay="input" formControlName="startDate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
-      <label class="pt-2">{{ "contract-create-feature-startDate" | translate }}</label>
+      <label for="startDate" class="pt-2">{{ "contract-create-feature-startDate" | translate }}</label>
     </p-float-label>
     <p-float-label>
       <p-calendar showIcon iconDisplay="input" formControlName="endDate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
-      <label class="pt-2">{{ "contract-create-feature-endDate" | translate }}</label>
+      <label for="endDate" class="pt-2">{{ "contract-create-feature-endDate" | translate }}</label>
     </p-float-label>
     <p-float-label>
-      <p-select [options]="getTranslatedContracts()" formControlName="contractType" [checkmark]="true" optionLabel="label" [showClear]="true" class="w-full md:w-56" />
+      <input pInputText id="contractType" autocomplete="on" formControlName="contractType"/>
       <label for="contractType">{{ 'contract-create-feature-contractType' | translate }}</label>
     </p-float-label>
+
     <div class="flex gap-6 items-center">
       <p-float-label>
-        <p-input-number formControlName="weeklySchedule" mode="decimal" [showButtons]="true" inputId="weeklySchedule" [min]="0" [max]="40" />
+        <p-input-number id="weeklySchedule" formControlName="weeklySchedule" mode="decimal" [showButtons]="true" inputId="weeklySchedule" [min]="" [max]="40" />
         <label for="weeklySchedule">{{ 'contract-create-feature-weeklySchedule' | translate }}</label>
       </p-float-label>
       <div class="w-1/2">

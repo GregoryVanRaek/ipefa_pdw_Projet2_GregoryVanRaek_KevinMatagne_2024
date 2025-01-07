@@ -83,6 +83,7 @@
   "staff-detail-feature-contact" : "contact",
   "staff-detail-feature-update-toast-success" : "staff successfuly updated",
   "staff-detail-feature-update-toast-error" : "a servor error occurred",
+  "staff-detail-feature-not-found" : "staff not found",
 
   "address-road" : "road",
   "address-nb" : "number",
@@ -114,10 +115,16 @@
 
   "contract-create-feature-salary" : "salary",
   "contract-create-feature-perks" : "perks",
-  "contract-create-feature-startDate" : "star date",
+  "contract-create-feature-startDate" : "start date",
   "contract-create-feature-endDate" : "end date",
-  "contract-create-feature-contratType" : "contrat type",
+  "contract-create-feature-contractType" : "contract type",
   "contract-create-feature-weeklySchedule" : "weekly schedule",
+  "contract-create-feature-success" : "the contract has been created with success",
+  "contract-create-feature-error" : "an error has occured while creating the contract",
+  "contract-feature-current" : "current contract",
+  "contract.student": "student contract",
+  "contract.worker": "worker contract",
+  "contract.employee": "employee contract",
 
   "perks.ticket_restaurant": "Meal voucher",
   "perks.eco-cheques": "Eco-cheques",

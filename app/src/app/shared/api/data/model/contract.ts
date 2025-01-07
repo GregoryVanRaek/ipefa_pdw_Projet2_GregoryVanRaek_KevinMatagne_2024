@@ -1,10 +1,12 @@
+import {Employee} from '@shared/api/data/model/employee';
+
 export interface Contract {
   id:string;
   salary:number;
   perks:string;
-  starDate:Date;
+  startDate:Date;
   endDate:Date;
-  contratType:string;
+  contractType:string;
   weeklySchedule:number;
-  employeeId:string;
+  employee:Employee;
 }

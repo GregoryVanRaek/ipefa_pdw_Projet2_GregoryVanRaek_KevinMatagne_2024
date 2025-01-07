@@ -1,12 +1,20 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Button} from 'primeng/button';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {FloatLabel} from 'primeng/floatlabel';
-import {InputText} from 'primeng/inputtext';
 import {Calendar} from 'primeng/calendar';
 import {InputNumber} from 'primeng/inputnumber';
 import {MultiSelect} from 'primeng/multiselect';
+import {Select} from 'primeng/select';
+import {ProgressBar} from 'primeng/progressbar';
+import {ContractService} from '../../service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ConfirmDialog} from 'primeng/confirmdialog';
+import {Toast} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
+import {StaffService} from '../../../staff/service';
+
 
 @Component({
   selector: 'app-contract-create-page',
@@ -16,35 +24,81 @@ import {MultiSelect} from 'primeng/multiselect';
     Button,
     TranslatePipe,
     FloatLabel,
-    InputText,
     Calendar,
     InputNumber,
-    MultiSelect
+    MultiSelect,
+    Select,
+    ProgressBar,
+    ConfirmDialog,
+    Toast,
+
   ],
   templateUrl: './contract-create-page.component.html',
   styleUrl: './contract-create-page.component.css'
 })
 export class ContractCreatePageComponent {
-  @Input({required:true}) employeddId!:string;
+  @Input({required:true}) employeeId!:string;
+  @Output() contractCreated :EventEmitter<boolean> = new EventEmitter<boolean>();
   formGroup :FormGroup<any> = new FormGroup({});
-  perks:string[] = ['ticket_restaurant', 'eco-cheques', 'assurance-group', 'frais-forfaitaires', 'teletravail', 'voiture-de-societe', 'carte-carburant', 'ordinateur', 'telephone']
+  perks:string[] = [];
+  contracts:string[] = [];
+  schedulePercentage :number = 0;
 
-  translateService:TranslateService = inject(TranslateService);
+  // DI
+  private readonly translateService:TranslateService = inject(TranslateService);
+  private readonly contractService :ContractService = inject(ContractService);
+  private readonly route:ActivatedRoute = inject(ActivatedRoute);
+  private readonly messageService :MessageService = inject(MessageService);
+  private readonly staffService :StaffService = inject(StaffService);
 
   constructor() {
     this.formGroup = new FormGroup({
       salary : new FormControl('', Validators.required),
       perks : new FormControl('', Validators.required),
       startDate : new FormControl(new Date(), Validators.required),
-      endDate : new FormControl('',),
-      contratType : new FormControl('', Validators.required),
+      endDate : new FormControl(null),
+      contractType : new FormControl('', Validators.required),
       weeklySchedule : new FormControl(38, Validators.required),
     });
+
+    this.perks = this.contractService.perks;
+    this.contracts = this.contractService.contracts;
+
+    this.formGroup.get('weeklySchedule')?.valueChanges.subscribe((value: number) => {
+      this.updateSchedulePercentage(value);
+    });
+
+    this.updateSchedulePercentage(this.formGroup.get('weeklySchedule')?.value || 38);
+
   }
 
   create() :void{
     const contract = this.formGroup.value;
-    console.log(contract)
+    let message:string;
+
+    contract.perks =  contract.perks.map((perk: { label: string; value: string }) => perk.value).join(', ');
+    contract.contractType = contract.contractType.value;
+
+    contract.employee = this.staffService.getEmployeeById(this.employeeId).subscribe({
+      next : (employee) => {
+        contract.employee = employee.data
+        this.contractService.create(contract).subscribe({
+          next : () => {
+            message = this.translateService.instant('contract-create-feature-success')
+            this.messageService.add({ severity: 'success', summary: message});
+            this.contractCreated.emit(true);
+          },
+          error : (err) => {
+            message = this.translateService.instant('contract-create-feature-error') + err;
+            this.messageService.add({ severity: 'error', summary: message});
+          }
+        })
+      },
+      error : (err) => {
+        message = this.translateService.instant('contract-create-feature-error') + err;
+        this.messageService.add({severity : 'error', summary : message})
+      }
+    });
   }
 
   getTranslatedPerks(): { label: string; value: string }[] {
@@ -52,6 +106,35 @@ export class ContractCreatePageComponent {
       label: this.translateService.instant(`perks.${perk}`),
       value: perk
     }));
+  }
+
+  getTranslatedContracts(): { label: string; value: string }[] {
+    return this.contracts.map(perk => ({
+      label: this.translateService.instant(`contract.${perk}`),
+      value: perk
+    }));
+  }
+
+  updateSchedulePercentage(value: number): void {
+    if(value == 38){
+      this.schedulePercentage = 100;
+    }
+    else{
+      this.schedulePercentage = Math.round((value / 38) * 100);
+    }
+  }
+
+  getProgressBarColor(): string {
+    const weeklySchedule = this.formGroup.get('weeklySchedule')?.value || 0;
+    if (weeklySchedule < 38) {
+      return 'gray';
+    } else if (weeklySchedule === 38) {
+      return 'green';
+    } else if (weeklySchedule === 39) {
+      return 'orange';
+    } else{
+      return 'red';
+    }
   }
 
 }

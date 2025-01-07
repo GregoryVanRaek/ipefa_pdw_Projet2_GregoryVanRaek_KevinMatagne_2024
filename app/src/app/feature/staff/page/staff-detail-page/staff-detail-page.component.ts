@@ -17,6 +17,9 @@ import {Calendar} from 'primeng/calendar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {CanComponentDeactivate} from '@shared/core';
 import {ContractCreatePageComponent} from '../../../contract';
+import {ContractDetailPageComponent} from '../../../contract/page/contract-detail-page/contract-detail-page.component';
+import {Contract} from '@shared/api/data/model/contract';
+import {ContractService} from '../../../contract/service';
 
 @Component({
   selector: 'app-staff-detail-page',
@@ -35,19 +38,21 @@ import {ContractCreatePageComponent} from '../../../contract';
     Calendar,
     ConfirmDialogModule,
     ContractCreatePageComponent,
+    ContractDetailPageComponent,
   ],
   templateUrl: './staff-detail-page.component.html',
   styleUrl: './staff-detail-page.component.css'
 })
 export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate {
-  public staffFormGroup :FormGroup<any> = new FormGroup<any>({});
+  public staffFormGroup :FormGroup<any>;
 
   employee$:WritableSignal<Employee | null> = signal(null);
-  employeeId!:string;
+  public employeeId!:string;
 
   loading:boolean = true;
   isEditMode: boolean = false;
   newContract :boolean = false;
+  existingContract$ :WritableSignal<boolean> = signal(false);
 
   // DI
   private readonly route:ActivatedRoute = inject(ActivatedRoute);
@@ -55,6 +60,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
   private readonly translateService :TranslateService = inject(TranslateService);
   private readonly messageService :MessageService = inject(MessageService)
   private readonly confirmationService :ConfirmationService = inject(ConfirmationService)
+  private readonly contractService :ContractService = inject(ContractService)
 
   // TODO: refactor code in multiple component + responsive design
 
@@ -84,6 +90,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
     this.employeeId = String(this.route.snapshot.paramMap.get('id'));
     this.setFormControlStatus();
     this.getOneById(this.employeeId);
+    this.checkExistingContract();
   }
 
   getOneById(id:string):void{
@@ -116,6 +123,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
   onEditClick() {
     this.isEditMode = !this.isEditMode;
+    console.log(this.employee$())
     this.setFormControlStatus();
   }
 
@@ -131,6 +139,20 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
         !this.isEditMode ? control?.disable() : control?.enable();
       }
     });
+  }
+
+  checkExistingContract():void{
+    this.contractService.getAll().subscribe({
+      next : (response) => {
+        const foundContract = response.data.find((c: Contract) => c.employee.employeeId === this.employeeId);
+        if (foundContract) {
+          this.existingContract$.set(true);
+        }
+        else{
+          this.existingContract$.set(false);
+        }
+      }
+    })
   }
 
   update() :void{
@@ -211,6 +233,10 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
   newContractOnClick(){
     this.newContract = !this.newContract;
+  }
+
+  createdContract(){
+    this.newContract = false;
   }
 
 }
