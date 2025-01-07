@@ -120,21 +120,16 @@
           <p-tabpanel value="1">
             <div class=" mx-20">
               <div class="flex gap-4 items-center">
-                @if(this.newContract && !this.existingContract$()){
+                @if(!this.existingContract$()){
                   <h2 class="capitalize my-4">{{ 'staff-detail-feature-second-tab' | translate }}</h2>
                   <p-button outlined raised (click)="newContractOnClick()"><i class="pi pi-plus"></i>{{ "btn-create" | translate }}</p-button>
-                }
-                @else{
-                  <h2 class="capitalize my-4">{{ 'contract-feature-current' | translate }}</h2>
-                  <p-button outlined raised severity="warn"><i class="pi pi-pencil"></i>{{ "btn-edit" | translate }}</p-button>
-                  <p-button outlined raised severity="danger"><i class="pi pi-times"></i>{{ "btn-delete" | translate }}</p-button>
                 }
               </div>
 
               @if(this.newContract && !this.existingContract$()){
                 <app-contract-create-page [employeeId]="employeeId" (contractCreated)="createdContract()"></app-contract-create-page>
               }
-              @else{
+              @if(this.existingContract$()){
                 <app-contract-detail-page></app-contract-detail-page>
               }
             </div>

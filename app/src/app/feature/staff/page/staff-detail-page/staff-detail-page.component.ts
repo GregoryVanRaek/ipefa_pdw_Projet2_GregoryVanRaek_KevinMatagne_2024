@@ -123,7 +123,6 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
   onEditClick() {
     this.isEditMode = !this.isEditMode;
-    console.log(this.employee$())
     this.setFormControlStatus();
   }
 
@@ -238,5 +237,4 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
   createdContract(){
     this.newContract = false;
   }
-
 }

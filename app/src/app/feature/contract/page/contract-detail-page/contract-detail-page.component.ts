@@ -14,6 +14,7 @@ import {InputText} from 'primeng/inputtext';
 import {ContractService} from '../../service';
 import {ActivatedRoute} from '@angular/router';
 import {Contract} from '@shared/api/data/model/contract';
+import {ConfirmationService, MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-contract-detail-page',
@@ -41,11 +42,14 @@ export class ContractDetailPageComponent implements OnInit{
   perks:string[] = [];
   schedulePercentage :number = 0;
   contract$ :WritableSignal<Contract | null> = signal(null);
+  editMode :boolean = false;
 
   // DI
-  contractService :ContractService = inject(ContractService)
-  translateService :TranslateService = inject(TranslateService)
-  route :ActivatedRoute = inject(ActivatedRoute)
+  contractService :ContractService = inject(ContractService);
+  translateService :TranslateService = inject(TranslateService);
+  route :ActivatedRoute = inject(ActivatedRoute);
+  confirmationService :ConfirmationService = inject(ConfirmationService);
+  messageService :MessageService = inject(MessageService);
 
   constructor() {
     this.formGroup = new FormGroup({
@@ -71,13 +75,14 @@ export class ContractDetailPageComponent implements OnInit{
     this.updateSchedulePercentage(38)
   }
 
-  getContract() :void{
+  getContract() :any{
     this.contractService.getAll().subscribe({
       next : (response) => {
         const foundContract = response.data.find((c: Contract) => c.employee.employeeId === this.employeeId);
-        this.contract$.set(foundContract);
         if (foundContract) {
+          this.contract$.set(foundContract);
           this.initFormValue(foundContract);
+          return foundContract;
         }
       }
     })
@@ -124,12 +129,42 @@ export class ContractDetailPageComponent implements OnInit{
 
     this.formGroup.get('startDate')?.disable();
     this.formGroup.get('contractType')?.disable();
-
-    console.log(contract)
   }
 
   update() :void{
 
+  }
+
+  delete(): void {
+    this.confirmationService.confirm({
+      message: this.translateService.instant('contract-feature-delete-confirmation'),
+      header: this.translateService.instant('contract-feature-delete-confirmation-header'),
+      acceptLabel: this.translateService.instant('btn-confirm'),
+      rejectLabel: this.translateService.instant('btn-cancel'),
+      icon : "pi pi-exclamation-triangle",
+      acceptButtonStyleClass: 'p-button-secondary',
+      rejectButtonStyleClass: 'p-button-danger',
+      accept: () => {
+        this.contractService.delete(this.contract$()!.contractId).subscribe({
+          next: () => {
+            const successMessage = this.translateService.instant('contract-feature-delete-toast-success');
+            this.messageService.add({ severity: 'success', summary: successMessage });
+          },
+          error : (err) => {
+            const errorMessage = this.translateService.instant('contract-feature-delete-toast-error') + err.message;
+            this.messageService.add({ severity: 'error', summary: errorMessage });
+          }
+        })
+      },
+      reject: () => {
+        const rejectMessage = this.translateService.instant('contract-feature-delete-toast-cancel');
+        this.messageService.add({ severity: 'info', summary: rejectMessage });
+      }
+    });
+  }
+
+  edit():void{
+    this.editMode = !this.editMode;
   }
 
 }

@@ -1,7 +1,7 @@
 import {Employee} from '@shared/api/data/model/employee';
 
 export interface Contract {
-  id:string;
+  contractId:string;
   salary:number;
   perks:string;
   startDate:Date;
