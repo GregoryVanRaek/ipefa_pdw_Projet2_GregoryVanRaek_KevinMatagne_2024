@@ -28,6 +28,4 @@ export class Employee extends BaseEntity{
     @OneToOne(() => Address, {cascade: true, eager: true})
     @JoinColumn({referencedColumnName: 'addressId', name: 'address_id_fk'})
         address: Address
-    @OneToMany(() => Contract, (c) => c.employee, {cascade: true, eager: true})
-        employeeContracts: Contract[];
 }

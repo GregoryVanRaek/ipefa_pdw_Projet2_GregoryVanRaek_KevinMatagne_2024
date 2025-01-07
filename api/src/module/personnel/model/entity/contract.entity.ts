@@ -1,4 +1,4 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn} from "typeorm";
 import {BaseEntity} from "@common/model";
 import {ulid} from "ulid";
 import {Employee} from "./employee.entity";
@@ -16,10 +16,10 @@ export class Contract extends BaseEntity{
     @Column({nullable:true})
     endDate:Date;
     @Column({nullable:false})
-    contratType:string;
+    contractType:string;
     @Column({nullable:false})
     weeklySchedule:number;
-    @ManyToOne(() => Employee, (e) => e.employeeContracts, {eager: false})
-    @JoinColumn({referencedColumnName: 'employeeId', name: 'employeeId_fk'})
-    employee:Employee;
+    @OneToOne(() => Employee, {cascade: true, eager: true})
+    @JoinColumn({referencedColumnName: 'employeeId', name: 'employee_id_fk'})
+    employee: Employee;
 }

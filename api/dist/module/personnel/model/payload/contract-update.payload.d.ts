@@ -5,7 +5,7 @@ export declare class ContractUpdatePayload {
     perks: string;
     startDate: Date;
     endDate: Date;
-    contratType: string;
+    contractType: string;
     weeklySchedule: number;
     employee: Employee;
 }

@@ -52,7 +52,7 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsString)({ message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_CONTRAT_TYPE_IS_NOT_STRING }),
     __metadata("design:type", String)
-], ContractUpdatePayload.prototype, "contratType", void 0);
+], ContractUpdatePayload.prototype, "contractType", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNumber)(undefined, { message: api_1.ApiCodeResponse.CONTRACT_PAYLOAD_WEEKLYSCHEDULE_IS_NOT_NUMBER }),

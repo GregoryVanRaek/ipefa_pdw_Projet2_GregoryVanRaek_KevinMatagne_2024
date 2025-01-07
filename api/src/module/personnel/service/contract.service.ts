@@ -25,7 +25,7 @@ export class ContractService {
                 .perks(payload.perks)
                 .startDate(payload.startDate)
                 .endDate(payload.endDate)
-                .contratType(payload.contratType)
+                .contractType(payload.contractType)
                 .weeklySchedule(payload.weeklySchedule)
                 .employee(payload.employee)
                 .build()
@@ -76,7 +76,7 @@ export class ContractService {
             toUpdate.perks = payload.perks;
             toUpdate.startDate = payload.startDate;
             toUpdate.endDate = payload.endDate;
-            toUpdate.contratType = payload.contratType;
+            toUpdate.contractType = payload.contractType;
             toUpdate.weeklySchedule = payload.weeklySchedule;
 
             return await this.repository.save(toUpdate);

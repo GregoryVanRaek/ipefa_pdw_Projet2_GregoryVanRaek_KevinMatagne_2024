@@ -1,6 +1,5 @@
 import { Address, BaseEntity } from "@common/model/entity";
 import { UserRoleEnum } from "@common/model";
-import { Contract } from "./contract.entity";
 import { Gender } from "../enum";
 export declare class Employee extends BaseEntity {
     employeeId: string;
@@ -13,5 +12,4 @@ export declare class Employee extends BaseEntity {
     gender: Gender;
     role: UserRoleEnum;
     address: Address;
-    employeeContracts: Contract[];
 }

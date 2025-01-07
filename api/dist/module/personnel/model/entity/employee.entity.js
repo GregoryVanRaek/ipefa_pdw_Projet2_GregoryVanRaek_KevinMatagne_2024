@@ -14,7 +14,6 @@ const entity_1 = require("../../../../common/model/entity");
 const typeorm_1 = require("typeorm");
 const ulid_1 = require("ulid");
 const model_1 = require("../../../../common/model");
-const contract_entity_1 = require("./contract.entity");
 const enum_1 = require("../enum");
 let Employee = class Employee extends entity_1.BaseEntity {
 };
@@ -60,10 +59,6 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ referencedColumnName: 'addressId', name: 'address_id_fk' }),
     __metadata("design:type", entity_1.Address)
 ], Employee.prototype, "address", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => contract_entity_1.Contract, (c) => c.employee, { cascade: true, eager: true }),
-    __metadata("design:type", Array)
-], Employee.prototype, "employeeContracts", void 0);
 exports.Employee = Employee = __decorate([
     (0, typeorm_1.Entity)()
 ], Employee);

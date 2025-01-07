@@ -27,7 +27,7 @@ export class ContractCreatePayload {
 
     @ApiProperty()
     @IsString({message: ApiCodeResponse.CONTRACT_PAYLOAD_CONTRAT_TYPE_IS_NOT_STRING})
-    contratType:string;
+    contractType:string;
 
     @ApiProperty()
     @IsNumber(undefined, {message: ApiCodeResponse.CONTRACT_PAYLOAD_WEEKLYSCHEDULE_IS_NOT_NUMBER})

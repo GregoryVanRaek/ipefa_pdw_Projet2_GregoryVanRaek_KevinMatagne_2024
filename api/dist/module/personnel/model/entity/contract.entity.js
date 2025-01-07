@@ -40,14 +40,14 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", String)
-], Contract.prototype, "contratType", void 0);
+], Contract.prototype, "contractType", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", Number)
 ], Contract.prototype, "weeklySchedule", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => employee_entity_1.Employee, (e) => e.employeeContracts, { eager: false }),
-    (0, typeorm_1.JoinColumn)({ referencedColumnName: 'employeeId', name: 'employeeId_fk' }),
+    (0, typeorm_1.OneToOne)(() => employee_entity_1.Employee, { cascade: true, eager: true }),
+    (0, typeorm_1.JoinColumn)({ referencedColumnName: 'employeeId', name: 'employee_id_fk' }),
     __metadata("design:type", employee_entity_1.Employee)
 ], Contract.prototype, "employee", void 0);
 exports.Contract = Contract = __decorate([
