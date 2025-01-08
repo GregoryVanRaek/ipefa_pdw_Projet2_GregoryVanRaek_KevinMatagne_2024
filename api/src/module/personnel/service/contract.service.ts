@@ -74,9 +74,7 @@ export class ContractService {
 
             toUpdate.salary = payload.salary;
             toUpdate.perks = payload.perks;
-            toUpdate.startDate = payload.startDate;
             toUpdate.endDate = payload.endDate;
-            toUpdate.contractType = payload.contractType;
             toUpdate.weeklySchedule = payload.weeklySchedule;
 
             return await this.repository.save(toUpdate);

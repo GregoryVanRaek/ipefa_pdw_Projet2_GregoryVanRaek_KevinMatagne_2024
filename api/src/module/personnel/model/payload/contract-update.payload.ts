@@ -22,17 +22,8 @@ export class ContractUpdatePayload {
 
     @ApiProperty()
     @IsDateString(undefined, {message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID})
-    @IsNotEmpty({message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_MANDATORY})
-    startDate:Date;
-
-    @ApiProperty()
-    @IsDateString(undefined, {message: ApiCodeResponse.CONTRACT_PAYLOAD_STARTDATE_IS_NOT_VALID})
     @IsOptional()
     endDate:Date;
-
-    @ApiProperty()
-    @IsString({message: ApiCodeResponse.CONTRACT_PAYLOAD_CONTRAT_TYPE_IS_NOT_STRING})
-    contractType:string;
 
     @ApiProperty()
     @IsNumber(undefined, {message: ApiCodeResponse.CONTRACT_PAYLOAD_WEEKLYSCHEDULE_IS_NOT_NUMBER})
