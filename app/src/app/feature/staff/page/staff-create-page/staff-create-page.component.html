@@ -4,54 +4,94 @@
 
   <h1 class="mb-6">{{ 'staff-feature-create-title' | translate }}</h1>
 
-  <!--  TODO: error handling-->
   <form [formGroup]="formGroup" class="flex flex-col gap-6 flex-wrap mx-20" (ngSubmit)="create()">
     <div class="flex justify-between flex-wrap ">
       <div class="form-section">
         <h2 class="capitalize">{{ 'staff-detail-feature-personal-data' | translate }}</h2>
         <div class="my-8 flex justify-between flex-wrap gap-8">
-          <p-floatlabel >
-            <input formControlName="lastname" pInputText id="lastname"/>
-            <label for="lastname">{{ "staff-lastname" | translate }}</label>
-          </p-floatlabel>
+          <div>
+            <p-floatlabel >
+              <input formControlName="lastname" pInputText id="lastname"/>
+              <label for="lastname">{{ "staff-lastname" | translate }}</label>
+            </p-floatlabel>
+            @if(getErrorMessages('lastname').length > 0 && formGroup.get('lastname')?.touched) {
+              @for(errorMessage of getErrorMessages('lastname') ; track $index) {
+                <p class="error-msg">{{ "staff-lastname" | translate }} {{ errorMessage }}</p>
+              }
+            }
+          </div>
+          <div>
+            <p-floatlabel >
+              <input formControlName="firstname" pInputText id="firstname"/>
+              <label for="firstname">{{ "staff-firstname" | translate }}</label>
+            </p-floatlabel>
+            @if(getErrorMessages('firstname').length > 0 && formGroup.get('firstname')?.touched) {
+              @for(errorMessage of getErrorMessages('firstname') ; track $index) {
+                <p class="error-msg">{{ "staff-firstname" | translate }} {{ errorMessage }}</p>
+              }
+            }
+          </div>
 
-          <p-floatlabel>
-            <input formControlName="firstname" pInputText id="firstname"/>
-            <label for="firstname">{{ "staff-firstname" | translate }}</label>
-          </p-floatlabel>
         </div>
         <div class="my-8 flex gap-6 flex-col flex-wrap">
           <div class="flex justify-between flex-wrap gap-6">
-            <p-floatlabel>
-              <p-select
-                id="role"
-                formControlName="role"
-                [options]="roles"
-                optionLabel="label"
-                class="w-48">
-              </p-select>
-              <label for="role">{{ "staff-role" | translate }}</label>
-            </p-floatlabel>
-
-            <p-floatlabel>
-              <p-select
-                id="gender"
-                formControlName="gender"
-                [options]="genders"
-                optionLabel="label"
-                class="w-48">
-              </p-select>
-              <label for="gender">{{ "staff-gender" | translate }}</label>
-            </p-floatlabel>
+            <div>
+              <p-floatlabel >
+                <p-select
+                  id="role"
+                  formControlName="role"
+                  [options]="roles"
+                  optionLabel="label"
+                  class="w-48">
+                </p-select>
+                <label for="role">{{ "staff-role" | translate }}</label>
+              </p-floatlabel>
+              @if(getErrorMessages('role').length > 0 && formGroup.get('role')?.touched) {
+                @for(errorMessage of getErrorMessages('role') ; track $index) {
+                  <p class="error-msg">{{ "staff-role" | translate }} {{ errorMessage }}</p>
+                }
+              }
+            </div>
+            <div>
+              <p-floatlabel>
+                <p-select
+                  id="gender"
+                  formControlName="gender"
+                  [options]="genders"
+                  optionLabel="label"
+                  class="w-48">
+                </p-select>
+                <label for="gender">{{ "staff-gender" | translate }}</label>
+              </p-floatlabel>
+              @if(getErrorMessages('gender').length > 0 && formGroup.get('gender')?.touched) {
+                @for(errorMessage of getErrorMessages('gender') ; track $index) {
+                  <p class="error-msg">{{ "staff-gender" | translate }} {{ errorMessage }}</p>
+                }
+              }
+            </div>
           </div>
-          <p-floatlabel class="mt-2">
-            <input formControlName="iban" pInputText id="iban" class="w-full" />
-            <label for="iban">{{ "staff-iban" | translate }}</label>
-          </p-floatlabel>
-          <p-float-label>
-            <p-calendar showIcon iconDisplay="input" formControlName="birthdate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
-            <label class="pt-2">{{ "staff-birthdate" | translate }}</label>
-          </p-float-label>
+          <div>
+            <p-floatlabel class="mt-2">
+              <input formControlName="iban" pInputText id="iban" class="w-full" />
+              <label for="iban">{{ "staff-iban" | translate }}</label>
+            </p-floatlabel>
+            @if(getErrorMessages('iban').length > 0 && formGroup.get('iban')?.touched) {
+              @for(errorMessage of getErrorMessages('iban') ; track $index) {
+                <p class="error-msg">{{ "staff-iban" | translate }} {{ errorMessage }}</p>
+              }
+            }
+          </div>
+          <div>
+            <p-float-label>
+              <p-calendar showIcon iconDisplay="input" formControlName="birthdate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
+              <label class="pt-2">{{ "staff-birthdate" | translate }}</label>
+            </p-float-label>
+            @if(getErrorMessages('birthdate').length > 0 && formGroup.get('birthdate')?.touched) {
+              @for(errorMessage of getErrorMessages('birthdate') ; track $index) {
+                <p class="error-msg">{{ "staff-birthdate" | translate }} {{ errorMessage }}</p>
+              }
+            }
+          </div>
         </div>
 
         <div class="mt-4">
@@ -62,12 +102,22 @@
               <input formControlName="mail" pInputText id="mail" class="w-full"/>
               <label for="mail">{{ "staff-mail" | translate }}</label>
             </p-floatlabel>
+            @if(getErrorMessages('mail').length > 0 && formGroup.get('mail')?.touched) {
+              @for(errorMessage of getErrorMessages('mail') ; track $index) {
+                <p class="error-msg">{{ "staff-mail" | translate }} {{ errorMessage }}</p>
+              }
+            }
           </div>
           <div class="my-8 w-full">
             <p-floatlabel>
               <input formControlName="phone" pInputText id="phone" class="w-full"/>
               <label for="phone">{{ "staff-phone" | translate }}</label>
             </p-floatlabel>
+            @if(getErrorMessages('phone').length > 0 && formGroup.get('phone')?.touched) {
+              @for(errorMessage of getErrorMessages('phone') ; track $index) {
+                <p class="error-msg">{{ "staff-phone" | translate }} {{ errorMessage }}</p>
+              }
+            }
           </div>
         </div>
       </div>
@@ -77,30 +127,63 @@
 
         <div formGroupName="address">
           <div class="my-8 flex gap-6 flex-wrap">
-            <p-floatlabel>
-              <input formControlName="road" pInputText id="road" />
-              <label for="road">{{ "address-road" | translate }}</label>
-            </p-floatlabel>
-            <p-floatlabel>
-              <input formControlName="nb" pInputText id="nb" />
-              <label for="nb">{{ "address-nb" | translate }}</label>
-            </p-floatlabel>
+            <div>
+              <p-floatlabel>
+                <input formControlName="road" pInputText id="road" />
+                <label for="road">{{ "address-road" | translate }}</label>
+              </p-floatlabel>
+              @if(getErrorMessages('road').length > 0 && addressForm.get('road')?.touched) {
+                @for(errorMessage of getErrorMessages('road') ; track $index) {
+                  <p class="error-msg">{{ "address-road" | translate }} {{ errorMessage }}</p>
+                }
+              }
+            </div>
+            <div>
+              <p-floatlabel>
+                <input formControlName="nb" pInputText id="nb" />
+                <label for="nb">{{ "address-nb" | translate }}</label>
+              </p-floatlabel>
+              @if(getErrorMessages('nb').length > 0 && addressForm.get('nb')?.touched) {
+                @for(errorMessage of getErrorMessages('nb') ; track $index) {
+                  <p class="error-msg">{{ "address-nb" | translate }} {{ errorMessage }}</p>
+                }
+              }
+            </div>
           </div>
           <div class="my-8 flex gap-6 flex-wrap">
-            <p-floatlabel>
-              <input formControlName="cp" pInputText id="cp" />
-              <label for="cp">{{ "address-cp" | translate }}</label>
-            </p-floatlabel>
-            <p-floatlabel>
-              <input formControlName="town" pInputText id="town" />
-              <label for="town">{{ "address-town" | translate }}</label>
-            </p-floatlabel>
+            <div>
+              <p-floatlabel>
+                <input formControlName="cp" pInputText id="cp" />
+                <label for="cp">{{ "address-cp" | translate }}</label>
+              </p-floatlabel>
+              @if(getErrorMessages('cp').length > 0 && addressForm.get('cp')?.touched) {
+                @for(errorMessage of getErrorMessages('cp') ; track $index) {
+                  <p class="error-msg">{{ "address-cp" | translate }} {{ errorMessage }}</p>
+                }
+              }
+            </div>
+            <div>
+              <p-floatlabel>
+                <input formControlName="town" pInputText id="town" />
+                <label for="town">{{ "address-town" | translate }}</label>
+              </p-floatlabel>
+              @if(getErrorMessages('town').length > 0 && addressForm.get('town')?.touched) {
+                @for(errorMessage of getErrorMessages('town') ; track $index) {
+                  <p class="error-msg">{{ "address-town" | translate }} {{ errorMessage }}</p>
+                }
+              }
+            </div>
           </div>
-          <div class="my-8 flex gap-6 flex-wrap">
+          <div class="my-8 flex gap-6 flex-wrap flex-col">
             <p-floatlabel>
               <input formControlName="country" pInputText id="country" />
               <label for="country">{{ "address-country" | translate }}</label>
             </p-floatlabel>
+            @if(getErrorMessages('country').length > 0 && addressForm.get('country')?.touched) {
+              @for(errorMessage of getErrorMessages('country') ; track $index) {
+                <p class="error-msg">{{ "address-country" | translate }} {{ errorMessage }}</p>
+              }
+            }
           </div>
           <p-floatlabel>
             <input class="w-full" formControlName="complements" pInputText id="complements" />
@@ -111,7 +194,7 @@
     </div>
 
     <div class="my-6 flex gap-6">
-      <p-button outlined raised type="submit" [disabled]="formGroup.invalid"><i class="pi pi-save"></i>{{ "btn-save" | translate }}</p-button>
+      <p-button outlined raised type="submit" [disabled]="formGroup.invalid || addressForm.invalid"><i class="pi pi-save"></i>{{ "btn-save" | translate }}</p-button>
       <p-button outlined raised severity="danger"><i class="pi pi-times"></i>{{ "btn-cancel" | translate }}</p-button>
     </div>
   </form>

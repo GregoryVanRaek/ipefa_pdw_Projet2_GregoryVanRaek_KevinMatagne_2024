@@ -23,17 +23,23 @@ export const handleFormError: HandleValueChangeFn = (form: FormGroup, signal$: W
 // extrait toutes les erreurs du formulaire
 export const getFormValidationErrors: GetAllFormErrorsFn = (form: FormGroup): FormError[] => {
   const result: FormError[] = [];
+
   Object.keys(form.controls).forEach(key => {
-    const controlErrors: ValidationErrors | null = form.get(key)!.errors;
-    if (controlErrors) {
-      Object.keys(controlErrors).forEach(keyError => {
+    const control = form.get(key);
+
+    if (control instanceof FormGroup) {
+      result.push(...getFormValidationErrors(control));
+    } else if (control && control.errors) {
+      Object.keys(control.errors).forEach(keyError => {
         result.push({
           control: key,
           error: keyError,
-          value: controlErrors[keyError]
+          value: control.errors,
         });
       });
     }
   });
+
   return result;
-}
+};
+

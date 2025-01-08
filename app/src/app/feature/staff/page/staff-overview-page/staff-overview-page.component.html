@@ -2,45 +2,57 @@
 
   <div class="mb-6 flex gap-6 items-center">
     <h1>{{ 'staff-feature-overview-title' | translate }}</h1>
-    <p-button outlined raised severity="primary" [routerLink]=[AppNode.CREATE]><i class="pi pi-plus"></i>{{ 'btn-create' | translate }}</p-button>
+    <p-button outlined raised severity="primary" [routerLink]="[AppNode.CREATE]">
+      <i class="pi pi-plus"></i>{{ 'btn-create' | translate }}
+    </p-button>
   </div>
 
   @if(loading){
-    <p-progress-spinner/>
+    <div class="flex justify-center items-center">
+      <p-progress-spinner class="text-blue-500" />
+    </div>
   }
   @else{
     @if(employees$().length > 0){
-      <p-table [value]="employees$()" [tableStyle]="{ 'min-width': '50rem' }">
+      <p-table [value]="employees$()">
         <ng-template #header>
           <tr>
-            <th>{{ 'staff-lastname' | translate }}</th>
-            <th>{{ 'staff-firstname' | translate }}</th>
-            <th>{{ 'staff-mail' | translate }}</th>
-            <th>{{ 'staff-role' | translate }}</th>
-            <th>{{ 'staff-overview-action' | translate }}</th>
+            <th class="md:table-cell">{{ 'staff-lastname' | translate }}</th>
+            <th class="md:table-cell">{{ 'staff-firstname' | translate }}</th>
+            <th class="hidden md:table-cell">{{ 'staff-mail' | translate }}</th>
+            <th class="hidden md:table-cell">{{ 'staff-role' | translate }}</th>
+            <th class="md:table-cell">{{ 'staff-overview-action' | translate }}</th>
           </tr>
         </ng-template>
         <ng-template #body let-employee>
           <tr>
             <td class="capitalize">{{ employee.lastname }}</td>
             <td class="capitalize">{{ employee.firstname }}</td>
-            <td>{{ employee.mail }}</td>
-            <td>{{ UserRoleEnum[employee.role] }}</td>
-            <td class="flex gap-2">
-              <p-button outlined raised severity="info" [routerLink]=[AppNode.DETAIL,employee.employeeId]><i class="pi pi-search"></i>{{ 'btn-detail' | translate }}</p-button>
-              <p-button outlined raised severity="danger" (click)="delete(employee.employeeId)"><i class="pi pi-times"></i>{{ 'btn-delete' | translate }}</p-button>
+
+            <td class="hidden md:table-cell">{{ employee.mail }}</td>
+            <td class="hidden md:table-cell">{{ UserRoleEnum[employee.role] }}</td>
+            <td class="md:table-cell">
+              <div class="flex gap-2">
+                <p-button outlined raised severity="info" [routerLink]="[AppNode.DETAIL,employee.employeeId]">
+                  <i class="pi pi-search"></i><span class="hidden md:block">{{ 'btn-detail' | translate }}</span>
+                </p-button>
+                <p-button outlined raised severity="danger" (click)="delete(employee.employeeId)">
+                  <i class="pi pi-times"></i><span class="hidden md:block">{{ 'btn-delete' | translate }}</span>
+                </p-button>
+              </div>
             </td>
           </tr>
         </ng-template>
       </p-table>
-
     }
     @else{
-      <h1>{{ 'staff-overview-no-staff' | translate }}</h1>
+      <div class="text-center text-gray-500">
+        <i class="pi pi-user-slash text-4xl"></i>
+        <p>{{ 'staff-overview-no-staff' | translate }}</p>
+      </div>
     }
   }
 
   <p-toast />
   <p-confirmDialog />
 </main>
-

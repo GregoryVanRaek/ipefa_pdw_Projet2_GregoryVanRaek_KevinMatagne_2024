@@ -58,7 +58,6 @@ export class StaffOverviewPageComponent implements OnInit{
     });
   }
 
-  //TODO: refactor delete button with function to use it in detail and overview
   delete(id :string): void {
     this.confirmationService.confirm({
       message: this.translateService.instant('staff-detail-feature-delete-confirmation'),

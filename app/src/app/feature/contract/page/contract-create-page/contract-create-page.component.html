@@ -1,33 +1,75 @@
 <form [formGroup]="formGroup" (ngSubmit)="create()">
   <div class="flex flex-col gap-8 my-8">
-    <p-float-label>
-      <p-input-number formControlName="salary" mode="currency" inputId="salary" currency="EUR" locale="be-BE" />
-      <label for="salary">{{ 'contract-create-feature-salary' | translate }}</label>
-    </p-float-label>
-    <p-float-label>
-      <p-multi-select autocomplete [options]="getTranslatedPerks()" formControlName="perks" optionLabel="label" display="chip" styleClass="w-full md:w-80" />
-      <label for="perks">{{ 'contract-create-feature-perks' | translate }}</label>
-    </p-float-label>
-    <p-float-label>
-      <p-calendar showIcon iconDisplay="input" formControlName="startDate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
-      <label class="pt-2">{{ "contract-create-feature-startDate" | translate }}</label>
-    </p-float-label>
-    <p-float-label>
-      <p-calendar showIcon iconDisplay="input" formControlName="endDate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
-      <label class="pt-2">{{ "contract-create-feature-endDate" | translate }}</label>
-    </p-float-label>
-    <p-float-label>
-      <p-select [options]="getTranslatedContracts()" formControlName="contractType" [checkmark]="true" optionLabel="label" [showClear]="true" class="w-full md:w-56" />
-      <label for="contractType">{{ 'contract-create-feature-contractType' | translate }}</label>
-    </p-float-label>
-    <div class="flex gap-6 items-center">
+    <div>
       <p-float-label>
-        <p-input-number formControlName="weeklySchedule" mode="decimal" [showButtons]="true" inputId="weeklySchedule" [min]="0" [max]="40" />
-        <label for="weeklySchedule">{{ 'contract-create-feature-weeklySchedule' | translate }}</label>
+        <p-input-number formControlName="salary" mode="currency" inputId="salary" currency="EUR" locale="be-BE" />
+        <label for="salary">{{ 'contract-create-feature-salary' | translate }}</label>
       </p-float-label>
-      <div class="w-1/2">
-        <p-progress-bar [value]="schedulePercentage" [color]="getProgressBarColor()"></p-progress-bar>
+      @if(getErrorMessages('salary').length > 0 && formGroup.get('salary')?.touched) {
+        @for(errorMessage of getErrorMessages('salary') ; track $index) {
+          <p class="error-msg">{{ 'contract-create-feature-salary' | translate }} {{ errorMessage }}</p>
+        }
+      }
+    </div>
+    <div>
+      <p-float-label>
+        <p-multi-select autocomplete [options]="getTranslatedPerks()" formControlName="perks" optionLabel="label" display="chip" styleClass="w-full md:w-80" />
+        <label for="perks">{{ 'contract-create-feature-perks' | translate }}</label>
+      </p-float-label>
+      @if(getErrorMessages('perks').length > 0 && formGroup.get('perks')?.touched) {
+        @for(errorMessage of getErrorMessages('perks') ; track $index) {
+          <p class="error-msg">{{ 'contract-create-feature-perks' | translate }} {{ errorMessage }}</p>
+        }
+      }
+    </div>
+    <div>
+      <p-float-label>
+        <p-calendar showIcon iconDisplay="input" formControlName="startDate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
+        <label class="pt-2">{{ "contract-create-feature-startDate" | translate }}</label>
+      </p-float-label>
+      @if(getErrorMessages('startDate').length > 0 && formGroup.get('startDate')?.touched) {
+        @for(errorMessage of getErrorMessages('startDate') ; track $index) {
+          <p class="error-msg">{{ 'contract-create-feature-startDate' | translate }} {{ errorMessage }}</p>
+        }
+      }
+    </div>
+    <div>
+      <p-float-label>
+        <p-calendar showIcon iconDisplay="input" formControlName="endDate" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
+        <label class="pt-2">{{ "contract-create-feature-endDate" | translate }}</label>
+      </p-float-label>
+      @if(getErrorMessages('endDate').length > 0 && formGroup.get('endDate')?.touched) {
+        @for(errorMessage of getErrorMessages('endDate') ; track $index) {
+          <p class="error-msg">{{ 'contract-create-feature-endDate' | translate }} {{ errorMessage }}</p>
+        }
+      }
+    </div>
+    <div>
+      <p-float-label>
+        <p-select [options]="getTranslatedContracts()" formControlName="contractType" [checkmark]="true" optionLabel="label" [showClear]="true" class="w-full md:w-56" />
+        <label for="contractType">{{ 'contract-create-feature-contractType' | translate }}</label>
+      </p-float-label>
+      @if(getErrorMessages('contractType').length > 0 && formGroup.get('contractType')?.touched) {
+        @for(errorMessage of getErrorMessages('contractType') ; track $index) {
+          <p class="error-msg">{{ 'contract-create-feature-contractType' | translate }} {{ errorMessage }}</p>
+        }
+      }
+    </div>
+    <div class="flex gap-6 items-center">
+      <div>
+        <p-float-label>
+          <p-input-number formControlName="weeklySchedule" mode="decimal" [showButtons]="true" inputId="weeklySchedule" [min]="0" [max]="40" />
+          <label for="weeklySchedule">{{ 'contract-create-feature-weeklySchedule' | translate }}</label>
+        </p-float-label>
+        <div class="w-1/2">
+          <p-progress-bar [value]="schedulePercentage" [color]="getProgressBarColor()"></p-progress-bar>
+        </div>
       </div>
+      @if(getErrorMessages('weeklySchedule').length > 0 && formGroup.get('weeklySchedule')?.touched) {
+        @for(errorMessage of getErrorMessages('weeklySchedule') ; track $index) {
+          <p class="error-msg">{{ 'contract-create-feature-weeklySchedule' | translate }} {{ errorMessage }}</p>
+        }
+      }
     </div>
   </div>
 

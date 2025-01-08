@@ -127,6 +127,8 @@
   "contract-feature-delete-toast-success": "contract deleted successfully",
   "contract-feature-delete-toast-error": "an error occured while deleting the contract",
   "contract-feature-delete-toast-cancel": "delete contract action cancelled",
+  "contract-feature-update-toast-success": "contract successfully updated",
+  "contract-feature-update-toast-error": "an error occured while updating the contract",
   "contract.student": "student contract",
   "contract.worker": "worker contract",
   "contract.employee": "employee contract",
@@ -139,5 +141,10 @@
   "perks.voiture-de-societe": "Company car",
   "perks.carte-carburant": "Fuel card",
   "perks.ordinateur": "Computer",
-  "perks.telephone": "Phone"
+  "perks.telephone": "Phone",
+
+  "selected-elements": "selected elements",
+
+  "error-is-required": "is required"
+
 }

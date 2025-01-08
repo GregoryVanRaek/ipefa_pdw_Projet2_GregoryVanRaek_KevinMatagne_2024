@@ -15,11 +15,13 @@ import {Toast, ToastModule} from 'primeng/toast';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Calendar} from 'primeng/calendar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {CanComponentDeactivate} from '@shared/core';
+import {CanComponentDeactivate, FormError} from '@shared/core';
 import {ContractCreatePageComponent} from '../../../contract';
 import {ContractDetailPageComponent} from '../../../contract/page/contract-detail-page/contract-detail-page.component';
 import {Contract} from '@shared/api/data/model/contract';
 import {ContractService} from '../../../contract/service';
+import {handleFormError} from '@shared/ui';
+import {Select} from 'primeng/select';
 
 @Component({
   selector: 'app-staff-detail-page',
@@ -39,12 +41,27 @@ import {ContractService} from '../../../contract/service';
     ConfirmDialogModule,
     ContractCreatePageComponent,
     ContractDetailPageComponent,
+    Select,
   ],
   templateUrl: './staff-detail-page.component.html',
   styleUrl: './staff-detail-page.component.css'
 })
 export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate {
+  public genders: { label: string; value: any }[] = [
+    { label: 'Male', value: Gender.Male },
+    { label: 'Female', value: Gender.Female },
+    { label: 'Other', value: Gender.Other }
+  ];
+  public roles: { label: string; value: any }[] = [
+    { label: 'Admin', value: Gender.Male },
+    { label: 'Manager', value: Gender.Female },
+    { label: 'Employee', value: Gender.Other }
+  ];
+
   public staffFormGroup :FormGroup<any>;
+  public addressForm :FormGroup<any> = new FormGroup<any>({})
+
+  public errors$: WritableSignal<FormError[]> = signal([]);
 
   employee$:WritableSignal<Employee | null> = signal(null);
   public employeeId!:string;
@@ -61,8 +78,6 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
   private readonly messageService :MessageService = inject(MessageService)
   private readonly confirmationService :ConfirmationService = inject(ConfirmationService)
   private readonly contractService :ContractService = inject(ContractService)
-
-  // TODO: refactor code in multiple component + responsive design
 
   constructor() {
     this.staffFormGroup = new FormGroup({
@@ -91,6 +106,11 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
     this.setFormControlStatus();
     this.getOneById(this.employeeId);
     this.checkExistingContract();
+
+    this.addressForm = this.staffFormGroup.get('address') as FormGroup
+    handleFormError(this.staffFormGroup, this.errors$);
+    handleFormError(this.addressForm, this.errors$);
+
   }
 
   getOneById(id:string):void{
@@ -236,5 +256,23 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
   createdContract(){
     this.newContract = false;
+  }
+
+  getErrorMessages(controlName: string): string[] {
+    return this.errors$()
+      .filter((error) => error.control === controlName)
+      .map((error) => this.formatErrorMessage(error));
+  }
+
+  // formater l'erreur en fonction de son type
+  private formatErrorMessage(error: FormError): string {
+    switch (error.error) {
+      case 'required':
+        return `${this.translateService.instant('error-is-required')}`;
+      case 'minlength':
+        return `${error.control} must contains at least ${error.value.requiredLength} character`;
+      default:
+        return `${error.control} contains an error : ${error.error}`;
+    }
   }
 }

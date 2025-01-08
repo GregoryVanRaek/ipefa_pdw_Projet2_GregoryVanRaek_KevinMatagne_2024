@@ -1,25 +1,27 @@
-header{
-  color:var(--text-secondary-color);
+header {
+  color: var(--text-secondary-color);
 }
 
-nav{
-  @apply flex flex-col w-1/5 p-4 transform lg:translate-x-0 lg:flex;;
+
+nav {
+  @apply flex flex-col p-4 w-1/5 transform lg:translate-x-0 lg:flex;
   background-color: var(--primary-color);
   color: var(--text-primary-color);
+  display: none;
 }
 
-.nav-link{
-  @apply py-2 px-4 rounded;
+.nav-link {
+  @apply py-2 px-4 rounded flex gap-4;
 
-  &:hover{
+  &:hover {
     background-color: var(--secondary-color);
     color: var(--text-secondary-color);
   }
 }
 
-.user-icon{
+.user-icon {
   @apply px-4 py-3 rounded-full;
-  border:2px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 
 .icon-size {
@@ -27,3 +29,37 @@ nav{
   height: 25px;
 }
 
+.p-sidebar {
+  background-color: var(--primary-color) !important;
+  color: var(--text-primary-color) !important;
+}
+
+.p-sidebar .nav-link {
+  background-color: var(--primary-color);
+  color: var(--text-primary-color);
+}
+
+.p-sidebar .nav-link:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-secondary-color);
+}
+
+@media (min-width: 768px) {
+  nav {
+    display: block;
+  }
+
+  .pi-bars {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .pi-bars {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+  }
+}

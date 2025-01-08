@@ -1,3 +1,11 @@
-th{
-  @apply capitalize
+.table-cell {
+  @apply text-left py-2 px-4;
+}
+
+.table-style {
+  @apply min-w-full;
+}
+
+.table-actions {
+  @apply py-2 px-4 flex gap-2;
 }

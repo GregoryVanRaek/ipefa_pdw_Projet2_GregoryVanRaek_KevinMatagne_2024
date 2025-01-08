@@ -1,5 +1,5 @@
-<main class="flex">
-  <nav class="min-h-screen">
+<main class="flex h-screen">
+  <nav class="max-h-screen h-full overflow-hidden w-1/5 hidden md:block">
     <div class="flex gap-4 items-center">
       <i class="pi pi-chart-bar"></i>
       <h1 class="text-center">{{ 'dashboard-feature.router-title' | translate }}</h1>
@@ -18,16 +18,38 @@
     </a>
   </nav>
 
-  <div class="flex flex-col w-4/5">
-    <header class="p-4">
-      <div class="flex flex-row justify-between items-center">
-        <h2>{{ 'dashboard-feature.header-title' | translate }}</h2>
+  <!-- Mobile -->
+  <p-sidebar [(visible)]="menuVisible" [baseZIndex]="10000" class="md:hidden">
+    <div class="flex flex-col gap-4">
+      <div class="flex gap-4 items-center">
+        <i class="pi pi-chart-bar text-4xl"></i>
+        <h1 class="text-center">{{ 'dashboard-feature.router-title' | translate }}</h1>
       </div>
+      <a routerLink="/dashboard" class="nav-link flex gap-4" (click)="menuVisible = false">
+        <i class="pi pi-home"></i>
+        <span>{{ 'dashboard-feature.router-nav-home' | translate }}</span>
+      </a>
+      <a routerLink="/staff" class="nav-link flex gap-4" (click)="menuVisible = false">
+        <i class="pi pi-user"></i>
+        <span>{{ 'dashboard-feature.router-nav-staff' | translate }}</span>
+      </a>
+      <a routerLink="/home" class="nav-link flex gap-4" (click)="logout(); menuVisible = false">
+        <i class="pi pi-sign-out"></i>
+        <span>{{ 'dashboard-feature.router-nav-logout' | translate }}</span>
+      </a>
+    </div>
+  </p-sidebar>
+
+
+  <div class="flex flex-col w-full h-full">
+    <header class="p-4 bg-gray-200 flex justify-between items-center">
+      <i class="pi pi-bars text-xl cursor-pointer md:hidden" (click)="menuVisible = true"></i>
+      <h2>{{ 'dashboard-feature.header-title' | translate }}</h2>
     </header>
 
     <span class="page-wrapper-primary"></span>
 
-    <section id="content" class="flex-grow p-4 bg-gray-100">
+    <section id="content" class="p-4 bg-gray-100 flex-grow overflow-auto">
       <router-outlet></router-outlet>
     </section>
   </div>

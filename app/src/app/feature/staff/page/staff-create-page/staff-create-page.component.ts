@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {Button} from 'primeng/button';
 import {Calendar} from 'primeng/calendar';
 import {ConfirmDialog} from 'primeng/confirmdialog';
@@ -8,13 +8,15 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {Router, RouterLink} from '@angular/router';
 import {Toast} from 'primeng/toast';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
-import {CanComponentDeactivate} from '@shared/core';
+import {CanComponentDeactivate, FormError} from '@shared/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {StaffService} from '../../service';
 import {Gender} from '@shared/api/data/enum/gender';
 import {Select} from 'primeng/select';
 import {Employee} from '@shared/api/data/model/employee';
 import {UserRoleEnum} from '@shared/api/data/enum/role';
+import {handleFormError} from '@shared/ui';
+import {add} from 'lodash';
 
 @Component({
   selector: 'app-staff-create-page',
@@ -34,8 +36,10 @@ import {UserRoleEnum} from '@shared/api/data/enum/role';
   templateUrl: './staff-create-page.component.html',
   styleUrl: './staff-create-page.component.css'
 })
-export class StaffCreatePageComponent implements CanComponentDeactivate {
+export class StaffCreatePageComponent implements CanComponentDeactivate, OnInit {
   formGroup :FormGroup<any> = new FormGroup<any>({})
+  addressForm :FormGroup<any> = new FormGroup<any>({})
+  public errors$: WritableSignal<FormError[]> = signal([]);
 
   isNavigating :boolean = false;
 
@@ -76,6 +80,12 @@ export class StaffCreatePageComponent implements CanComponentDeactivate {
         complements: new FormControl('/'),
       })
     })
+  }
+
+  ngOnInit(): void {
+    this.addressForm = this.formGroup.get('address') as FormGroup
+    handleFormError(this.formGroup, this.errors$);
+    handleFormError(this.addressForm, this.errors$);
   }
 
   // implement guard to be sure that the user doesn't quit de page without saving data
@@ -126,4 +136,21 @@ export class StaffCreatePageComponent implements CanComponentDeactivate {
     }
   }
 
+  getErrorMessages(controlName: string): string[] {
+    return this.errors$()
+      .filter((error) => error.control === controlName)
+      .map((error) => this.formatErrorMessage(error));
+  }
+
+  // formater l'erreur en fonction de son type
+  private formatErrorMessage(error: FormError): string {
+    switch (error.error) {
+      case 'required':
+        return `${this.translateService.instant('error-is-required')}`;
+      case 'minlength':
+        return `${error.control} must contains at least ${error.value.requiredLength} character`;
+      default:
+        return `${error.control} contains an error : ${error.error}`;
+    }
+  }
 }

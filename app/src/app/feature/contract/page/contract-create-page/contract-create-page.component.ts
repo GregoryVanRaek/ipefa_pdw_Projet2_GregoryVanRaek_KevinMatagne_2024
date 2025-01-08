@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output, signal, WritableSignal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Button} from 'primeng/button';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
@@ -14,6 +14,8 @@ import {ConfirmDialog} from 'primeng/confirmdialog';
 import {Toast} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {StaffService} from '../../../staff/service';
+import {FormError} from '@shared/core';
+import {handleFormError} from '@shared/ui';
 
 
 @Component({
@@ -39,6 +41,7 @@ import {StaffService} from '../../../staff/service';
 export class ContractCreatePageComponent {
   @Input({required:true}) employeeId!:string;
   @Output() contractCreated :EventEmitter<boolean> = new EventEmitter<boolean>();
+  public errors$: WritableSignal<FormError[]> = signal([]);
   formGroup :FormGroup<any> = new FormGroup({});
   perks:string[] = [];
   contracts:string[] = [];
@@ -47,7 +50,6 @@ export class ContractCreatePageComponent {
   // DI
   private readonly translateService:TranslateService = inject(TranslateService);
   private readonly contractService :ContractService = inject(ContractService);
-  private readonly route:ActivatedRoute = inject(ActivatedRoute);
   private readonly messageService :MessageService = inject(MessageService);
   private readonly staffService :StaffService = inject(StaffService);
 
@@ -67,16 +69,15 @@ export class ContractCreatePageComponent {
     this.formGroup.get('weeklySchedule')?.valueChanges.subscribe((value: number) => {
       this.updateSchedulePercentage(value);
     });
-
     this.updateSchedulePercentage(this.formGroup.get('weeklySchedule')?.value || 38);
-
+    handleFormError(this.formGroup, this.errors$);
   }
 
   create() :void{
     const contract = this.formGroup.value;
     let message:string;
 
-    contract.perks =  contract.perks.map((perk: { label: string; value: string }) => perk.value).join(', ');
+    contract.perks =  contract.perks.map((perk: { label: string; value: string }) => perk.value).join(',');
     contract.contractType = contract.contractType.value;
 
     contract.employee = this.staffService.getEmployeeById(this.employeeId).subscribe({
@@ -137,5 +138,22 @@ export class ContractCreatePageComponent {
     }
   }
 
-}
+  getErrorMessages(controlName: string): string[] {
+    return this.errors$()
+      .filter((error) => error.control === controlName)
+      .map((error) => this.formatErrorMessage(error));
+  }
 
+  // formater l'erreur en fonction de son type
+  private formatErrorMessage(error: FormError): string {
+    switch (error.error) {
+      case 'required':
+        return `${this.translateService.instant('error-is-required')}`;
+      case 'minlength':
+        return `${error.control} must contains at least ${error.value.requiredLength} character`;
+      default:
+        return `${error.control} contains an error : ${error.error}`;
+    }
+  }
+
+}

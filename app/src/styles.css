@@ -99,7 +99,6 @@ footer{
 
 }
 
-
 input[type="text"], input[type="password"], input[type="email"] {
   @apply mt-2 p-2 w-full rounded-xl;
   border-color: var(--primary-color);
@@ -112,4 +111,18 @@ input[type="text"], input[type="password"], input[type="email"] {
     outline: none;
   }
 
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.success-msg {
+  color: green;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  font-style: italic;
 }

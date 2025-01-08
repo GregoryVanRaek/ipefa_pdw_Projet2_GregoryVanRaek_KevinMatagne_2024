@@ -35,8 +35,6 @@ export class SigninPageComponent implements OnInit {
     });
 
     handleFormError(this.formGroup, this.errors$);
-
-    console.log(this.errors$())
   }
 
   signIn(): void {
@@ -63,7 +61,7 @@ export class SigninPageComponent implements OnInit {
       }
     }
 
-  // méthode pour récupéré les msg d'erreurs en fonction du controle
+  // méthode pour récupérer les msg d'erreurs en fonction du controle
   getErrorMessages(controlName: string): string[] {
     return this.errors$()
       .filter((error) => error.control === controlName)
@@ -82,4 +80,3 @@ export class SigninPageComponent implements OnInit {
     }
   }
 }
-
