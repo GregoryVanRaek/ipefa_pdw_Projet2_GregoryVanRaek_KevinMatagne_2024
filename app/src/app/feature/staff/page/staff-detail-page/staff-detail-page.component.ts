@@ -145,6 +145,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
   onEditClick() {
     this.isEditMode = !this.isEditMode;
     this.setFormControlStatus();
+    this.getOneById(this.employeeId);
   }
 
   setFormControlStatus() {
@@ -170,6 +171,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
         }
         else{
           this.existingContract$.set(false);
+          this.newContract = false;
         }
       }
     })
@@ -265,6 +267,12 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
   createdContract(){
     this.newContract = false;
+    this.checkExistingContract();
+  }
+
+  deletedContract(){
+    this.newContract = true;
+    this.checkExistingContract();
   }
 
   getErrorMessages(controlName: string): string[] {

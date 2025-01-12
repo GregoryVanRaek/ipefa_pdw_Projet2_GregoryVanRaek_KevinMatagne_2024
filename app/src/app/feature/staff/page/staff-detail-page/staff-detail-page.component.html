@@ -202,8 +202,9 @@
                 </div>
 
                 @if(isEditMode) {
-                  <div class="mt-4">
-                    <p-button type="submit" [disabled]="!staffFormGroup.valid || !addressForm.valid "><i class="pi pi-save"></i>{{ 'btn-save' | translate }}</p-button>
+                  <div class="mt-4 flex gap-4">
+                    <p-button outlined raised type="submit" [disabled]="!staffFormGroup.valid || !addressForm.valid "><i class="pi pi-save"></i>{{ 'btn-save' | translate }}</p-button>
+                    <p-button outlined raised (click)="onEditClick()" severity="danger"><i class="pi pi-times"></i><span>{{ 'btn-cancel' | translate }}</span></p-button>
                   </div>
                 }
               </div>
@@ -224,7 +225,7 @@
               }
 
               @if(this.existingContract$()) {
-                <app-contract-detail-page></app-contract-detail-page>
+                <app-contract-detail-page (contractDeleted)="deletedContract()"></app-contract-detail-page>
               }
             </div>
           </p-tabpanel>

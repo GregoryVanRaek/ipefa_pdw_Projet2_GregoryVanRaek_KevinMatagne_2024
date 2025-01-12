@@ -7,7 +7,7 @@
       </p-float-label>
       @if(getErrorMessages('salary').length > 0 && formGroup.get('salary')?.touched) {
         @for(errorMessage of getErrorMessages('salary') ; track $index) {
-          <p class="error-msg">{{ 'contract-create-feature-salary' | translate }} {{ errorMessage }}</p>
+          <p class="error-msg">{{ errorMessage }}</p>
         }
       }
     </div>
@@ -18,7 +18,7 @@
       </p-float-label>
       @if(getErrorMessages('perks').length > 0 && formGroup.get('perks')?.touched) {
         @for(errorMessage of getErrorMessages('perks') ; track $index) {
-          <p class="error-msg">{{ 'contract-create-feature-perks' | translate }} {{ errorMessage }}</p>
+          <p class="error-msg">{{ errorMessage }}</p>
         }
       }
     </div>
@@ -29,7 +29,7 @@
       </p-float-label>
       @if(getErrorMessages('startDate').length > 0 && formGroup.get('startDate')?.touched) {
         @for(errorMessage of getErrorMessages('startDate') ; track $index) {
-          <p class="error-msg">{{ 'contract-create-feature-startDate' | translate }} {{ errorMessage }}</p>
+          <p class="error-msg">{{ errorMessage }}</p>
         }
       }
     </div>
@@ -40,7 +40,7 @@
       </p-float-label>
       @if(getErrorMessages('endDate').length > 0 && formGroup.get('endDate')?.touched) {
         @for(errorMessage of getErrorMessages('endDate') ; track $index) {
-          <p class="error-msg">{{ 'contract-create-feature-endDate' | translate }} {{ errorMessage }}</p>
+          <p class="error-msg">{{ errorMessage }}</p>
         }
       }
     </div>
@@ -51,7 +51,7 @@
       </p-float-label>
       @if(getErrorMessages('contractType').length > 0 && formGroup.get('contractType')?.touched) {
         @for(errorMessage of getErrorMessages('contractType') ; track $index) {
-          <p class="error-msg">{{ 'contract-create-feature-contractType' | translate }} {{ errorMessage }}</p>
+          <p class="error-msg">{{ errorMessage }}</p>
         }
       }
     </div>
@@ -67,13 +67,13 @@
       </div>
       @if(getErrorMessages('weeklySchedule').length > 0 && formGroup.get('weeklySchedule')?.touched) {
         @for(errorMessage of getErrorMessages('weeklySchedule') ; track $index) {
-          <p class="error-msg">{{ 'contract-create-feature-weeklySchedule' | translate }} {{ errorMessage }}</p>
+          <p class="error-msg">{{ errorMessage }}</p>
         }
       }
     </div>
   </div>
 
-  <p-button outlined raised type="submit" severity="success">{{ 'btn-save' | translate }}</p-button>
+  <p-button [disabled]="!formGroup.valid" outlined raised type="submit" severity="success">{{ 'btn-save' | translate }}</p-button>
 </form>
 
 <p-toast/>

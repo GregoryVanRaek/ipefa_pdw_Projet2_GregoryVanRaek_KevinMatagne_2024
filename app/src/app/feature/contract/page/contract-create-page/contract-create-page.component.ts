@@ -52,11 +52,12 @@ export class ContractCreatePageComponent {
   private readonly contractService :ContractService = inject(ContractService);
   private readonly messageService :MessageService = inject(MessageService);
   private readonly staffService :StaffService = inject(StaffService);
+  private readonly router :Router = inject(Router);
 
   constructor() {
     this.formGroup = new FormGroup({
-      salary : new FormControl('', Validators.required),
-      perks : new FormControl('', Validators.required),
+      salary : new FormControl('', [Validators.required, Validators.min(0)]),
+      perks : new FormControl(null),
       startDate : new FormControl(new Date(), Validators.required),
       endDate : new FormControl(null),
       contractType : new FormControl('', Validators.required),
@@ -77,7 +78,10 @@ export class ContractCreatePageComponent {
     const contract = this.formGroup.value;
     let message:string;
 
-    contract.perks =  contract.perks.map((perk: { label: string; value: string }) => perk.value).join(',');
+    if(contract.perks !== null){
+     contract.perks =  contract.perks.map((perk: { label: string; value: string }) => perk.value).join(',');
+    }
+
     contract.contractType = contract.contractType.value;
 
     contract.employee = this.staffService.getEmployeeById(this.employeeId).subscribe({
@@ -148,7 +152,7 @@ export class ContractCreatePageComponent {
   private formatErrorMessage(error: FormError): string {
     switch (error.error) {
       case 'required':
-        return `${this.translateService.instant('error-is-required')}`;
+        return `${this.translateService.instant('error-field-is-required')}`;
       case 'minlength':
         return `${error.control} must contains at least ${error.value.requiredLength} character`;
       default:

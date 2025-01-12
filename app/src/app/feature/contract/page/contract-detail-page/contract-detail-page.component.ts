@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, EventEmitter, inject, OnInit, Output, signal, WritableSignal} from '@angular/core';
 import {Button} from 'primeng/button';
 import {Calendar} from 'primeng/calendar';
 import {FloatLabel} from 'primeng/floatlabel';
@@ -34,6 +34,7 @@ import {handleFormError} from '@shared/ui';
   styleUrl: './contract-detail-page.component.css'
 })
 export class ContractDetailPageComponent implements OnInit{
+  @Output() contractDeleted : EventEmitter<boolean> = new EventEmitter<boolean>();
   employeeId :string | null;
   formGroup: FormGroup<any> ;
   perks:string[] = [];
@@ -52,8 +53,8 @@ export class ContractDetailPageComponent implements OnInit{
 
   constructor() {
     this.formGroup = new FormGroup({
-      salary : new FormControl({ value: '', disabled: true }, Validators.required),
-      perks : new FormControl({ value: '', disabled: true }, Validators.required),
+      salary : new FormControl({ value: '', disabled: true }, [Validators.required, Validators.min(0)]),
+      perks : new FormControl({ value: null, disabled: true },),
       startDate : new FormControl({ value: '', disabled: true }, Validators.required),
       endDate : new FormControl({ value: '', disabled: true }),
       contractType : new FormControl({ value: '', disabled: true }, Validators.required),
@@ -83,6 +84,9 @@ export class ContractDetailPageComponent implements OnInit{
           this.contract$.set(foundContract);
           this.initFormValue(foundContract);
           return foundContract;
+        }
+        else{
+          this.contract$.set(null);
         }
       }
     })
@@ -119,11 +123,14 @@ export class ContractDetailPageComponent implements OnInit{
 
   initFormValue(contract :Contract):void{
     const translatedPerks = this.getTranslatedPerks();
+    let selectedPerks = null;
 
-    const selectedPerks = contract.perks
-      .split(',')
-      .map(perk => translatedPerks.find(option => option.value === perk))
-      .filter(perk => perk !== undefined);
+    if(contract.perks !== null){
+      selectedPerks = contract.perks
+        .split(',')
+        .map(perk => translatedPerks.find(option => option.value === perk))
+        .filter(perk => perk !== undefined);
+    }
 
     this.formGroup.patchValue({
       salary : contract.salary,
@@ -138,8 +145,11 @@ export class ContractDetailPageComponent implements OnInit{
   update() :void{
     if(this.formGroup.valid){
       const payload = this.formGroup.value;
-      payload.perks =  payload.perks.map((perk: { label: string; value: string }) => perk.value).join(',');
-      payload.contractId = this.contract$()?.contractId;
+
+      if(payload.perks !== null){
+        payload.perks =  payload.perks.map((perk: { label: string; value: string }) => perk.value).join(',');
+        payload.contractId = this.contract$()?.contractId;
+      }
 
       if(this.employeeId){
         payload.employee = this.staffService.getEmployeeById(this.employeeId)
@@ -174,6 +184,8 @@ export class ContractDetailPageComponent implements OnInit{
           next: () => {
             const successMessage = this.translateService.instant('contract-feature-delete-toast-success');
             this.messageService.add({ severity: 'success', summary: successMessage });
+            this.contractDeleted.emit();
+            this.getContract();
           },
           error : (err) => {
             const errorMessage = this.translateService.instant('contract-feature-delete-toast-error') + err.message;
@@ -202,6 +214,7 @@ export class ContractDetailPageComponent implements OnInit{
       this.formGroup.get('perks')?.disable();
       this.formGroup.get('endDate')?.disable();
       this.formGroup.get('weeklySchedule')?.disable();
+      this.getContract();
     }
   }
 
@@ -215,9 +228,10 @@ export class ContractDetailPageComponent implements OnInit{
   private formatErrorMessage(error: FormError): string {
     switch (error.error) {
       case 'required':
-        return `${this.translateService.instant('error-is-required')}`;
-      case 'minlength':
-        return `${error.control} must contains at least ${error.value.requiredLength} character`;
+        return `${this.translateService.instant('error-field-is-required')}`;
+      case 'min':
+        console.log(error)
+        return `${error.control} must be greater than ${error.value.min.min}`;
       default:
         return `${error.control} contains an error : ${error.error}`;
     }
