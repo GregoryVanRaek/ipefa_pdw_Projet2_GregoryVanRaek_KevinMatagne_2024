@@ -8,7 +8,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {Router, RouterLink} from '@angular/router';
 import {Toast} from 'primeng/toast';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
-import {CanComponentDeactivate, FormError} from '@shared/core';
+import {CanComponentDeactivate, CustomValidators, FormError} from '@shared/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {StaffService} from '../../service';
 import {Gender} from '@shared/api/data/enum/gender';
@@ -63,20 +63,20 @@ export class StaffCreatePageComponent implements CanComponentDeactivate, OnInit 
 
   constructor() {
     this.formGroup = new FormGroup({
-      lastname:new FormControl('', Validators.required),
-      firstname:new FormControl('', Validators.required),
-      birthdate:new FormControl('', Validators.required),
-      mail:new FormControl('', Validators.required),
-      phone:new FormControl('', Validators.required),
-      iban:new FormControl('', Validators.required),
+      lastname:new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+      firstname:new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+      birthdate:new FormControl('', [Validators.required, CustomValidators.noFutureDateValidator()]),
+      mail:new FormControl('', [Validators.required, Validators.email]),
+      phone:new FormControl('', [Validators.required, CustomValidators.onlyNumbersValidator()]),
+      iban:new FormControl('', [Validators.required, CustomValidators.ibanValidator()]),
       gender:new FormControl('', Validators.required),
       role:new FormControl('', Validators.required),
       address:new FormGroup({
-        road: new FormControl('', Validators.required),
-        nb: new FormControl('', Validators.required),
-        cp: new FormControl('', Validators.required),
-        town: new FormControl('', Validators.required),
-        country: new FormControl('', Validators.required),
+        road: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+        nb: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+        cp: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+        town: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+        country: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
         complements: new FormControl('/'),
       })
     })
@@ -119,14 +119,20 @@ export class StaffCreatePageComponent implements CanComponentDeactivate, OnInit 
       employee.role = UserRoleEnum[employee.role];
 
       this.service.createEmployee(employee).subscribe({
-        next:() => {
-          const message :string = this.translateService.instant('staff-feature-create-confirmation')
-          this.messageService.add({ severity: 'success', summary: message});
+        next:(response) => {
+          if(response.result){
+            const message :string = this.translateService.instant('staff-feature-create-confirmation')
+            this.messageService.add({ severity: 'success', summary: message});
 
-          this.isNavigating = true;
-          setTimeout(() => {
-            this.router.navigate(['/staff']);
-          }, 1000);
+            this.isNavigating = true;
+            setTimeout(() => {
+              this.router.navigate(['/staff']);
+            }, 1000);
+          }
+          else{
+            const message :string = this.translateService.instant('staff-feature-create-error') + response.errors;
+            this.messageService.add({ severity: 'error', summary: message});
+          }
         },
         error : (err) => {
           const message :string = this.translateService.instant('staff-feature-create-error') + err;
@@ -146,9 +152,19 @@ export class StaffCreatePageComponent implements CanComponentDeactivate, OnInit 
   private formatErrorMessage(error: FormError): string {
     switch (error.error) {
       case 'required':
-        return `${this.translateService.instant('error-is-required')}`;
+        return `${this.translateService.instant('error-field-is-required')}`;
       case 'minlength':
         return `${error.control} must contains at least ${error.value.requiredLength} character`;
+      case 'email' :
+        return `${this.translateService.instant('error-email')}`;
+      case 'nonEmpty' :
+        return `${this.translateService.instant('error-field-non-empty')}`;
+      case 'onlyNumbers':
+        return `${this.translateService.instant('error-only-number')}`;
+      case 'iban':
+        return `${this.translateService.instant('error-iban')}`;
+      case 'noFutureDate':
+        return `${this.translateService.instant('error-date-in-futur')}`;
       default:
         return `${error.control} contains an error : ${error.error}`;
     }

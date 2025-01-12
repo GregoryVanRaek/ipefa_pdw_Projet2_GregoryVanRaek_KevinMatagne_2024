@@ -37,7 +37,7 @@
                     </p-floatlabel>
                     @if(getErrorMessages('lastname').length > 0 && staffFormGroup.get('lastname')?.touched) {
                       @for(errorMessage of getErrorMessages('lastname') ; track $index) {
-                        <p class="error-msg">{{ "staff-lastname" | translate }} {{ errorMessage }}</p>
+                        <p class="error-msg">{{ errorMessage }}</p>
                       }
                     }
                   </div>
@@ -48,7 +48,7 @@
                     </p-floatlabel>
                     @if(getErrorMessages('firstname').length > 0 && staffFormGroup.get('firstname')?.touched) {
                       @for(errorMessage of getErrorMessages('firstname') ; track $index) {
-                        <p class="error-msg">{{ 'staff-firstname' | translate }} {{ errorMessage }}</p>
+                        <p class="error-msg">{{ errorMessage }}</p>
                       }
                     }
                   </div>
@@ -63,7 +63,7 @@
                       </p-floatlabel>
                       @if(getErrorMessages('role').length > 0 && staffFormGroup.get('role')?.touched) {
                         @for(errorMessage of getErrorMessages('role') ; track $index) {
-                          <p class="error-msg">{{ 'staff-role' | translate }} {{ errorMessage }}</p>
+                          <p class="error-msg">{{ errorMessage }}</p>
                         }
                       }
                     </div>
@@ -74,7 +74,7 @@
                       </p-floatlabel>
                       @if(getErrorMessages('gender').length > 0 && staffFormGroup.get('gender')?.touched) {
                         @for(errorMessage of getErrorMessages('gender') ; track $index) {
-                          <p class="error-msg">{{ 'staff-gender' | translate }} {{ errorMessage }}</p>
+                          <p class="error-msg">{{ errorMessage }}</p>
                         }
                       }
                     </div>
@@ -87,7 +87,7 @@
                     </p-floatlabel>
                     @if(getErrorMessages('iban').length > 0 && staffFormGroup.get('iban')?.touched) {
                       @for(errorMessage of getErrorMessages('iban') ; track $index) {
-                        <p class="error-msg">{{ 'staff-iban' | translate }} {{ errorMessage }}</p>
+                        <p class="error-msg">{{ errorMessage }}</p>
                       }
                     }
                   </div>
@@ -108,7 +108,7 @@
                     </p-floatlabel>
                     @if(getErrorMessages('mail').length > 0 && staffFormGroup.get('mail')?.touched) {
                       @for(errorMessage of getErrorMessages('mail') ; track $index) {
-                        <p class="error-msg">{{ 'staff-mail' | translate }} {{ errorMessage }}</p>
+                        <p class="error-msg">{{ errorMessage }}</p>
                       }
                     }
                   </div>
@@ -120,7 +120,7 @@
                     </p-floatlabel>
                     @if(getErrorMessages('phone').length > 0 && staffFormGroup.get('phone')?.touched) {
                       @for(errorMessage of getErrorMessages('phone') ; track $index) {
-                        <p class="error-msg">{{ 'staff-phone' | translate }} {{ errorMessage }}</p>
+                        <p class="error-msg">{{ errorMessage }}</p>
                       }
                     }
                   </div>
@@ -139,7 +139,7 @@
                       </p-floatlabel>
                       @if(getErrorMessages('road').length > 0 && addressForm.get('road')?.touched) {
                         @for(errorMessage of getErrorMessages('road') ; track $index) {
-                          <p class="error-msg">{{ 'address-road' | translate }} {{ errorMessage }}</p>
+                          <p class="error-msg">{{ errorMessage }}</p>
                         }
                       }
                     </div>
@@ -150,7 +150,7 @@
                       </p-floatlabel>
                       @if(getErrorMessages('nb').length > 0 && addressForm.get('nb')?.touched) {
                         @for(errorMessage of getErrorMessages('nb') ; track $index) {
-                          <p class="error-msg">{{ 'address-nb' | translate }} {{ errorMessage }}</p>
+                          <p class="error-msg">{{ errorMessage }}</p>
                         }
                       }
                     </div>
@@ -164,7 +164,7 @@
                       </p-floatlabel>
                       @if(getErrorMessages('cp').length > 0 && addressForm.get('cp')?.touched) {
                         @for(errorMessage of getErrorMessages('cp') ; track $index) {
-                          <p class="error-msg">{{ 'address-cp' | translate }} {{ errorMessage }}</p>
+                          <p class="error-msg">{{ errorMessage }}</p>
                         }
                       }
                     </div>
@@ -175,7 +175,7 @@
                       </p-floatlabel>
                       @if(getErrorMessages('town').length > 0 && addressForm.get('town')?.touched) {
                         @for(errorMessage of getErrorMessages('town') ; track $index) {
-                          <p class="error-msg">{{ 'address-town' | translate }} {{ errorMessage }}</p>
+                          <p class="error-msg">{{ errorMessage }}</p>
                         }
                       }
                     </div>
@@ -189,7 +189,7 @@
                       </p-floatlabel>
                       @if(getErrorMessages('country').length > 0 && addressForm.get('country')?.touched) {
                         @for(errorMessage of getErrorMessages('country') ; track $index) {
-                          <p class="error-msg">{{ 'address-country' | translate }} {{ errorMessage }}</p>
+                          <p class="error-msg">{{ errorMessage }}</p>
                         }
                       }
                     </div>

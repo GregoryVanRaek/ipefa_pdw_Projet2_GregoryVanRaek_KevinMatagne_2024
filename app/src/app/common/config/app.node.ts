@@ -15,5 +15,6 @@ export enum AppNode {
   UPDATE = 'update',
   DELETE = 'delete',
   CONTRACT = 'contract',
+  MAIL = "email",
   FALL_BACK = '**',
 }

@@ -55,6 +55,8 @@ var ApiCodeResponse;
     ApiCodeResponse["EMPLOYEE_DELETE_ERROR"] = "api.error.employee-delete";
     ApiCodeResponse["EMPLOYEE_NOT_FOUND"] = "api.error.employee-not-found";
     ApiCodeResponse["EMPLOYEE_UPDATE_ERROR"] = "api.error.employee-update";
+    ApiCodeResponse["EMPLOYEE_PAYLOAD_PHONE_ALREADY_EXISTS"] = "This phone number is already registered";
+    ApiCodeResponse["EMPLOYEE_PAYLOAD_MAIL_ALREADY_EXISTS"] = "This email is already registered";
     ApiCodeResponse["ADDRESS_PAYLOAD_IS_NOT_STRING"] = "api.address.validation-is-not-string";
     ApiCodeResponse["ADDRESS_PAYLOAD_LENGTH_ERROR"] = "api.address.validation-length-error";
     ApiCodeResponse["ADDRESS_CREATE_ERROR"] = "api.error.address-creation";

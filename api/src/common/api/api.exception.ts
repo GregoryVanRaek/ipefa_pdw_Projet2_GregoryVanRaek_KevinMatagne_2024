@@ -3,11 +3,12 @@ import { HttpException } from '@nestjs/common';
 import {ApiCodeResponse} from './api-code.response';
 
 export class ApiException extends HttpException{
-  constructor(code:ApiCodeResponse, status:number) {
+  constructor(code:ApiCodeResponse, status:number, errors:string[] = null) {
     super({
       code: code,
       data: null,
-      result: false
+      result: false,
+      errors
     }, status);
   }
 }

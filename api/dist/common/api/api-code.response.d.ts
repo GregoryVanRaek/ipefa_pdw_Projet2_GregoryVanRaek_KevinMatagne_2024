@@ -51,6 +51,8 @@ export declare enum ApiCodeResponse {
     EMPLOYEE_DELETE_ERROR = "api.error.employee-delete",
     EMPLOYEE_NOT_FOUND = "api.error.employee-not-found",
     EMPLOYEE_UPDATE_ERROR = "api.error.employee-update",
+    EMPLOYEE_PAYLOAD_PHONE_ALREADY_EXISTS = "This phone number is already registered",
+    EMPLOYEE_PAYLOAD_MAIL_ALREADY_EXISTS = "This email is already registered",
     ADDRESS_PAYLOAD_IS_NOT_STRING = "api.address.validation-is-not-string",
     ADDRESS_PAYLOAD_LENGTH_ERROR = "api.address.validation-length-error",
     ADDRESS_CREATE_ERROR = "api.error.address-creation",

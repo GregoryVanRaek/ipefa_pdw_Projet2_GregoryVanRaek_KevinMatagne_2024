@@ -7,7 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {TableModule} from 'primeng/table';
 import {RouterLink} from '@angular/router';
-import {AppNode, AppRoutes} from '../../../../common';
+import {AppNode} from '../../../../common';
 import {UserRoleEnum} from '@shared/api/data/enum/role';
 import {ConfirmDialog} from 'primeng/confirmdialog';
 import {Toast} from 'primeng/toast';
@@ -30,7 +30,6 @@ import {ConfirmationService, MessageService} from 'primeng/api';
   styleUrl: './staff-overview-page.component.css'
 })
 export class StaffOverviewPageComponent implements OnInit{
-  protected readonly AppRoutes = AppRoutes;
   protected readonly UserRoleEnum = UserRoleEnum;
   protected readonly AppNode = AppNode;
   service :StaffService = inject(StaffService);
@@ -69,8 +68,10 @@ export class StaffOverviewPageComponent implements OnInit{
       rejectButtonStyleClass: 'p-button-danger',
       accept: () => {
         this.service.deleteEmployee(id).subscribe({
-          next: (reponse) => {
-            console.log(reponse)
+          next: () => {
+            const updatedEmployees = this.employees$().filter(employee => employee.employeeId !== id);
+            this.employees$.set(updatedEmployees);
+
             const successMessage = this.translateService.instant('staff-detail-feature-delete-toast-success');
             this.messageService.add({ severity: 'success', summary: successMessage });
           },

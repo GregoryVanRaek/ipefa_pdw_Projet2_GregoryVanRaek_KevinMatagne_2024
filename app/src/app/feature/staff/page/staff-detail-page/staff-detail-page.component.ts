@@ -1,6 +1,6 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {Employee} from '@shared/api/data/model/employee';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {StaffService} from '../../service';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {FloatLabel} from 'primeng/floatlabel';
@@ -15,7 +15,7 @@ import {Toast, ToastModule} from 'primeng/toast';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Calendar} from 'primeng/calendar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {CanComponentDeactivate, FormError} from '@shared/core';
+import {CanComponentDeactivate, CustomValidators, FormError} from '@shared/core';
 import {ContractCreatePageComponent} from '../../../contract';
 import {ContractDetailPageComponent} from '../../../contract/page/contract-detail-page/contract-detail-page.component';
 import {Contract} from '@shared/api/data/model/contract';
@@ -73,6 +73,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
   // DI
   private readonly route:ActivatedRoute = inject(ActivatedRoute);
+  private readonly router:Router = inject(Router);
   private readonly service:StaffService = inject(StaffService);
   private readonly translateService :TranslateService = inject(TranslateService);
   private readonly messageService :MessageService = inject(MessageService)
@@ -81,20 +82,20 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
   constructor() {
     this.staffFormGroup = new FormGroup({
-      lastname:new FormControl('', Validators.required),
-      firstname:new FormControl('', Validators.required),
-      birthdate:new FormControl('', Validators.required),
-      mail:new FormControl('', Validators.required),
-      phone:new FormControl('', Validators.required),
-      iban:new FormControl('', Validators.required),
+      lastname:new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+      firstname:new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+      birthdate:new FormControl('', [Validators.required, CustomValidators.noFutureDateValidator()]),
+      mail:new FormControl('', [Validators.required, Validators.email]),
+      phone:new FormControl('', [Validators.required, CustomValidators.onlyNumbersValidator()]),
+      iban:new FormControl('', [Validators.required, CustomValidators.ibanValidator()]),
       gender:new FormControl('', Validators.required),
       role:new FormControl('', Validators.required),
       address:new FormGroup({
-        road: new FormControl('', Validators.required),
-        nb: new FormControl('', Validators.required),
-        cp: new FormControl('', Validators.required),
-        town: new FormControl('', Validators.required),
-        country: new FormControl('', Validators.required),
+        road: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+        nb: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+        cp: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+        town: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
+        country: new FormControl('', [Validators.required, CustomValidators.nonEmptyValidator()]),
         complements: new FormControl('/'),
       })
     })
@@ -183,9 +184,16 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
 
     if(this.staffFormGroup.valid){
       this.service.updateEmployee(employee).subscribe({
-        next : () => {
-          message = this.translateService.instant('staff-detail-feature-update-toast-success')
-          this.messageService.add({ severity: 'success', summary: message});
+        next : (response) => {
+          if(response.result){
+            message = this.translateService.instant('staff-detail-feature-update-toast-success')
+            this.messageService.add({ severity: 'success', summary: message});
+            this.onEditClick();
+          }
+          else{
+            const message :string = this.translateService.instant('staff-detail-feature-update-toast-error') + ": \n" +  response.errors;
+            this.messageService.add({ severity: 'error', summary: message});
+          }
         },
         error : (err) => {
           message = this.translateService.instant('staff-detail-feature-update-toast-error') + err.message;
@@ -213,6 +221,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
           next: () => {
             const successMessage = this.translateService.instant('staff-detail-feature-delete-toast-success');
             this.messageService.add({ severity: 'success', summary: successMessage });
+            this.router.navigate(['/staff']);
           },
           error: (err) => {
             const errorMessage = this.translateService.instant('staff-detail-feature-delete-toast-error') + err.message;
@@ -264,13 +273,22 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
       .map((error) => this.formatErrorMessage(error));
   }
 
-  // formater l'erreur en fonction de son type
   private formatErrorMessage(error: FormError): string {
     switch (error.error) {
       case 'required':
-        return `${this.translateService.instant('error-is-required')}`;
+        return `${this.translateService.instant('error-field-is-required')}`;
       case 'minlength':
         return `${error.control} must contains at least ${error.value.requiredLength} character`;
+      case 'email' :
+        return `${this.translateService.instant('error-email')}`;
+      case 'nonEmpty' :
+        return `${this.translateService.instant('error-field-non-empty')}`;
+      case 'onlyNumbers':
+        return `${this.translateService.instant('error-only-number')}`;
+      case 'iban':
+        return `${this.translateService.instant('error-iban')}`;
+      case 'noFutureDate':
+        return `${this.translateService.instant('error-date-in-futur')}`;
       default:
         return `${error.control} contains an error : ${error.error}`;
     }

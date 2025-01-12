@@ -56,12 +56,12 @@
       }
     </div>
     <div class="flex gap-6 items-center">
-      <div>
+      <div class="flex flex-col gap-4">
         <p-float-label>
           <p-input-number formControlName="weeklySchedule" mode="decimal" [showButtons]="true" inputId="weeklySchedule" [min]="0" [max]="40" />
           <label for="weeklySchedule">{{ 'contract-create-feature-weeklySchedule' | translate }}</label>
         </p-float-label>
-        <div class="w-1/2">
+        <div>
           <p-progress-bar [value]="schedulePercentage" [color]="getProgressBarColor()"></p-progress-bar>
         </div>
       </div>
