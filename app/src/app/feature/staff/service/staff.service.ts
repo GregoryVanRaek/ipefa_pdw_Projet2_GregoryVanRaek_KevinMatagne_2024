@@ -21,6 +21,10 @@ export class StaffService {
     return this.api.get(`${AppRoutes.STAFFDETAIL}/${id}`);
   }
 
+  getEmployeeByMail(mail :string) :Observable<ApiResponse>{
+    return this.api.get(`${AppRoutes.STAFFMAIL}/${mail}`);
+  }
+
   updateEmployee(payload :Employee) : Observable<ApiResponse>{
     return this.api.put(`${AppRoutes.STAFFUPDATE}`, payload);
   }

@@ -3,6 +3,7 @@ export interface ApiResponse {
   code: ApiCodeResponse;
   data: any;
   paramError: boolean;
+  errors : any ;
 }
 
 // Message à traduire dans le front

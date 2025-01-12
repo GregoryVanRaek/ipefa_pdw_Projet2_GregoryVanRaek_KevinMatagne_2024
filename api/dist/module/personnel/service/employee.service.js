@@ -29,11 +29,7 @@ let EmployeeService = class EmployeeService {
     }
     async create(payload) {
         try {
-            let address;
-            if (payload.address) {
-                address = await this.addressService.getOrCreateAddress(payload.address);
-            }
-            return await this.repository.save((0, builder_pattern_1.Builder)()
+            const employee = await this.repository.save((0, builder_pattern_1.Builder)()
                 .employeeId(`${(0, ulid_1.ulid)()}`)
                 .firstname(payload.firstname)
                 .lastname(payload.lastname)
@@ -43,11 +39,16 @@ let EmployeeService = class EmployeeService {
                 .iban(payload.iban)
                 .gender(payload.gender)
                 .role(payload.role)
-                .address(address)
                 .build());
+            if (payload.address) {
+                const address = await this.addressService.getOrCreateAddress(payload.address);
+                employee.address = address;
+                await this.repository.save(employee);
+            }
+            return employee;
         }
-        catch (e) {
-            throw new exception_1.EmployeeCreateException();
+        catch (error) {
+            throw new exception_1.EmployeeCreateException(error);
         }
     }
     async getAll() {
@@ -107,7 +108,7 @@ let EmployeeService = class EmployeeService {
             return await this.repository.save(toUpdate);
         }
         catch (e) {
-            throw new exception_1.EmployeeUpdateException();
+            throw new exception_1.EmployeeUpdateException(e);
         }
     }
 };

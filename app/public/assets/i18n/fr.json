@@ -146,7 +146,13 @@
 
   "selected-elements": "éléments sélectionnés",
 
-  "error-is-required": "est requis"
+  "error-field-is-required": "ce champs est requis",
+  "error-field-non-empty": "ce champs ne peut être vide",
+  "error-email" : "l'adresse mail ne correspond pas au format attendu (exemple@exemple.com)",
+  "error-only-number": "ce champs doit être uniquement composé de chiffres",
+  "error-iban": "iban invalide",
+  "error-date-in-futur": "cette date ne peut être dans le futur",
+  "error-mail-already-exists": "cet email est déjà utilisé"
 
 }
 

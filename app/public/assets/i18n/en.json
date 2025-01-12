@@ -145,6 +145,12 @@
 
   "selected-elements": "selected elements",
 
-  "error-is-required": "is required"
+  "error-field-is-required": "this field is required",
+  "error-field-non-empty": "this field can't be empty",
+  "error-email" : "the mail address doesn't match the right format (example@example.com)",
+  "error-only-number": "this field must contain only number",
+  "error-iban": "iban invalid",
+  "error-date-in-futur": "this date can't be in the futur",
+  "error-mail-already-exists": "this email already exists"
 
 }

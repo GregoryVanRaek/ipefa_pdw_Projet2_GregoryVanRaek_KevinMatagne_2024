@@ -15,6 +15,7 @@ import { FormError, handleFormError } from '@shared/ui';
 import { NgClass } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AppNode } from '../../../../common';
+import {CustomValidators} from '@shared/core';
 
 @Component({
   selector: 'app-signup-page',
@@ -42,9 +43,9 @@ export class SignupPageComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = new FormGroup<any>(
       {
-        username: new FormControl('', [Validators.required, Validators.minLength(5), this.nonEmptyValidator()]),
+        username: new FormControl('', [Validators.required, Validators.minLength(5), CustomValidators.nonEmptyValidator()]),
         mail: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, this.strongPasswordValidator()]),
+        password: new FormControl('', [Validators.required, CustomValidators.strongPasswordValidator()]),
         confirmPassword: new FormControl('', [Validators.required]),
       },
       { validators: this.checkPassword }
@@ -104,24 +105,4 @@ export class SignupPageComponent implements OnInit {
         return this.translate.instant(`security-feature.sign-up-page.error.generic`, { field: error.control });
     }
   }
-
-  nonEmptyValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = control.value || '';
-      return value.trim().length < 3 ? { nonEmpty: true } : null;
-    };
-  }
-
-  strongPasswordValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = control.value || '';
-
-      const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/; // 8 cara + 1 maj + 1min + 1 numero + 1 caract spécial
-
-      return strongPasswordRegex.test(value)
-        ? null
-        : { strongPassword: true };
-    };
-  }
-
 }

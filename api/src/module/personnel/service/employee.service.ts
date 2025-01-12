@@ -12,6 +12,7 @@ import {
 } from "../exception";
 import {isNil} from "lodash";
 import {Address, AddressService} from "@common/model";
+import {ApiCodeResponse} from "@common/api";
 
 @Injectable()
 export class EmployeeService {
@@ -20,27 +21,30 @@ export class EmployeeService {
 
     async create(payload: EmployeeCreatePayload): Promise<Employee>{
         try {
-            let address :Address;
+            // Crée l'employé sans affecter l'adresse pour le moment
+            const employee = await this.repository.save(
+                Builder<Employee>()
+                    .employeeId(`${ulid()}`)
+                    .firstname(payload.firstname)
+                    .lastname(payload.lastname)
+                    .birthdate(payload.birthdate)
+                    .mail(payload.mail)
+                    .phone(payload.phone)
+                    .iban(payload.iban)
+                    .gender(payload.gender)
+                    .role(payload.role)
+                    .build()
+            );
 
             if (payload.address) {
-                address = await this.addressService.getOrCreateAddress(payload.address);
+                const address = await this.addressService.getOrCreateAddress(payload.address);
+                employee.address = address;
+                await this.repository.save(employee);
             }
 
-            return await this.repository.save(Builder<Employee>()
-                .employeeId(`${ulid()}`)
-                .firstname(payload.firstname)
-                .lastname(payload.lastname)
-                .birthdate(payload.birthdate)
-                .mail(payload.mail)
-                .phone(payload.phone)
-                .iban(payload.iban)
-                .gender(payload.gender)
-                .role(payload.role)
-                .address(address)
-                .build()
-            );
-        } catch (e) {
-            throw new EmployeeCreateException();
+            return employee;
+        } catch (error) {
+            throw new EmployeeCreateException(error);
         }
     }
 
@@ -107,7 +111,7 @@ export class EmployeeService {
 
             return await this.repository.save(toUpdate);
         } catch (e) {
-            throw new EmployeeUpdateException();
+            throw new EmployeeUpdateException(e);
         }
     }
 
