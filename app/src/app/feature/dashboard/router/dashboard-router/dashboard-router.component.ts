@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faArrowUpFromBracket, faChartSimple, faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
+/*import { faArrowUpFromBracket, faChartSimple, faHouse, faUser } from '@fortawesome/angular-fontawesome';*/
 import { SecurityService } from '../../../security';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -21,10 +21,10 @@ export class DashboardRouterComponent {
   constructor(public securityService :SecurityService) {
   }
 
-  protected readonly faUser = faUser;
+/*  protected readonly faUser = faUser;
   protected readonly faChartSimple = faChartSimple;
   protected readonly faHouse = faHouse;
-  protected readonly faArrowUpFromBracket = faArrowUpFromBracket;
+  protected readonly faArrowUpFromBracket = faArrowUpFromBracket;*/
 
   username:string = "Demo";
   state:string = "Student";

@@ -12,4 +12,16 @@ export enum AppRoutes {
   STAFFCREATE = `${AppNode.EMPLOYEE}/${AppNode.CREATE}`,
   PUBLIC = `/${AppNode.PUBLIC}`,
   CONTRACTCREATE = `${AppNode.CONTRACT}/${AppNode.CREATE}`,
+
+  //SITE
+  SITECREATE=`${AppNode.SITE}/${AppNode.CREATE}`,
+  SITEDETAIL=`${AppNode.SITE}/${AppNode.DETAIL}`,
+  SITEUPDATE=`${AppNode.SITE}/${AppNode.UPDATE}`,
+  SITEDELETE=`${AppNode.SITE}/${AppNode.DELETE}`,
+  SITELISTBYNAME=`${AppNode.SITE}/${AppNode.LIST}`,
+  INVOICEDELETE=`${AppNode.INVOICE}/${AppNode.DELETE}`,
+  INVOICEUPDATE=`${AppNode.INVOICE}/${AppNode.UPDATE}`,
+  INVOICECREATE=`${AppNode.INVOICE}/${AppNode.CREATE}`,
+  INVOICELIST=`${AppNode.INVOICE}/${AppNode.LIST}`,
+  INVOICEDETAIL=`${AppNode.INVOICE}/${AppNode.DETAIL}`,
 }

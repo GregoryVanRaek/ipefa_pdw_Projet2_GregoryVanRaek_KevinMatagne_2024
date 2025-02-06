@@ -16,5 +16,8 @@ export enum AppNode {
   DELETE = 'delete',
   CONTRACT = 'contract',
   MAIL = "email",
+  SITE='site',
   FALL_BACK = '**',
+  INVOICE='invoice',
+
 }

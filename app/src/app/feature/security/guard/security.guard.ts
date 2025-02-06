@@ -11,7 +11,8 @@ export function SecurityGuard(): CanActivateFn {
     const isAuthenticated = securityService.isAuthenticated$();
     const currentRoute = window.location.pathname;
 
-    if(isAuthenticated && !currentRoute.startsWith('/staff')){
+    if(isAuthenticated && !currentRoute.startsWith('/staff') && !currentRoute.startsWith('/site')){
+      console.log("SecurityGuard");
       return router.createUrlTree([AppNode.REDIRECT_TO_AUTHENTICATED]);
     }
 

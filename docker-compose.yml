@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres
+    container_name: projet-web-partie2
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ralphi
+      POSTGRES_PASSWORD: P@ssword
+      POSTGRES_DB: ralphi
+    ports:
+      - "5434:5432"

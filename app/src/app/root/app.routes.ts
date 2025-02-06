@@ -28,6 +28,10 @@ export const routes: Routes = [
     loadChildren:() => import('../feature/staff').then(c => c.staffRoutes)
   },
   {
+    path:AppNode.SITE,
+    loadChildren:()=>import('../feature/site').then(r => r.siteRoutes)
+  },
+  {
     path:AppNode.FALL_BACK,
     component:GlobalFallBackPageComponent
   }

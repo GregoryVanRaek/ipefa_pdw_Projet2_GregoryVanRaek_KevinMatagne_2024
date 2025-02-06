@@ -16,6 +16,7 @@ const core_1 = require("@nestjs/core");
 const jwt_1 = require("../security/jwt");
 const security_module_1 = require("../security/security.module");
 const personnel_module_1 = require("../module/personnel/personnel.module");
+const site_module_1 = require("../module/site/site.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,7 +25,8 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forRoot(config_1.configManager.getTypeOrmConfig()),
             security_module_1.SecurityModule,
-            personnel_module_1.PersonnelModule
+            personnel_module_1.PersonnelModule,
+            site_module_1.SiteModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, {

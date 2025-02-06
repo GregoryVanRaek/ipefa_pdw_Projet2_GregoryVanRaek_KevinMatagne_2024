@@ -17,11 +17,11 @@ import {Calendar} from 'primeng/calendar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {CanComponentDeactivate, CustomValidators, FormError} from '@shared/core';
 import {ContractCreatePageComponent} from '../../../contract';
-import {ContractDetailPageComponent} from '../../../contract/page/contract-detail-page/contract-detail-page.component';
+import {ContractDetailPageComponent} from '../../../contract';
 import {Contract} from '@shared/api/data/model/contract';
 import {ContractService} from '../../../contract/service';
 import {handleFormError} from '@shared/ui';
-import {Select} from 'primeng/select';
+
 
 @Component({
   selector: 'app-staff-detail-page',
@@ -41,7 +41,6 @@ import {Select} from 'primeng/select';
     ConfirmDialogModule,
     ContractCreatePageComponent,
     ContractDetailPageComponent,
-    Select,
   ],
   templateUrl: './staff-detail-page.component.html',
   styleUrl: './staff-detail-page.component.css'
@@ -122,7 +121,7 @@ export class StaffDetailPageComponent implements OnInit, CanComponentDeactivate 
         this.initFormValue(employee);
         this.loading = false;
       }),
-      error : (err :Error) => {
+      error : () => {
         this.loading = false;
       }
     })

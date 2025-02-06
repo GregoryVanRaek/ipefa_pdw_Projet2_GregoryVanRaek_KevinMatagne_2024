@@ -1,0 +1,180 @@
+<div class="my-8 mx-auto">
+  <!-- Display errors at the top of the table -->
+
+  <form [formGroup]="formGroup" >
+    <div class="form-section">
+      <h2 class="capitalize">{{ 'staff-detail-feature-address' | translate }}</h2>
+  <div class="form-section my-4">
+    <h2 class="capitalize">{{'invoice.invoice-lines.title'| translate}}</h2>
+    <div class="my-8">
+        <p-floatlabel>
+          <p-select
+            id="type"
+            formControlName="type"
+            [options]="invoiceType"
+            optionLabel="label"
+            class="w-48">
+          </p-select>
+          <label for="type">{{ "invoice-type" | translate }}</label>
+        </p-floatlabel>
+        @if(getErrorMessages('type').length > 0 && formGroup.get('type')?.touched) {
+          @for(errorMessage of getErrorMessages('type'); track $index) {
+            <p class="error-msg">{{ errorMessage }}</p>
+          }
+        }
+    </div>
+    <div class="my-8">
+      <p-floatlabel>
+        <p-select
+          id="status"
+          formControlName="status"
+          [options]="invoiceStatus"
+          optionLabel="label"
+          class="w-48">
+        </p-select>
+        <label for="type">{{ "invoice-status" | translate }}</label>
+      </p-floatlabel>
+      @if(getErrorMessages('status').length > 0 && formGroup.get('status')?.touched) {
+        @for(errorMessage of getErrorMessages('status'); track $index) {
+          <p class="error-msg">{{ errorMessage }}</p>
+        }
+      }
+
+    </div>
+    <div>
+      <p-float-label>
+        <p-calendar showIcon iconDisplay="input" formControlName="date" dateFormat="dd/mm/yy" showOnFocus="false"></p-calendar>
+        <label class="pt-2">{{ "date" | translate }}</label>
+      </p-float-label>
+      @if(getErrorMessages('date').length > 0 && formGroup.get('date')?.touched) {
+        @for(errorMessage of getErrorMessages('date') ; track $index) {
+          <p class="error-msg">A{{ errorMessage }}</p>
+        }
+      }
+    </div>
+    <div formGroupName="address">
+      <div class="my-8 flex gap-6 flex-wrap">
+        <div>
+          <p-floatlabel>
+            <input formControlName="road" pInputText id="road" />
+            <label for="road">{{ "address-road" | translate }}</label>
+          </p-floatlabel>
+          @if(getErrorMessages('road').length > 0 && addressForm.get('road')?.touched) {
+            @for(errorMessage of getErrorMessages('road') ; track $index) {
+              <p class="error-msg">{{ errorMessage }}</p>
+            }
+          }
+        </div>
+        <div>
+          <p-floatlabel>
+            <input formControlName="nb" pInputText id="nb" />
+            <label for="nb">{{ "address-nb" | translate }}</label>
+          </p-floatlabel>
+          @if(getErrorMessages('nb').length > 0 && addressForm.get('nb')?.touched) {
+            @for(errorMessage of getErrorMessages('nb') ; track $index) {
+              <p class="error-msg">{{ errorMessage }}</p>
+            }
+          }
+        </div>
+      </div>
+      <div class="my-8 flex gap-6 flex-wrap">
+        <div>
+          <p-floatlabel>
+            <input formControlName="cp" pInputText id="cp" />
+            <label for="cp">{{ "address-cp" | translate }}</label>
+          </p-floatlabel>
+          @if(getErrorMessages('cp').length > 0 && addressForm.get('cp')?.touched) {
+            @for(errorMessage of getErrorMessages('cp') ; track $index) {
+              <p class="error-msg">{{ errorMessage }}</p>
+            }
+          }
+        </div>
+        <div>
+          <p-floatlabel>
+            <input formControlName="town" pInputText id="town" />
+            <label for="town">{{ "address-town" | translate }}</label>
+          </p-floatlabel>
+          @if(getErrorMessages('town').length > 0 && addressForm.get('town')?.touched) {
+            @for(errorMessage of getErrorMessages('town') ; track $index) {
+              <p class="error-msg">{{ errorMessage }}</p>
+            }
+          }
+        </div>
+      </div>
+      <div class="my-8 flex gap-6 flex-wrap flex-col">
+        <p-floatlabel>
+          <input formControlName="country" pInputText id="country" />
+          <label for="country">{{ "address-country" | translate }}</label>
+        </p-floatlabel>
+        @if(getErrorMessages('country').length > 0 && addressForm.get('country')?.touched) {
+          @for(errorMessage of getErrorMessages('country') ; track $index) {
+            <p class="error-msg">{{ errorMessage }}</p>
+          }
+        }
+      </div>
+      <div class="my-8 flex">
+        <p-floatlabel>
+          <input class="w-full" formControlName="complement" pInputText id="complement" />
+          <label for="complement">{{ "address-complements" | translate }}</label>
+        </p-floatlabel>
+      </div>
+    </div>
+
+    <div *ngIf="getAllInvoiceErrors().length > 0" class="my-4 p-4 bg-red-100 border border-red-400 text-red-600">
+      <ul>
+        <li *ngFor="let error of getAllInvoiceErrors()">
+          {{ error | translate }}
+        </li>
+      </ul>
+    </div>
+    <p-table [value]="invoiceLines.controls" [rows]="5" class="w-full" [tableStyle]="{'min-width': '50rem'}" responsiveLayout="scrollable">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{ 'invoice-item' | translate }}</th>
+          <th>{{ 'invoice-quantity' | translate }}</th>
+          <th>{{ 'invoice-price' | translate }}</th>
+          <th>{{ 'invoice-vatRate' | translate }}</th>
+          <th>{{ 'invoice-action' | translate }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row let-i="rowIndex">
+        <tr [formGroup]="row" [ngClass]="{'bg-red-200': row.invalid}">
+          <td>
+            <p-float-label>
+              <input pInputText [formControlName]="'itemName'" id="itemName-{{ i }}" placeholder=" " />
+            </p-float-label>
+          </td>
+          <td>
+            <p-inputNumber formControlName="quantity" id="quantity-{{ i }}" placeholder="quantity" />
+          </td>
+          <td>
+            <p-inputNumber formControlName="price" type="number" id="price-{{ i }}" placeholder="price" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5" />
+          </td>
+          <td>
+            <p-inputNumber formControlName="vatRate" type="number" id="vatRate-{{ i }}" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5" />
+          </td>
+          <td>
+            <p-button icon="pi pi-trash" severity="danger" (click)="removeInvoiceLine(i)" label="{{ 'btn-remove' | translate }}"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="flex justify-between">
+      <div class="mt-4">
+        <p-button icon="pi pi-plus" severity="success" (click)="addInvoiceLine()" label="{{ 'btn-add-line' | translate }}"></p-button>
+      </div>
+      <div class="my-4 flex flex-col justify-end text-end">
+        <p class="font-bold">{{ 'invoice-total-without-vat' | translate }}: {{ getTotalAmount().totalWithoutVat }}€</p>
+        <p class="font-bold">{{ 'invoice-total-vat' | translate }}: {{ getTotalAmount().totalVat }}€</p>
+        <p class="font-bold">{{ 'invoice-total-with-vat' | translate }}: {{ getTotalAmount().totalWithVat }}€</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="mt-4">
+    <p-button icon="pi pi-plus" severity="info" (click)="submitInvoice()" label="{{ 'btn-create-invoice' | translate }}"></p-button>
+  </div>
+
+</div>
+  </form>
+</div>

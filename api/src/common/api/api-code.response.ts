@@ -63,9 +63,51 @@ export enum ApiCodeResponse {
   ADDRESS_DELETE_ERROR = "api.error.address-delete",
   ADDRESS_NOT_FOUND = "api.error.address-not-found",
   ADDRESS_UPDATE_ERROR = "api.error.address-update",
+  
+  
+  //SITE
+  //SITE_EXCEPTIONS
+  SITE_CREATE_ERROR = 'api.error.site-creation',
+  SITE_UPDATE_ERROR='api.error.site-update',
+  SITE_NOT_FOUND='api.error.site-not-found',
+  SITE_DELETE_ERROR='api.error.site-delete',
+  
+  
+  SITE_PAYLOAD_ID_IS_MANDATORY='api.site.payload.validation-site-id-is-mandatory',
+  SITE_PAYLOAD_ID_LENGTH_ERROR='api.site.payload.validation-id-length-error',
+  SITE_PAYLOAD_SITENAME_LENGTH_ERROR="api.site.payload.validation-sitename-length-is-invalid",
+  
+  INVOICE_CREATE_ERROR = 'api.error.invoice-creation',
+  INVOICE_UPDATE_ERROR = 'api.error.invoice-update',
+  INVOICE_NOT_FOUND = 'api.error.invoice-not-found',
+  INVOICE_DELETE_ERROR = 'api.error.invoice-delete',
+  INVOICE_LIST_ERROR = 'api.error.invoice-list',
 
+  INVOICE_TYPE_IS_MANDATORY = 'api.error.invoice-type-mandatory',
+  INVOICE_TYPE_IS_INVALID = 'api.error.invoice-type-invalid',
+  INVOICE_STATUS_IS_MANDATORY = 'api.error.invoice-status-mandatory',
+  INVOICE_STATUS_IS_INVALID = 'api.error.invoice-status-invalid',
+  INVOICE_LINES_MUST_BE_ARRAY = 'api.error.invoice-lines-must-be-array',
 
+  // Payload validation errors for InvoiceLine
+  INVOICE_LINE_ITEM_NAME_IS_MANDATORY = 'api.error.invoice-line-item-name-mandatory',
+  INVOICE_LINE_ITEM_NAME_MUST_BE_STRING = 'api.error.invoice-line-item-name-must-be-string',
+  INVOICE_LINE_ITEM_NAME_LENGTH_INVALID = 'api.error.invoice-line-item-name-length-invalid',
+  INVOICE_LINE_VAT_PERCENTAGE_MUST_BE_NUMBER = 'api.error.invoice-line-vat-percentage-must-be-number',
+  INVOICE_LINE_VAT_PERCENTAGE_MIN_ERROR = 'api.error.invoice-line-vat-percentage-min-error',
+  INVOICE_LINE_VAT_PERCENTAGE_MAX_ERROR = 'api.error.invoice-line-vat-percentage-max-error',
+  INVOICE_LINE_ID_MUST_BE_STRING="api.error.invoice-line-id-must-be-string",
+  INVOICE_ID_IS_MANDATORY='api.error.invoice-id-is-mandatory',
+  INVOICE_ID_MUST_BE_STRING="api.error.invoice-id-must-be-string",
 
+  INVOICE_LINE_QUANTITY_MUST_BE_INTEGER = 'api.error.invoice-line-quantity-must-be-integer',
+  INVOICE_LINE_QUANTITY_MIN_ERROR = 'api.error.invoice-line-quantity-min-error',
+  INVOICE_LINE_QUANTITY_MAX_ERROR = 'api.error.invoice-line-quantity-max-error',
+  INVOICE_LINE_VAT_PERCENTAGE_MUST_BE_INTEGER = 'api.error.invoice-line-vat-percentage-must-be-integer',
+  INVOICE_LINE_PRICE_MUST_BE_DECIMAL='api.error.invoice-line-price-must-be-decimal',
+  INVOICE_LINE_PRICE_MIN_ERROR="api.error.invoice-line-price-min-error",
+  INVOICE_LINE_PRICE_MAX_ERROR="api.error.invoice-line-price-max-error",
+ INVOICE_LINE_ID_IS_MANDATORY='api.error.invoice-line-id-is-mandatory',
 }
 
 

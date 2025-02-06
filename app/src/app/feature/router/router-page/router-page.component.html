@@ -12,6 +12,10 @@
       <i class="pi pi-user"></i>
       <span>{{ 'dashboard-feature.router-nav-staff' | translate }}</span>
     </a>
+    <a routerLink="/site" class="nav-link flex gap-4">
+      <i class="pi pi-address-book"></i>
+      <span>{{ 'dashboard-feature.router-nav-site' | translate }}</span>
+    </a>
     <a routerLink="/home" class="nav-link flex gap-4" (click)="logout()">
       <i class="pi pi-sign-out"></i>
       <span>{{ 'dashboard-feature.router-nav-logout' | translate }}</span>
@@ -32,6 +36,10 @@
       <a routerLink="/staff" class="nav-link flex gap-4" (click)="menuVisible = false">
         <i class="pi pi-user"></i>
         <span>{{ 'dashboard-feature.router-nav-staff' | translate }}</span>
+      </a>
+      <a routerLink="/home" class="nav-link flex gap-4" (click)="logout(); menuVisible = false">
+        <i class="pi pi-address-book"></i>
+        <span>{{ 'dashboard-feature.router-nav-site' | translate }}</span>
       </a>
       <a routerLink="/home" class="nav-link flex gap-4" (click)="logout(); menuVisible = false">
         <i class="pi pi-sign-out"></i>

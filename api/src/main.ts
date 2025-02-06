@@ -10,7 +10,7 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({ // accepter les requêtes depuis une autre url
-    origin:'http://localhost:4200',
+    origin:'*',
     methods:'GET,PUT,PATCH,POST,DELETE'
   });
 

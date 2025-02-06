@@ -1,5 +1,4 @@
 import {Address} from '@shared/api/data/model/address';
-import {Contract} from '@shared/api/data/model/contract';
 
 export interface Employee{
   employeeId:string;
